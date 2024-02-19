@@ -126,14 +126,14 @@ namespace QLVT_PT
 
         private void btnThongTinNV_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Form f = this.CheckExists(typeof(formThongTinNV));
+            Form f = this.CheckExists(typeof(formThongTinCaNhan));
             if (f != null)
             {
                 f.Activate();
             }
             else
             {
-                formThongTinNV form = new formThongTinNV();
+                formThongTinCaNhan form = new formThongTinCaNhan();
                 form.Show();
             }
             

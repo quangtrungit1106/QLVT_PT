@@ -14,9 +14,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace QLVT_PT
 {
-    public partial class formThongTinNV : DevExpress.XtraEditors.XtraForm
+    public partial class formThongTinCaNhan : DevExpress.XtraEditors.XtraForm
     {
-        public formThongTinNV()
+        public formThongTinCaNhan()
         {
             InitializeComponent();
         }

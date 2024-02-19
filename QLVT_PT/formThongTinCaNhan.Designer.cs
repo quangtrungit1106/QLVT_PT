@@ -1,6 +1,6 @@
 ﻿namespace QLVT_PT
 {
-    partial class formThongTinNV
+    partial class formThongTinCaNhan
     {
         /// <summary>
         /// Required designer variable.
@@ -62,11 +62,11 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(184, 12);
+            this.labelControl1.Location = new System.Drawing.Point(206, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(232, 23);
+            this.labelControl1.Size = new System.Drawing.Size(209, 23);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "THÔNG TIN NHÂN VIÊN";
+            this.labelControl1.Text = "THÔNG TIN CÁ NHÂN";
             // 
             // label1
             // 
@@ -271,7 +271,7 @@
             this.textMaNV.Size = new System.Drawing.Size(160, 20);
             this.textMaNV.TabIndex = 3;
             // 
-            // formThongTinNV
+            // formThongTinCaNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -296,9 +296,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelControl1);
-            this.Name = "formThongTinNV";
+            this.Name = "formThongTinCaNhan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thông Tin Nhân Viên";
+            this.Text = "Thông Tin Cá Nhân";
             this.Load += new System.EventHandler(this.FormThongTinNV_Load);
             ((System.ComponentModel.ISupportInitialize)(this.textHoNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTenNV.Properties)).EndInit();
