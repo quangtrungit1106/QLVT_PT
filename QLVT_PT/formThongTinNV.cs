@@ -98,7 +98,7 @@ namespace QLVT_PT
             textTenNV.ReadOnly = true;
             textSoCCCD.ReadOnly = true;
             dateNgaySinhNV.ReadOnly = true;
-            btnLuu.Enabled = true;
+            btnLuu.Enabled = false;
         }
     }
 }
