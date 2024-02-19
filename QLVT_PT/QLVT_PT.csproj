@@ -64,13 +64,27 @@
     <Compile Include="formDangNhap.Designer.cs">
       <DependentUpon>formDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="formThongTinNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formThongTinNV.Designer.cs">
+      <DependentUpon>formThongTinNV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLVTDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLVTDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="formChinh.resx">
       <DependentUpon>formChinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formDangNhap.resx">
       <DependentUpon>formDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formThongTinNV.resx">
+      <DependentUpon>formThongTinNV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -92,6 +106,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="QLVTDataSet.xsc">
+      <DependentUpon>QLVTDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLVTDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLVTDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLVTDataSet.xss">
+      <DependentUpon>QLVTDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Stored Procedure\02.sp_LayThongTinNV.txt" />
+    <Content Include="Stored Procedure\01.sp_DangNhap.txt" />
+    <Content Include="Stored Procedure\00.view_DanhSachPhanManh.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
