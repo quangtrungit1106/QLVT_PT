@@ -31,7 +31,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textMaNV = new DevExpress.XtraEditors.TextEdit();
             this.textHoNV = new DevExpress.XtraEditors.TextEdit();
             this.textTenNV = new DevExpress.XtraEditors.TextEdit();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +47,7 @@
             this.textChiNhanh = new DevExpress.XtraEditors.TextEdit();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).BeginInit();
+            this.textMaNV = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.textHoNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTenNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textSoCCCD.Properties)).BeginInit();
@@ -56,6 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textChiNhanh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -87,15 +87,6 @@
             this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Họ và tên:";
-            // 
-            // textMaNV
-            // 
-            this.textMaNV.EditValue = "";
-            this.textMaNV.Location = new System.Drawing.Point(127, 70);
-            this.textMaNV.Name = "textMaNV";
-            this.textMaNV.Properties.ReadOnly = true;
-            this.textMaNV.Size = new System.Drawing.Size(160, 20);
-            this.textMaNV.TabIndex = 3;
             // 
             // textHoNV
             // 
@@ -271,6 +262,15 @@
             this.btnLuu.UseVisualStyleBackColor = false;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
+            // textMaNV
+            // 
+            this.textMaNV.EditValue = "";
+            this.textMaNV.Location = new System.Drawing.Point(127, 70);
+            this.textMaNV.Name = "textMaNV";
+            this.textMaNV.Properties.ReadOnly = true;
+            this.textMaNV.Size = new System.Drawing.Size(160, 20);
+            this.textMaNV.TabIndex = 3;
+            // 
             // formThongTinNV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,7 +300,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thông Tin Nhân Viên";
             this.Load += new System.EventHandler(this.FormThongTinNV_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textHoNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTenNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textSoCCCD.Properties)).EndInit();
@@ -308,6 +307,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textChiNhanh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,7 +318,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private DevExpress.XtraEditors.TextEdit textMaNV;
         private DevExpress.XtraEditors.TextEdit textHoNV;
         private DevExpress.XtraEditors.TextEdit textTenNV;
         private System.Windows.Forms.Label label3;
@@ -335,5 +334,6 @@
         private DevExpress.XtraEditors.TextEdit textChiNhanh;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnLuu;
+        private DevExpress.XtraEditors.TextEdit textMaNV;
     }
 }
