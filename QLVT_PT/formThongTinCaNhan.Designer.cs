@@ -196,11 +196,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNgaySinhNV.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateNgaySinhNV.Properties.CalendarTimeProperties.MaskSettings.Set("mask", "dd/MM/yyyy");
             this.dateNgaySinhNV.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.dateNgaySinhNV.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dateNgaySinhNV.Properties.EditFormat.FormatString = "dd/MM/yyyy";
             this.dateNgaySinhNV.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateNgaySinhNV.Properties.MaskSettings.Set("mask", "dd/MM/yyyy");
             this.dateNgaySinhNV.Properties.ReadOnly = true;
+            this.dateNgaySinhNV.Properties.UseMaskAsDisplayFormat = true;
             this.dateNgaySinhNV.Size = new System.Drawing.Size(127, 20);
             this.dateNgaySinhNV.TabIndex = 14;
             this.dateNgaySinhNV.EditValueChanged += new System.EventHandler(this.dateNgaySinhNV_EditValueChanged);
