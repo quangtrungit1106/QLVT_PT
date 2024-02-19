@@ -152,7 +152,7 @@ namespace QLVT_PT
 
             this.Close();
             /* Step 6*/
-
+            Program.FormChinh.enableButtons();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

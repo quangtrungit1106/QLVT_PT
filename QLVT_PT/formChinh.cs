@@ -27,12 +27,31 @@ namespace QLVT_PT
         ************************************************************/
         private Form CheckExists(Type ftype)
         {
-            foreach (Form f in this.MdiChildren)
+            foreach (Form f in Application.OpenForms)
                 if (f.GetType() == ftype)
                     return f;
             return null;
         }
+        public void enableButtons()
+        {
 
+            btnDangNhap.Enabled = false;
+            btnDangXuat.Enabled = true;
+
+            //pageNhapXuat.Visible = true;
+            //pageBaoCao.Visible = true;
+            btnTaoTaiKhoan.Enabled = true;
+            btnThongTinNV.Enabled = true;   
+
+            if (Program.role == "USER")
+            {
+                btnTaoTaiKhoan.Enabled = false;
+            }
+
+            //pageTaiKhoan.Visible = true;
+
+
+        }
         /************************************************************
          * Dispose: giải phóng các form khỏi bộ nhớ. Ví dụ form nhân viên,...
          * Close: đóng hoàn toàn chương trình lại
@@ -53,16 +72,15 @@ namespace QLVT_PT
         ************************************************************/
         private void btnDangNhap_ItemClick(object sender, ItemClickEventArgs e)
         {
-            logout();
-            Form f = this.CheckExists(typeof(formDangNhap));
+           // logout();
+            Form f = CheckExists(typeof(formDangNhap));
             if (f != null)
             {
                 f.Activate();
             }
             else
             {
-                formDangNhap form = new formDangNhap();
-                //f.MdiParent = this;
+                formDangNhap form = new formDangNhap();              
                 form.Show();
             }
           
@@ -72,5 +90,53 @@ namespace QLVT_PT
             
         }
 
+        private void btnDangXuat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+
+            btnDangNhap.Enabled = true;
+            btnDangXuat.Enabled = false;
+            btnTaoTaiKhoan.Enabled = false;
+            btnThongTinNV.Enabled = false;
+
+            //pageNhapXuat.Visible = false;
+            //pageBaoCao.Visible = false;
+            //pageTaiKhoan.Visible = false;
+
+            Form f = this.CheckExists(typeof(formDangNhap));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formDangNhap form = new formDangNhap();
+                form.Show();
+            }
+
+            Program.FormChinh.MANV.Text = "MÃ NHÂN VIÊN:";
+            Program.FormChinh.HOTEN.Text = "HỌ TÊN:";
+            Program.FormChinh.MAVAITRO.Text = "VAI TRÒ:";
+        }
+
+        private void btnTaoTaiKhoan_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnThongTinNV_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(formThongTinNV));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formThongTinNV form = new formThongTinNV();
+                form.Show();
+            }
+            
+        }
     }
 }
