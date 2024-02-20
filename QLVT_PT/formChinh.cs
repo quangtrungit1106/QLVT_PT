@@ -121,7 +121,16 @@ namespace QLVT_PT
 
         private void btnTaoTaiKhoan_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form f = this.CheckExists(typeof(formTaoTaiKhoan));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formTaoTaiKhoan form = new formTaoTaiKhoan();
+                form.Show();
+            }
         }
 
         private void btnThongTinNV_ItemClick(object sender, ItemClickEventArgs e)

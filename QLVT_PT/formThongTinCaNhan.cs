@@ -54,7 +54,8 @@ namespace QLVT_PT
         private void FormThongTinNV_Load(object sender, EventArgs e)
         {
 
-            String statement = "EXEC sp_LayThongTinNV '" + Program.userName + "'";// exec sp_LayThongTinNV
+            String statement = "EXEC sp_LayThongTinNV '" + Program.userName + "'";
+            Program.myReader = null;// exec sp_LayThongTinNV
             Program.myReader = Program.ExecSqlDataReader(statement);
             if (Program.myReader == null)
                 return;
@@ -151,6 +152,7 @@ namespace QLVT_PT
 
                 Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
                 Program.myReader.Close();
+                //Program.conn.Close();
             }
         }
     }

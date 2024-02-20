@@ -144,7 +144,7 @@ namespace QLVT_PT
             Program.role = Program.myReader.GetString(2);
 
             Program.myReader.Close();
-            Program.conn.Close();
+            //Program.conn.Close();
 
             Program.FormChinh.MANV.Text = "MÃ NHÂN VIÊN: " + Program.userName;
             Program.FormChinh.HOTEN.Text = "HỌ TÊN: " + Program.staff;
