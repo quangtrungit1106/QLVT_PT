@@ -15,6 +15,7 @@ namespace QLVT_PT
         public formChinh()
         {
             InitializeComponent();
+            this.IsMdiContainer = true;
         }
 
         /************************************************************
@@ -38,7 +39,7 @@ namespace QLVT_PT
             btnDangNhap.Enabled = false;
             btnDangXuat.Enabled = true;
 
-            //pageNhapXuat.Visible = true;
+            pageNhapXuat.Visible = true;
             //pageBaoCao.Visible = true;
             btnTaoTaiKhoan.Enabled = true;
             btnThongTinNV.Enabled = true;   
@@ -72,7 +73,7 @@ namespace QLVT_PT
         ************************************************************/
         private void btnDangNhap_ItemClick(object sender, ItemClickEventArgs e)
         {
-           // logout();
+            logout();
             Form f = CheckExists(typeof(formDangNhap));
             if (f != null)
             {
@@ -80,7 +81,8 @@ namespace QLVT_PT
             }
             else
             {
-                formDangNhap form = new formDangNhap();              
+                formDangNhap form = new formDangNhap();
+                form.MdiParent = this;
                 form.Show();
             }
           
@@ -99,7 +101,7 @@ namespace QLVT_PT
             btnTaoTaiKhoan.Enabled = false;
             btnThongTinNV.Enabled = false;
 
-            //pageNhapXuat.Visible = false;
+            pageNhapXuat.Visible = false;
             //pageBaoCao.Visible = false;
             //pageTaiKhoan.Visible = false;
 
@@ -111,6 +113,7 @@ namespace QLVT_PT
             else
             {
                 formDangNhap form = new formDangNhap();
+                form.MdiParent = this;
                 form.Show();
             }
 
@@ -121,22 +124,50 @@ namespace QLVT_PT
 
         private void btnTaoTaiKhoan_ItemClick(object sender, ItemClickEventArgs e)
         {
-
-        }
-
-        private void btnThongTinNV_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            Form f = this.CheckExists(typeof(formThongTinNV));
+            logout();
+            Form f = this.CheckExists(typeof(formTaoTaiKhoan));
             if (f != null)
             {
                 f.Activate();
             }
             else
             {
-                formThongTinNV form = new formThongTinNV();
+                formTaoTaiKhoan form = new formTaoTaiKhoan();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void btnThongTinNV_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(formThongTinCaNhan));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formThongTinCaNhan form = new formThongTinCaNhan();
+                form.MdiParent = this;
                 form.Show();
             }
             
+        }
+
+        private void btnVatTu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+        }
+
+        private void btnNhanVien_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+        }
+
+        private void btnThoat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Close();
         }
     }
 }

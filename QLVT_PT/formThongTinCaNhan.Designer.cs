@@ -1,6 +1,6 @@
 ﻿namespace QLVT_PT
 {
-    partial class formThongTinNV
+    partial class formThongTinCaNhan
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textMaNV = new DevExpress.XtraEditors.TextEdit();
             this.textHoNV = new DevExpress.XtraEditors.TextEdit();
             this.textTenNV = new DevExpress.XtraEditors.TextEdit();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +47,7 @@
             this.textChiNhanh = new DevExpress.XtraEditors.TextEdit();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).BeginInit();
+            this.textMaNV = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.textHoNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTenNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textSoCCCD.Properties)).BeginInit();
@@ -56,17 +55,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textChiNhanh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(184, 12);
+            this.labelControl1.Location = new System.Drawing.Point(206, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(232, 23);
+            this.labelControl1.Size = new System.Drawing.Size(209, 23);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "THÔNG TIN NHÂN VIÊN";
+            this.labelControl1.Text = "THÔNG TIN CÁ NHÂN";
             // 
             // label1
             // 
@@ -87,15 +87,6 @@
             this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Họ và tên:";
-            // 
-            // textMaNV
-            // 
-            this.textMaNV.EditValue = "";
-            this.textMaNV.Location = new System.Drawing.Point(127, 70);
-            this.textMaNV.Name = "textMaNV";
-            this.textMaNV.Properties.ReadOnly = true;
-            this.textMaNV.Size = new System.Drawing.Size(160, 20);
-            this.textMaNV.TabIndex = 3;
             // 
             // textHoNV
             // 
@@ -205,11 +196,14 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNgaySinhNV.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateNgaySinhNV.Properties.CalendarTimeProperties.MaskSettings.Set("mask", "dd/MM/yyyy");
             this.dateNgaySinhNV.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.dateNgaySinhNV.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dateNgaySinhNV.Properties.EditFormat.FormatString = "dd/MM/yyyy";
             this.dateNgaySinhNV.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateNgaySinhNV.Properties.MaskSettings.Set("mask", "dd/MM/yyyy");
             this.dateNgaySinhNV.Properties.ReadOnly = true;
+            this.dateNgaySinhNV.Properties.UseMaskAsDisplayFormat = true;
             this.dateNgaySinhNV.Size = new System.Drawing.Size(127, 20);
             this.dateNgaySinhNV.TabIndex = 14;
             this.dateNgaySinhNV.EditValueChanged += new System.EventHandler(this.dateNgaySinhNV_EditValueChanged);
@@ -271,7 +265,16 @@
             this.btnLuu.UseVisualStyleBackColor = false;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
-            // formThongTinNV
+            // textMaNV
+            // 
+            this.textMaNV.EditValue = "";
+            this.textMaNV.Location = new System.Drawing.Point(127, 70);
+            this.textMaNV.Name = "textMaNV";
+            this.textMaNV.Properties.ReadOnly = true;
+            this.textMaNV.Size = new System.Drawing.Size(160, 20);
+            this.textMaNV.TabIndex = 3;
+            // 
+            // formThongTinCaNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -296,11 +299,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelControl1);
-            this.Name = "formThongTinNV";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "formThongTinCaNhan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thông Tin Nhân Viên";
+            this.Text = "Thông Tin Cá Nhân";
             this.Load += new System.EventHandler(this.FormThongTinNV_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textHoNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTenNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textSoCCCD.Properties)).EndInit();
@@ -308,6 +312,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNgaySinhNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textChiNhanh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,7 +323,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private DevExpress.XtraEditors.TextEdit textMaNV;
         private DevExpress.XtraEditors.TextEdit textHoNV;
         private DevExpress.XtraEditors.TextEdit textTenNV;
         private System.Windows.Forms.Label label3;
@@ -335,5 +339,6 @@
         private DevExpress.XtraEditors.TextEdit textChiNhanh;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnLuu;
+        private DevExpress.XtraEditors.TextEdit textMaNV;
     }
 }

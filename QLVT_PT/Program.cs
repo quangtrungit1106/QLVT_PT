@@ -120,7 +120,7 @@ namespace QLVT_PT
         /*các form của toàn dữ án cũng được coi như 1 một biến toàn cục*/
         public static formDangNhap FormDangNhap;
         public static formChinh FormChinh;
-        public static formThongTinNV FormThongTinNV;
+        public static formThongTinCaNhan FormThongTinNV;
 
         /*****************************************************
          * mở kết nối tới server 
