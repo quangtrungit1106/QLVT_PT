@@ -157,7 +157,18 @@ namespace QLVT_PT
 
         private void btnVatTu_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            logout();
+            Form f = this.CheckExists(typeof(formVatTu));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formVatTu form = new formVatTu();
+                form.MdiParent = this;
+                form.Show();
+            }
         }
 
         private void btnNhanVien_ItemClick(object sender, ItemClickEventArgs e)
