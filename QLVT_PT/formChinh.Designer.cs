@@ -42,6 +42,7 @@
             this.btnDonDatHang = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhieuNhap = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhieuXuat = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.pageHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonDangNhap = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.pageNhapXuat = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -56,7 +57,6 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
-            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -203,6 +203,16 @@
             this.btnPhieuXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhieuXuat.ImageOptions.LargeImage")));
             this.btnPhieuXuat.Name = "btnPhieuXuat";
             // 
+            // btnThoat
+            // 
+            this.btnThoat.Caption = "THOÁT";
+            this.btnThoat.Id = 14;
+            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
+            this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
+            this.btnThoat.LargeWidth = 100;
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
+            // 
             // pageHeThong
             // 
             this.pageHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -324,16 +334,6 @@
             this.barButtonItem6.LargeWidth = 100;
             this.barButtonItem6.Name = "barButtonItem6";
             // 
-            // btnThoat
-            // 
-            this.btnThoat.Caption = "THOÁT";
-            this.btnThoat.Id = 14;
-            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
-            this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
-            this.btnThoat.LargeWidth = 100;
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
-            // 
             // formChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,6 +341,7 @@
             this.ClientSize = new System.Drawing.Size(1018, 471);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonControl1);
+            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("formChinh.IconOptions.LargeImage")));
             this.Name = "formChinh";
             this.Ribbon = this.ribbonControl1;
             this.Text = "QUẢN LÝ VẬT TƯ";
