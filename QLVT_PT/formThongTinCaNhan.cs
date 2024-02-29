@@ -138,20 +138,29 @@ namespace QLVT_PT
                 this.textSoCCCD.ReadOnly = true;
                 this.dateNgaySinhNV.ReadOnly = true;
                 this.btnLuu.Enabled = false;
-                String cauTruyVan =
-                       "UPDATE NHANVIEN " +
-                       "SET " +
-                       "HO = N'" + this.textHoNV.Text + "', " +
-                       "TEN = N'" + this.textTenNV.Text + "', " +
-                       "SOCMND = '" + this.textSoCCCD.Text + "', " +
-                       "DIACHI = N'" + this.textDiaChiNV.Text + "', " +
-                       "NGAYSINH = '" + this.dateNgaySinhNV.DateTime + "' " +
-                       "WHERE " +
-                       "MaNV = '" + this.textMaNV.Text + "'; ";
-                SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+                try
+                {
+                    String cauTruyVan =
+                        "UPDATE NHANVIEN " +
+                        "SET " +
+                        "HO = N'" + this.textHoNV.Text + "', " +
+                        "TEN = N'" + this.textTenNV.Text + "', " +
+                        "SOCMND = '" + this.textSoCCCD.Text + "', " +
+                        "DIACHI = N'" + this.textDiaChiNV.Text + "', " +
+                        "NGAYSINH = '" + this.dateNgaySinhNV.DateTime + "' " +
+                        "WHERE " +
+                        "MaNV = '" + this.textMaNV.Text + "'; ";
+                    SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
 
-                Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
-                Program.myReader.Close();
+                    Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                    Program.myReader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Cập Nhật Thông Tin Nhân Viên", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 //Program.conn.Close();
             }
         }
