@@ -161,6 +161,7 @@
     <Content Include="Stored Procedure\02.sp_LayThongTinNV.txt" />
     <Content Include="Stored Procedure\01.sp_DangNhap.txt" />
     <Content Include="Stored Procedure\00.view_DanhSachPhanManh.txt" />
+    <Content Include="Stored Procedure\03.sp_TaoTaiKhoan.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
