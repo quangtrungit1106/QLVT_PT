@@ -36,10 +36,7 @@ namespace QLVT_PT
             this.vattuGridControl.Enabled = true;
             dangThemVT = false;
             this.txtMaVT.ReadOnly = true;
-            this.txtMaVT.Text = "";
-            this.txtTenVT.Text = "";
-            this.txtDVT.Text = "";
-            this.txtSLT.Text = "";
+
 
             if (vitri != -1)
             {
@@ -103,7 +100,7 @@ namespace QLVT_PT
             this.txtMaVT.Text = "";
             this.txtTenVT.Text = "";
             this.txtDVT.Text = "";
-            this.txtSLT.Text = "";
+            this.txtSLT.Text = "1";
         }
 
         private void vattuGridControl_Click(object sender, EventArgs e)
@@ -169,23 +166,18 @@ namespace QLVT_PT
                         {
                             String cauTruyVan =
                                 "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON)" +
-                                "VALUES ('" + this.txtMaVT.Text.Trim() + "','" +
-                                        this.txtTenVT.Text.Trim() + "','" +
+                                "VALUES ('" + this.txtMaVT.Text.Trim() + "',N'" +
+                                        this.txtTenVT.Text.Trim() + "',N'" +
                                         this.txtDVT.Text.Trim() + "'," +
                                         this.txtSLT.Text + ");";
                             SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
 
                             Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
                             Program.myReader.Close();
-                            this.btnXoa.Enabled = true;
-                            this.btnChinhSua.Enabled = true;
-                            dangThemVT = false;
-                            this.vattuGridControl.Enabled = true;
-                            this.vattuTableAdapter.Fill(this.DS1.Vattu);
-                            
                             vitri++;
                             // Cau lenh hoan tac
                             undoMap[vitri] = "DELETE FROM VATTU WHERE MaVT = '"+ this.txtMaVT.Text.Trim() +"';";
+                            this.vattuTableAdapter.Fill(this.DS1.Vattu);
                             enableButtons();
                         }
                         catch (Exception ex)
@@ -203,7 +195,42 @@ namespace QLVT_PT
                 // Ghi Sửa vật tư
                 else
                 {
+                    try
+                    {
+                        /*Lay du lieu truoc khi chon btnGHI - phuc vu btnHOANTAC*/
+                        String maVatTu = txtMaVT.Text.Trim();// Trim() de loai bo khoang trang thua
+                        DataRowView drv = ((DataRowView)bdsVatTu[bdsVatTu.Position]);
+                        String tenVatTu = drv["TENVT"].ToString();
+                        String donViTinh = drv["DVT"].ToString();
+                        String soLuongTon = (drv["SOLUONGTON"].ToString());
 
+                        String cauTruyVan ="UPDATE VATTU " +
+                                "SET " +
+                                "TENVT = N'" + this.txtTenVT.Text.Trim() + "'," +
+                                "DVT = N'" + this.txtDVT.Text.Trim() + "'," +
+                                "SOLUONGTON = " + this.txtSLT.Text + " " +
+                                "WHERE MAVT = '" + this.txtMaVT.Text.Trim() + "'";
+                        SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+
+                        Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                        Program.myReader.Close();
+                        
+                        vitri++;
+                        // Cau lenh hoan tac
+                        undoMap[vitri] = "UPDATE VATTU " +
+                                "SET " +
+                                "TENVT = N'" + tenVatTu + "'," +
+                                "DVT = N'" + donViTinh + "'," +
+                                "SOLUONGTON = " + soLuongTon + " " +
+                                "WHERE MAVT = '" + this.txtMaVT.Text.Trim() + "'";
+                        this.vattuTableAdapter.Fill(this.DS1.Vattu);
+                        enableButtons();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Chỉnh Sửa Vật Tư", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
             if(vitri != -1)
@@ -245,6 +272,55 @@ namespace QLVT_PT
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Quay Lại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (bdsVatTu.Count == 0)
+            {
+                btnXoa.Enabled = false;
+            }
+
+            if (bdsCTDDH.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa vật tư này vì đã lập đơn đặt hàng", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (bdsCTPN.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa vật tư này vì đã lập phiếu nhập", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (bdsCTPX.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa vật tư này vì đã lập phiếu xuất", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+            try
+            {
+                String cauTruyVan = "DELETE FROM VATTU WHERE MaVT = '" + this.txtMaVT.Text.Trim() + "'; ";
+                SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+
+                Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                Program.myReader.Close();
+
+                vitri++;
+                undoMap[vitri] = "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON)" +
+                                "VALUES ('" + this.txtMaVT.Text.Trim() + "',N'" +
+                                        this.txtTenVT.Text.Trim() + "',N'" +
+                                        this.txtDVT.Text.Trim() + "'," +
+                                        this.txtSLT.Text + ");";
+                this.vattuTableAdapter.Fill(this.DS1.Vattu);
+                enableButtons();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Chỉnh Sửa Vật Tư", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
