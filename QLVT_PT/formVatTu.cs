@@ -29,14 +29,16 @@ namespace QLVT_PT
         {
             this.btnThem.Enabled = true;
             this.btnXoa.Enabled = true;
-            this.btnGhi.Enabled = true;
+            this.btnGhi.Enabled = false;
             this.btnQuayLai.Enabled = false;
             this.btnChinhSua.Enabled = true;
             this.panelThongTin.Enabled = true;
             this.vattuGridControl.Enabled = true;
             dangThemVT = false;
             this.txtMaVT.ReadOnly = true;
-
+            this.txtDVT.ReadOnly = true;
+            this.txtSLT.ReadOnly = true;
+            this.txtTenVT.ReadOnly = true;
 
             if (vitri != -1)
             {
@@ -94,6 +96,7 @@ namespace QLVT_PT
             this.txtMaVT.ReadOnly = false;
             this.btnThem.Enabled = false;
             this.btnXoa.Enabled = false;
+            this.btnGhi.Enabled = true;
             this.btnChinhSua.Enabled = false;
             dangThemVT = true;
             this.vattuGridControl.Enabled = false;
@@ -323,6 +326,14 @@ namespace QLVT_PT
                 MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Chỉnh Sửa Vật Tư", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void btnChinhSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnGhi.Enabled = true;
+            this.txtDVT.ReadOnly = false;
+            this.txtSLT.ReadOnly = false;
+            this.txtTenVT.ReadOnly = false;
         }
     }
      

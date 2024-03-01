@@ -162,6 +162,7 @@
             this.btnChinhSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChinhSua.ImageOptions.LargeImage")));
             this.btnChinhSua.Name = "btnChinhSua";
             this.btnChinhSua.Size = new System.Drawing.Size(100, 0);
+            this.btnChinhSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChinhSua_ItemClick);
             // 
             // btnGhi
             // 
@@ -437,10 +438,7 @@
             this.txtSLT.Location = new System.Drawing.Point(584, 77);
             this.txtSLT.MenuManager = this.barManager1;
             this.txtSLT.Name = "txtSLT";
-            this.txtSLT.Properties.DisplayFormat.FormatString = "n0";
             this.txtSLT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtSLT.Properties.EditFormat.FormatString = "n0";
-            this.txtSLT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtSLT.Size = new System.Drawing.Size(217, 20);
             this.txtSLT.TabIndex = 8;
             // 
