@@ -144,30 +144,38 @@ namespace QLVT_PT
                 txtTEN.Focus();
                 return;
             }
-            //if (dtNGAYSINH.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Ngày sinh nhân viên không được thiếu!", "", MessageBoxButtons.OK);
-            //    dtNGAYSINH.Focus();
-            //    return;
-            //}
-            //if (txtLUONG.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Lương nhân viên không được thiếu!", "", MessageBoxButtons.OK);
-            //    txtLUONG.Focus();
-            //    return;
-            //}
-            //if (int.Parse(txtLUONG.Text) < 4000000)
-            //{
-            //    MessageBox.Show("Lương nhân viên phải lớn hơn 4.000.000", "", MessageBoxButtons.OK);
-            //    txtLUONG.Focus();
-            //    return;
-            //}
+            if (dtNGAYSINH.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày sinh nhân viên không được thiếu!", "", MessageBoxButtons.OK);
+                dtNGAYSINH.Focus();
+                return;
+            }
+            if (txtCMND.Text.Trim() == "")
+            {
+                MessageBox.Show("CMND nhân viên không được thiếu!", "", MessageBoxButtons.OK);
+                txtCMND.Focus();
+                return;
+            }
+            if (txtLUONG.Text.Trim() == "")
+            {
+                MessageBox.Show("Lương nhân viên không được thiếu!", "", MessageBoxButtons.OK);
+                txtLUONG.Focus();
+                return;
+            }
+            if (int.Parse(txtLUONG.Text.Trim().Replace(",", "")) < 4000000)
+            {
+                MessageBox.Show("Lương nhân viên phải lớn hơn 4.000.000", "", MessageBoxButtons.OK);
+                txtLUONG.Focus();
+                return;
+            }
             //if (txtDIACHI.Text.Trim() == "")
             //{
             //    MessageBox.Show("Địa chỉ không được bỏ trống", "", MessageBoxButtons.OK);
             //    txtDIACHI.Focus();
             //    return;
             //}
+
+            //Mã nv không được trùng trên các phân mảnh, viết sp kiểm tra trùng
 
             try
             {
