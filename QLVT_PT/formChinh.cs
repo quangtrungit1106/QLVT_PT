@@ -173,7 +173,18 @@ namespace QLVT_PT
 
         private void btnNhanVien_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            logout();
+            Form f = this.CheckExists(typeof(formNhanVien));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formNhanVien form = new formNhanVien();
+                form.MdiParent = this;
+                form.Show();
+            }
         }
 
         private void btnThoat_ItemClick(object sender, ItemClickEventArgs e)
