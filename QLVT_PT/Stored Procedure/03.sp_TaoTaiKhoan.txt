@@ -6,14 +6,14 @@ AS
   EXEC @RET= SP_ADDLOGIN @LGNAME, @PASS, 'QLVT_DATHANG'
   IF (@RET =1)  -- LOGIN NAME BI TRUNG
   BEGIN
-     RAISERROR ('Login name bị trùng', 16,1)
+     RAISERROR (N'Login name bị trùng', 16,1)
 	 RETURN
   END 
   EXEC @RET= SP_GRANTDBACCESS @LGNAME, @USERNAME
   IF (@RET =1)  -- USER  NAME BI TRUNG
   BEGIN
        EXEC SP_DROPLOGIN @LGNAME
-       RAISERROR ('Nhân viên dã có login name', 16,2)
+       RAISERROR (N'Nhân viên đã có login name', 16,2)
        RETURN
   END
   EXEC sp_addrolemember @ROLE, @USERNAME
