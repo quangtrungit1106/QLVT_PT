@@ -53,11 +53,14 @@ namespace QLVT_PT
             {
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = true; //bật tắt theo phân quyền
+                panelControl2.Enabled = false;
             }
             else
             {
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled =  true;
+                btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = false;
+                panelControl2.Enabled = false;
             }
 
         }
@@ -69,6 +72,7 @@ namespace QLVT_PT
             bdsNV.AddNew();
             txtMACN.Text = macn;
             dtNGAYSINH.EditValue = "";
+            trangThaiXoaCheckBox.Checked = false;
 
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
@@ -144,30 +148,38 @@ namespace QLVT_PT
                 txtTEN.Focus();
                 return;
             }
-            //if (dtNGAYSINH.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Ngày sinh nhân viên không được thiếu!", "", MessageBoxButtons.OK);
-            //    dtNGAYSINH.Focus();
-            //    return;
-            //}
-            //if (txtLUONG.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Lương nhân viên không được thiếu!", "", MessageBoxButtons.OK);
-            //    txtLUONG.Focus();
-            //    return;
-            //}
-            //if (int.Parse(txtLUONG.Text) < 4000000)
-            //{
-            //    MessageBox.Show("Lương nhân viên phải lớn hơn 4.000.000", "", MessageBoxButtons.OK);
-            //    txtLUONG.Focus();
-            //    return;
-            //}
+            if (dtNGAYSINH.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày sinh nhân viên không được thiếu!", "", MessageBoxButtons.OK);
+                dtNGAYSINH.Focus();
+                return;
+            }
+            if (txtCMND.Text.Trim() == "")
+            {
+                MessageBox.Show("CMND nhân viên không được thiếu!", "", MessageBoxButtons.OK);
+                txtCMND.Focus();
+                return;
+            }
+            if (txtLUONG.Text.Trim() == "")
+            {
+                MessageBox.Show("Lương nhân viên không được thiếu!", "", MessageBoxButtons.OK);
+                txtLUONG.Focus();
+                return;
+            }
+            if (int.Parse(txtLUONG.Text.Trim().Replace(",", "")) < 4000000)
+            {
+                MessageBox.Show("Lương nhân viên phải lớn hơn 4.000.000", "", MessageBoxButtons.OK);
+                txtLUONG.Focus();
+                return;
+            }
             //if (txtDIACHI.Text.Trim() == "")
             //{
             //    MessageBox.Show("Địa chỉ không được bỏ trống", "", MessageBoxButtons.OK);
             //    txtDIACHI.Focus();
             //    return;
             //}
+
+            //Mã nv không được trùng trên các phân mảnh, viết sp kiểm tra trùng
 
             try
             {
@@ -220,7 +232,7 @@ namespace QLVT_PT
         private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView") return;
-            Program.serverName = cmbChiNhanh.ToString();
+            Program.serverName = cmbChiNhanh.SelectedValue.ToString();
 
             if (cmbChiNhanh.SelectedIndex != Program.brand)
             {
@@ -250,5 +262,7 @@ namespace QLVT_PT
                 macn = ((DataRowView)bdsNV[0])["MACN"].ToString();
             }
         }
+
+        
     }
 }
