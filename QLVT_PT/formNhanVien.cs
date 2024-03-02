@@ -53,11 +53,14 @@ namespace QLVT_PT
             {
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = true; //bật tắt theo phân quyền
+                panelControl2.Enabled = false;
             }
             else
             {
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled =  true;
+                btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = false;
+                panelControl2.Enabled = false;
             }
 
         }
@@ -69,6 +72,7 @@ namespace QLVT_PT
             bdsNV.AddNew();
             txtMACN.Text = macn;
             dtNGAYSINH.EditValue = "";
+            trangThaiXoaCheckBox.Checked = false;
 
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
@@ -228,7 +232,7 @@ namespace QLVT_PT
         private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView") return;
-            Program.serverName = cmbChiNhanh.ToString();
+            Program.serverName = cmbChiNhanh.SelectedValue.ToString();
 
             if (cmbChiNhanh.SelectedIndex != Program.brand)
             {
@@ -258,5 +262,7 @@ namespace QLVT_PT
                 macn = ((DataRowView)bdsNV[0])["MACN"].ToString();
             }
         }
+
+        
     }
 }

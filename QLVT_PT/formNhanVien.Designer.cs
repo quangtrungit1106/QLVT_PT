@@ -183,7 +183,7 @@
             // trangThaiXoaLabel
             // 
             trangThaiXoaLabel.AutoSize = true;
-            trangThaiXoaLabel.Location = new System.Drawing.Point(45, 299);
+            trangThaiXoaLabel.Location = new System.Drawing.Point(45, 278);
             trangThaiXoaLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             trangThaiXoaLabel.Name = "trangThaiXoaLabel";
             trangThaiXoaLabel.Size = new System.Drawing.Size(90, 16);
@@ -249,6 +249,7 @@
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(70, 0);
             this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnXoa
@@ -258,6 +259,7 @@
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(60, 0);
             this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnSua
@@ -267,6 +269,7 @@
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
             this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(60, 0);
             this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
             // 
             // btnGhi
@@ -276,6 +279,7 @@
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
+            this.btnGhi.Size = new System.Drawing.Size(60, 0);
             this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
             // btnUndo
@@ -285,6 +289,7 @@
             this.btnUndo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.Image")));
             this.btnUndo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.LargeImage")));
             this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(70, 0);
             this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
             // 
             // btnReload
@@ -294,6 +299,7 @@
             this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
             this.btnReload.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.LargeImage")));
             this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(80, 0);
             this.btnReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReload_ItemClick);
             // 
             // btnThoat
@@ -333,15 +339,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1127, 51);
+            this.barDockControlTop.Size = new System.Drawing.Size(1924, 51);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 702);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 758);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1127, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1924, 20);
             // 
             // barDockControlLeft
             // 
@@ -349,15 +355,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 651);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 707);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1127, 51);
+            this.barDockControlRight.Location = new System.Drawing.Point(1924, 51);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 651);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 707);
             // 
             // barButtonItem1
             // 
@@ -389,7 +395,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 51);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(6);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1127, 110);
+            this.panelControl1.Size = new System.Drawing.Size(1924, 110);
             this.panelControl1.TabIndex = 4;
             // 
             // cmbChiNhanh
@@ -463,7 +469,7 @@
             this.gcNhanVien.Margin = new System.Windows.Forms.Padding(6);
             this.gcNhanVien.MenuManager = this.barManager1;
             this.gcNhanVien.Name = "gcNhanVien";
-            this.gcNhanVien.Size = new System.Drawing.Size(1127, 372);
+            this.gcNhanVien.Size = new System.Drawing.Size(1924, 259);
             this.gcNhanVien.TabIndex = 6;
             this.gcNhanVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -596,10 +602,10 @@
             this.panelControl2.Controls.Add(mANVLabel);
             this.panelControl2.Controls.Add(this.txtMANV);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 533);
+            this.panelControl2.Location = new System.Drawing.Point(0, 420);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(6);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1127, 169);
+            this.panelControl2.Size = new System.Drawing.Size(1924, 338);
             this.panelControl2.TabIndex = 7;
             // 
             // txtMACN
@@ -616,7 +622,7 @@
             // trangThaiXoaCheckBox
             // 
             this.trangThaiXoaCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bdsNV, "TrangThaiXoa", true));
-            this.trangThaiXoaCheckBox.Location = new System.Drawing.Point(225, 294);
+            this.trangThaiXoaCheckBox.Location = new System.Drawing.Point(225, 268);
             this.trangThaiXoaCheckBox.Margin = new System.Windows.Forms.Padding(5);
             this.trangThaiXoaCheckBox.Name = "trangThaiXoaCheckBox";
             this.trangThaiXoaCheckBox.Size = new System.Drawing.Size(38, 38);
@@ -720,7 +726,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1127, 722);
+            this.ClientSize = new System.Drawing.Size(1924, 778);
+            this.ControlBox = false;
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.gcNhanVien);
             this.Controls.Add(this.panelControl1);
@@ -728,6 +735,8 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "formNhanVien";
             this.Text = "formNhanVien";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
