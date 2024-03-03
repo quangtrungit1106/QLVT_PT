@@ -15,6 +15,8 @@ namespace QLVT_PT
     {
         int vitri = 0;
         string macn = "";
+        int checkmanv = -1;
+        int them = 0;
         public formNhanVien()
         {
             InitializeComponent();
@@ -70,6 +72,7 @@ namespace QLVT_PT
             vitri = bdsNV.Position;
             panelControl2.Enabled = true;
             bdsNV.AddNew();
+            txtMANV.Enabled = true;
             txtMACN.Text = macn;
             dtNGAYSINH.EditValue = "";
             trangThaiXoaCheckBox.Checked = false;
@@ -77,6 +80,7 @@ namespace QLVT_PT
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcNhanVien.Enabled = false;
+            them = 1;
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -123,9 +127,15 @@ namespace QLVT_PT
         {
             vitri = bdsNV.Position;
             panelControl2.Enabled = true;
+            txtMANV.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcNhanVien.Enabled = false;
+            //if (MessageBox.Show("Bạn có muốn sửa mã nhân viên này ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            //{
+            //    txtMANV.Enabled = true;
+            //    them = 1;
+            //}
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -179,7 +189,25 @@ namespace QLVT_PT
             //    return;
             //}
 
-            //Mã nv không được trùng trên các phân mảnh, viết sp kiểm tra trùng
+            //Mã nv không được trùng trên các phân mảnh nếu dùng nút thêm
+            if (them == 1)
+            {
+                string statement = "EXEC sp_KiemTraMANV " + txtMANV.Text;
+                Program.myReader = null;
+                Program.myReader = Program.ExecSqlDataReader(statement);
+                if (Program.myReader == null)
+                    return;
+                Program.myReader.Read();
+                checkmanv = Program.myReader.GetInt32(0);
+                if (checkmanv == 1)
+                {
+                    MessageBox.Show("Mã nhân viên đã tồn tại, vui lòng nhập mã khác", "", MessageBoxButtons.OK);
+                    txtMANV.Focus();
+                    Program.myReader.Close();
+                    return;
+                }
+                Program.myReader.Close();
+            }
 
             try
             {
@@ -199,6 +227,7 @@ namespace QLVT_PT
             btnGhi.Enabled = btnUndo.Enabled = false;
 
             panelControl2.Enabled = false;
+            them = 0;
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -209,6 +238,7 @@ namespace QLVT_PT
             gcNhanVien.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
+            them = 0;
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
