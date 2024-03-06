@@ -131,11 +131,6 @@ namespace QLVT_PT
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcNhanVien.Enabled = false;
-            //if (MessageBox.Show("Bạn có muốn sửa mã nhân viên này ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            //{
-            //    txtMANV.Enabled = true;
-            //    them = 1;
-            //}
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
