@@ -400,6 +400,7 @@
             // 
             // cmbChiNhanh
             // 
+            this.cmbChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChiNhanh.FormattingEnabled = true;
             this.cmbChiNhanh.Location = new System.Drawing.Point(265, 36);
             this.cmbChiNhanh.Margin = new System.Windows.Forms.Padding(5);
@@ -489,6 +490,7 @@
             this.gridView1.DetailHeight = 546;
             this.gridView1.GridControl = this.gcNhanVien;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             // 
             // colMANV
             // 
