@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace QLVT_PT
         string macn = "";
         int checkmanv = -1;
         int them = 0;
+        private SqlConnection connPublisher1 = new SqlConnection();
+        public static BindingSource bindingSource1 = new BindingSource();
         public formNhanVien()
         {
             InitializeComponent();
@@ -53,13 +56,15 @@ namespace QLVT_PT
             cmbChiNhanh.SelectedIndex = Program.brand;
             if (Program.role == "CONGTY")
             {
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnChuyenChiNhanh.Enabled = false;
                 cmbChiNhanh.Enabled = true; //bật tắt theo phân quyền
                 panelControl2.Enabled = false;
             }
             else
             {
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled =  true;
+                if (Program.role == "USER") btnChuyenChiNhanh.Enabled = false;
+                else btnChuyenChiNhanh.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = true;
                 btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = false;
                 panelControl2.Enabled = false;
@@ -76,8 +81,9 @@ namespace QLVT_PT
             txtMACN.Text = macn;
             dtNGAYSINH.EditValue = "";
             trangThaiXoaCheckBox.Checked = false;
+            trangThaiXoaCheckBox.Enabled = false;
 
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcNhanVien.Enabled = false;
             them = 1;
@@ -128,7 +134,7 @@ namespace QLVT_PT
             vitri = bdsNV.Position;
             panelControl2.Enabled = true;
             txtMANV.Enabled = false;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcNhanVien.Enabled = false;
         }
@@ -218,7 +224,7 @@ namespace QLVT_PT
             }
 
             gcNhanVien.Enabled = true;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = true;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
 
             panelControl2.Enabled = false;
@@ -231,8 +237,9 @@ namespace QLVT_PT
             if (btnThem.Enabled == false) bdsNV.Position = vitri;
             panelControl2.Enabled = false;
             gcNhanVien.Enabled = true;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
+            cmbChuyenChiNhanh.Visible = cmbChuyenChiNhanh.Enabled = lbChiNhanhMoi.Visible = false;
             them = 0;
         }
 
@@ -284,10 +291,72 @@ namespace QLVT_PT
                 this.phieuNhapTableAdapter.Fill(this.DS1.PhieuNhap);
                 this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.phieuXuatTableAdapter.Fill(this.DS1.PhieuXuat);
-                macn = ((DataRowView)bdsNV[0])["MACN"].ToString();
+                //macn = ((DataRowView)bdsNV[0])["MACN"].ToString();
             }
         }
 
-        
+        private int KetNoiDatabaseGoc()
+        {
+            if (connPublisher1 != null && connPublisher1.State == ConnectionState.Open)
+                connPublisher1.Close();
+            try
+            {
+                connPublisher1.ConnectionString = Program.connstrPublisher;
+                connPublisher1.Open();
+                return 1;
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nBạn xem lại user name và password.\n " + e.Message, "", MessageBoxButtons.OK);
+                return 0;
+            }
+        }
+        private void layDanhSachChiNhanhChuyen(String cmd)
+        {
+            if (connPublisher1.State == ConnectionState.Closed)
+            {
+                connPublisher1.Open();
+            }
+            DataTable dt1 = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd, connPublisher1);
+            da.Fill(dt1);
+
+
+            connPublisher1.Close();
+            bindingSource1.DataSource = dt1;
+
+
+            cmbChuyenChiNhanh.DataSource = bindingSource1;
+            cmbChuyenChiNhanh.DisplayMember = "TENCN";
+            cmbChuyenChiNhanh.ValueMember = "TENSERVER";
+        }
+
+        private void btnChuyenChiNhanh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            them = 1;
+            vitri = bdsNV.Position;
+            panelControl2.Enabled = true;
+            txtMANV.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = false;
+            btnGhi.Enabled = btnUndo.Enabled = true;
+            gcNhanVien.Enabled = false;
+            lbChiNhanhMoi.Visible = true;
+            cmbChuyenChiNhanh.Visible = true;
+            cmbChuyenChiNhanh.Enabled = true;
+            txtHO.Enabled = txtTEN.Enabled = dtNGAYSINH.Enabled = txtLUONG.Enabled = txtCMND.Enabled = txtDIACHI.Enabled = trangThaiXoaCheckBox.Enabled = false;
+            trangThaiXoaCheckBox.Checked = false;
+            txtMANV.Enabled = true;
+
+
+            if (KetNoiDatabaseGoc() == 0) return;
+            layDanhSachChiNhanhChuyen("EXEC sp_DanhSachChiNhanhChuyen '" + cmbChiNhanh.Text + "'");
+            cmbChuyenChiNhanh.SelectedIndex = 0;
+        }
+
+        private void cmbChuyenChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
