@@ -44,6 +44,7 @@
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnChuyenChiNhanh = new DevExpress.XtraBars.BarButtonItem();
             this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
@@ -57,6 +58,8 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cmbChuyenChiNhanh = new System.Windows.Forms.ComboBox();
+            this.lbChiNhanhMoi = new System.Windows.Forms.Label();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DS1 = new QLVT_PT.DS1();
@@ -221,9 +224,10 @@
             this.btnGhi,
             this.btnUndo,
             this.btnReload,
-            this.btnThoat});
+            this.btnThoat,
+            this.btnChuyenChiNhanh});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 17;
+            this.barManager1.MaxItemId = 18;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -237,6 +241,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnChuyenChiNhanh, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnUndo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
@@ -281,6 +286,16 @@
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(60, 0);
             this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
+            // 
+            // btnChuyenChiNhanh
+            // 
+            this.btnChuyenChiNhanh.Caption = "Chuyển chi nhánh";
+            this.btnChuyenChiNhanh.Id = 17;
+            this.btnChuyenChiNhanh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyenChiNhanh.ImageOptions.Image")));
+            this.btnChuyenChiNhanh.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChuyenChiNhanh.ImageOptions.LargeImage")));
+            this.btnChuyenChiNhanh.Name = "btnChuyenChiNhanh";
+            this.btnChuyenChiNhanh.Size = new System.Drawing.Size(120, 0);
+            this.btnChuyenChiNhanh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuyenChiNhanh_ItemClick);
             // 
             // btnUndo
             // 
@@ -345,7 +360,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 758);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 785);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(1924, 20);
             // 
@@ -355,7 +370,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 707);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 734);
             // 
             // barDockControlRight
             // 
@@ -363,7 +378,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1924, 51);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 707);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 734);
             // 
             // barButtonItem1
             // 
@@ -389,6 +404,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.cmbChuyenChiNhanh);
+            this.panelControl1.Controls.Add(this.lbChiNhanhMoi);
             this.panelControl1.Controls.Add(this.cmbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -397,6 +414,28 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1924, 110);
             this.panelControl1.TabIndex = 4;
+            // 
+            // cmbChuyenChiNhanh
+            // 
+            this.cmbChuyenChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbChuyenChiNhanh.Enabled = false;
+            this.cmbChuyenChiNhanh.FormattingEnabled = true;
+            this.cmbChuyenChiNhanh.Location = new System.Drawing.Point(942, 35);
+            this.cmbChuyenChiNhanh.Name = "cmbChuyenChiNhanh";
+            this.cmbChuyenChiNhanh.Size = new System.Drawing.Size(402, 24);
+            this.cmbChuyenChiNhanh.TabIndex = 4;
+            this.cmbChuyenChiNhanh.Visible = false;
+            this.cmbChuyenChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChuyenChiNhanh_SelectedIndexChanged);
+            // 
+            // lbChiNhanhMoi
+            // 
+            this.lbChiNhanhMoi.AutoSize = true;
+            this.lbChiNhanhMoi.Location = new System.Drawing.Point(769, 40);
+            this.lbChiNhanhMoi.Name = "lbChiNhanhMoi";
+            this.lbChiNhanhMoi.Size = new System.Drawing.Size(89, 16);
+            this.lbChiNhanhMoi.TabIndex = 2;
+            this.lbChiNhanhMoi.Text = "Chi nhánh mới";
+            this.lbChiNhanhMoi.Visible = false;
             // 
             // cmbChiNhanh
             // 
@@ -607,7 +646,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 420);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(6);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1924, 338);
+            this.panelControl2.Size = new System.Drawing.Size(1924, 365);
             this.panelControl2.TabIndex = 7;
             // 
             // txtMACN
@@ -728,7 +767,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 778);
+            this.ClientSize = new System.Drawing.Size(1924, 805);
             this.ControlBox = false;
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.gcNhanVien);
@@ -824,5 +863,8 @@
         private DevExpress.XtraBars.BarButtonItem btnUndo;
         private DevExpress.XtraBars.BarButtonItem btnReload;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
+        private DevExpress.XtraBars.BarButtonItem btnChuyenChiNhanh;
+        private System.Windows.Forms.ComboBox cmbChuyenChiNhanh;
+        private System.Windows.Forms.Label lbChiNhanhMoi;
     }
 }

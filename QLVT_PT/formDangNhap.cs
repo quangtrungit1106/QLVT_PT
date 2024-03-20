@@ -167,9 +167,9 @@ namespace QLVT_PT
                 Program.serverName = boxChiNhanh.SelectedValue.ToString();
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show("Lỗi chọn chi nhánh: " + ex.Message, "", MessageBoxButtons.OK);
             }
         }
     }
