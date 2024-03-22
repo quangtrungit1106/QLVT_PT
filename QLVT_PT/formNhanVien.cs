@@ -88,6 +88,7 @@ namespace QLVT_PT
             panelControl2.Enabled = true;
             bdsNV.AddNew();
             txtMANV.Enabled = true;
+            txtCMND.Enabled = true;
             txtMACN.Text = macn;
             dtNGAYSINH.EditValue = "";
             trangThaiXoaCheckBox.Checked = false;
@@ -242,7 +243,7 @@ namespace QLVT_PT
             //Kiểm tra khi sửa trạng thái xóa của nhân viên, nếu nhân viên đó đang làm ở site khác
             if (sua == true && trangThaiXoaCheckBox.Checked == false)
             {
-                string statement = "EXEC sp_KiemTraTrangThaiXoa '" + txtCMND.Text +"', '0'";
+                string statement = "EXEC sp_KiemTraTrangThaiXoa '" + txtCMND.Text +"'";
                 Program.myReader = null;
                 Program.myReader = Program.ExecSqlDataReader(statement);
                 if (Program.myReader == null)
