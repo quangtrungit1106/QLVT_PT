@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
     <EmbeddedResource Include="formChinh.resx">
       <DependentUpon>formChinh.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,7 +173,8 @@
     <Content Include="Stored Procedure\00.view_DanhSachPhanManh.txt" />
     <Content Include="Stored Procedure\03.sp_TaoTaiKhoan.txt" />
     <Content Include="Stored Procedure\04.sp_KiemTraMANV.txt" />
-    <Content Include="Stored Procedure\05.sp_DanhSachChiNhanhChuyen.txt" />
+    <Content Include="Stored Procedure\05.sp_KiemTraCMND.txt" />
+    <Content Include="Stored Procedure\07.sp_ChuyenChiNhanh.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

@@ -58,8 +58,6 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.cmbChuyenChiNhanh = new System.Windows.Forms.ComboBox();
-            this.lbChiNhanhMoi = new System.Windows.Forms.Label();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DS1 = new QLVT_PT.DS1();
@@ -93,6 +91,8 @@
             this.bdsDH = new System.Windows.Forms.BindingSource(this.components);
             this.bdsPN = new System.Windows.Forms.BindingSource(this.components);
             this.bdsPX = new System.Windows.Forms.BindingSource(this.components);
+            this.bdsCN = new System.Windows.Forms.BindingSource(this.components);
+            this.chiNhanhTableAdapter = new QLVT_PT.DS1TableAdapters.ChiNhanhTableAdapter();
             mANVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             sOCMNDLabel = new System.Windows.Forms.Label();
@@ -121,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsCN)).BeginInit();
             this.SuspendLayout();
             // 
             // mANVLabel
@@ -360,7 +361,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 785);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 806);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(1924, 20);
             // 
@@ -370,7 +371,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 734);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 755);
             // 
             // barDockControlRight
             // 
@@ -378,7 +379,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1924, 51);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 734);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 755);
             // 
             // barButtonItem1
             // 
@@ -404,8 +405,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.cmbChuyenChiNhanh);
-            this.panelControl1.Controls.Add(this.lbChiNhanhMoi);
             this.panelControl1.Controls.Add(this.cmbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -414,28 +413,6 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1924, 110);
             this.panelControl1.TabIndex = 4;
-            // 
-            // cmbChuyenChiNhanh
-            // 
-            this.cmbChuyenChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbChuyenChiNhanh.Enabled = false;
-            this.cmbChuyenChiNhanh.FormattingEnabled = true;
-            this.cmbChuyenChiNhanh.Location = new System.Drawing.Point(942, 35);
-            this.cmbChuyenChiNhanh.Name = "cmbChuyenChiNhanh";
-            this.cmbChuyenChiNhanh.Size = new System.Drawing.Size(402, 24);
-            this.cmbChuyenChiNhanh.TabIndex = 4;
-            this.cmbChuyenChiNhanh.Visible = false;
-            this.cmbChuyenChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChuyenChiNhanh_SelectedIndexChanged);
-            // 
-            // lbChiNhanhMoi
-            // 
-            this.lbChiNhanhMoi.AutoSize = true;
-            this.lbChiNhanhMoi.Location = new System.Drawing.Point(769, 40);
-            this.lbChiNhanhMoi.Name = "lbChiNhanhMoi";
-            this.lbChiNhanhMoi.Size = new System.Drawing.Size(89, 16);
-            this.lbChiNhanhMoi.TabIndex = 2;
-            this.lbChiNhanhMoi.Text = "Chi nhánh mới";
-            this.lbChiNhanhMoi.Visible = false;
             // 
             // cmbChiNhanh
             // 
@@ -646,7 +623,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 420);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(6);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1924, 365);
+            this.panelControl2.Size = new System.Drawing.Size(1924, 386);
             this.panelControl2.TabIndex = 7;
             // 
             // txtMACN
@@ -763,11 +740,21 @@
             this.bdsPX.DataMember = "FK_PX_NhanVien";
             this.bdsPX.DataSource = this.bdsNV;
             // 
+            // bdsCN
+            // 
+            this.bdsCN.DataMember = "ChiNhanh";
+            this.bdsCN.DataSource = this.DS1;
+            // 
+            // chiNhanhTableAdapter
+            // 
+            this.chiNhanhTableAdapter.ClearBeforeFill = true;
+            // 
             // formNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 805);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1924, 826);
             this.ControlBox = false;
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.gcNhanVien);
@@ -804,6 +791,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsCN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -864,7 +852,7 @@
         private DevExpress.XtraBars.BarButtonItem btnReload;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
         private DevExpress.XtraBars.BarButtonItem btnChuyenChiNhanh;
-        private System.Windows.Forms.ComboBox cmbChuyenChiNhanh;
-        private System.Windows.Forms.Label lbChiNhanhMoi;
+        private System.Windows.Forms.BindingSource bdsCN;
+        private DS1TableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
     }
 }
