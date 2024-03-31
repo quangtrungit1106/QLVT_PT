@@ -191,5 +191,21 @@ namespace QLVT_PT
         {
             this.Close();
         }
+
+        private void btnPhieuNhap_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(formPhieuNhap));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formPhieuNhap form = new formPhieuNhap();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }
