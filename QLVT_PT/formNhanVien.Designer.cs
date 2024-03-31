@@ -45,6 +45,7 @@
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnChuyenChiNhanh = new DevExpress.XtraBars.BarButtonItem();
+            this.btnInDsNV = new DevExpress.XtraBars.BarButtonItem();
             this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
@@ -226,9 +227,10 @@
             this.btnUndo,
             this.btnReload,
             this.btnThoat,
-            this.btnChuyenChiNhanh});
+            this.btnChuyenChiNhanh,
+            this.btnInDsNV});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 18;
+            this.barManager1.MaxItemId = 19;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -243,6 +245,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnChuyenChiNhanh, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnInDsNV, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnUndo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
@@ -297,6 +300,16 @@
             this.btnChuyenChiNhanh.Name = "btnChuyenChiNhanh";
             this.btnChuyenChiNhanh.Size = new System.Drawing.Size(120, 0);
             this.btnChuyenChiNhanh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuyenChiNhanh_ItemClick);
+            // 
+            // btnInDsNV
+            // 
+            this.btnInDsNV.Caption = "In danh sách nhân viên";
+            this.btnInDsNV.Id = 18;
+            this.btnInDsNV.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnInDsNV.ImageOptions.Image")));
+            this.btnInDsNV.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnInDsNV.ImageOptions.LargeImage")));
+            this.btnInDsNV.Name = "btnInDsNV";
+            this.btnInDsNV.Size = new System.Drawing.Size(150, 0);
+            this.btnInDsNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInDsNV_ItemClick);
             // 
             // btnUndo
             // 
@@ -411,7 +424,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 51);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(6);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1924, 110);
+            this.panelControl1.Size = new System.Drawing.Size(1924, 98);
             this.panelControl1.TabIndex = 4;
             // 
             // cmbChiNhanh
@@ -481,7 +494,7 @@
             this.gcNhanVien.DataSource = this.bdsNV;
             this.gcNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
             this.gcNhanVien.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.gcNhanVien.Location = new System.Drawing.Point(0, 161);
+            this.gcNhanVien.Location = new System.Drawing.Point(0, 149);
             this.gcNhanVien.MainView = this.gridView1;
             this.gcNhanVien.Margin = new System.Windows.Forms.Padding(6);
             this.gcNhanVien.MenuManager = this.barManager1;
@@ -620,10 +633,10 @@
             this.panelControl2.Controls.Add(mANVLabel);
             this.panelControl2.Controls.Add(this.txtMANV);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 420);
+            this.panelControl2.Location = new System.Drawing.Point(0, 408);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(6);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1924, 386);
+            this.panelControl2.Size = new System.Drawing.Size(1924, 398);
             this.panelControl2.TabIndex = 7;
             // 
             // txtMACN
@@ -854,5 +867,6 @@
         private DevExpress.XtraBars.BarButtonItem btnChuyenChiNhanh;
         private System.Windows.Forms.BindingSource bdsCN;
         private DS1TableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
+        private DevExpress.XtraBars.BarButtonItem btnInDsNV;
     }
 }

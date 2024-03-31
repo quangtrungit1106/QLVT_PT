@@ -1,5 +1,6 @@
 ﻿using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +23,6 @@ namespace QLVT_PT
         int checkcmnd = -1;
         bool them = false;
         bool sua = false;
-        private SqlConnection connPublisher1 = new SqlConnection();
-        public static BindingSource bindingSource1 = new BindingSource();
         public formNhanVien()
         {
             InitializeComponent();
@@ -71,15 +70,23 @@ namespace QLVT_PT
             }
             else
             {
-                if (Program.role == "USER") btnChuyenChiNhanh.Enabled = false;
-                else btnChuyenChiNhanh.Enabled = true;
+                if (Program.role == "USER")
+                {
+                    btnChuyenChiNhanh.Enabled = false;
+                    btnInDsNV.Enabled = false;
+                }
+                else
+                {
+                    btnChuyenChiNhanh.Enabled = true;
+                    btnInDsNV.Enabled = true;
+                }
                 btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnSua.Enabled = true;
                 btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = false;
                 panelControl2.Enabled = false;
                 if (bdsNV.Count == 0) btnChuyenChiNhanh.Enabled = btnXoa.Enabled = false;
             }
-
+            
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -289,6 +296,7 @@ namespace QLVT_PT
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
             them = false;
+            sua = false;
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -420,6 +428,14 @@ namespace QLVT_PT
                 }
                 return;
             }
+        }
+
+        private void btnInDsNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XtraReport_InDanhSachNhanVien rpt = new XtraReport_InDanhSachNhanVien();
+            rpt.lbChiNhanh.Text = cmbChiNhanh.Text;
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
         }
     }
 }

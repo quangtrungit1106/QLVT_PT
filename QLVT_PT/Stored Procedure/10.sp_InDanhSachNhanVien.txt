@@ -1,0 +1,7 @@
+﻿CREATE PROC [dbo].[sp_InDanhSachNhanVien]
+as 
+begin
+	SELECT MANV, HO, TEN, SOCMND, DIACHI, NGAYSINH, LUONG FROM NhanVien
+	WHERE TrangThaiXoa=0
+	ORDER BY TEN, HO
+end
