@@ -1,4 +1,5 @@
 ﻿using DevExpress.CodeParser;
+using DevExpress.XtraCharts;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using System;
@@ -17,12 +18,14 @@ namespace QLVT_PT
 {
     public partial class formNhanVien : Form
     {
-        int vitri = 0;
-        string macn = "";
-        int checkmanv = -1;
-        int checkcmnd = -1;
-        bool them = false;
-        bool sua = false;
+        private int vitri = 0;
+        private string macn = "";
+        private int checkmanv = -1;
+        private int checkcmnd = -1;
+        private bool them = false;
+        private bool sua = false;
+        private bool chuyencn = false;
+        private BindingSource bdsDSChiNhanhChuyen = new BindingSource();
         public formNhanVien()
         {
             InitializeComponent();
@@ -35,6 +38,27 @@ namespace QLVT_PT
             this.tableAdapterManager.UpdateAll(this.DS1);
 
         }
+
+        private void layDanhSachChiNhanhChuyen(String cmd, SqlConnection connStr)
+        {            
+            if (connStr.State == ConnectionState.Closed)
+            {
+                connStr.Open();
+            }
+            DataTable dt = new DataTable();            
+            SqlDataAdapter da = new SqlDataAdapter(cmd, connStr);            
+            da.Fill(dt);
+
+
+            connStr.Close();
+            this.bdsDSChiNhanhChuyen.DataSource = dt;
+
+
+            cmbChiNhanhMoi.DataSource = this.bdsDSChiNhanhChuyen;
+            cmbChiNhanhMoi.DisplayMember = "ChiNhanh";
+            cmbChiNhanhMoi.ValueMember = "MACN";
+            cmbChiNhanhMoi.SelectedIndex = 0;
+        }        
 
         private void formNhanVien_Load(object sender, EventArgs e)
         {
@@ -61,11 +85,15 @@ namespace QLVT_PT
             cmbChiNhanh.DataSource = Program.bindingSource; //sao chép bds đã load ở đăng nhập
             cmbChiNhanh.DisplayMember = "TENCN";
             cmbChiNhanh.ValueMember = "TENSERVER";
-            cmbChiNhanh.SelectedIndex = Program.brand;
+            cmbChiNhanh.SelectedIndex = Program.brand;            
+            layDanhSachChiNhanhChuyen("SELECT MACN, ChiNhanh FROM LINK0.QLVT.dbo.ChiNhanh WHERE ChiNhanh <> N'" + cmbChiNhanh.Text + "'", Program.conn);
+            cmbChiNhanhMoi.Enabled = false;
+            cmbChiNhanhMoi.Visible = false;
+            lbChiNhanhMoi.Visible = false;
             if (Program.role == "CONGTY")
             {
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnChuyenChiNhanh.Enabled = false;
-                cmbChiNhanh.Enabled = true; //bật tắt theo phân quyền
+                cmbChiNhanh.Enabled = true; //bật tắt theo phân quyền               
                 panelControl2.Enabled = false;
             }
             else
@@ -85,8 +113,7 @@ namespace QLVT_PT
                 cmbChiNhanh.Enabled = false;
                 panelControl2.Enabled = false;
                 if (bdsNV.Count == 0) btnChuyenChiNhanh.Enabled = btnXoa.Enabled = false;
-            }
-            
+            }           
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -110,6 +137,11 @@ namespace QLVT_PT
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Int32 manv = 0;
+            if (txtMANV.Text == Program.userName)
+            {
+                MessageBox.Show("Bạn không thể xóa chính mình!", "Lỗi", MessageBoxButtons.OK);
+                return;
+            }
             if (bdsDH.Count > 0)
             {
                 MessageBox.Show("Không thể xóa nhân viên này vì đã lập đơn hàng", "", MessageBoxButtons.OK);
@@ -265,6 +297,84 @@ namespace QLVT_PT
                 Program.myReader.Close();
             }
 
+            if (chuyencn == true)
+            {
+                if (txtMANV.Text == Program.userName)
+                {
+                    MessageBox.Show("Bạn không thể chuyển chi nhánh cho chính mình!", "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
+                else if (trangThaiXoaCheckBox.Checked == true)
+                {
+                    MessageBox.Show("Nhân viên này không còn làm ở chi nhánh hiện tại!", "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {                    
+                    if (MessageBox.Show("Bạn có muốn chuyển nhân viên này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        string statement;
+                        if (bdsDH.Count > 0 || bdsPN.Count > 0 || bdsPX.Count > 0)
+                        {
+                            vitri = bdsNV.Position;
+                            statement = "EXEC sp_ChuyenChiNhanh '" + txtMANV.Text + "', N'"
+                                + txtHO.Text + "', N'" + txtTEN.Text + "', '" + txtCMND.Text + "', N'"
+                                + txtDIACHI.Text + "', '" + dtNGAYSINH.Text + "', '" + int.Parse(txtLUONG.Text.Replace(",", "")) + "', '1', '"
+                                + txtMACN.Text + "', '" + cmbChiNhanhMoi.SelectedValue.ToString() + "'";
+                        }
+                        else
+                        {
+                            vitri = 0;
+                            statement = "EXEC sp_ChuyenChiNhanh '" + txtMANV.Text + "', N'"
+                                + txtHO.Text + "', N'" + txtTEN.Text + "', '" + txtCMND.Text + "', N'"
+                                + txtDIACHI.Text + "', '" + dtNGAYSINH.Text + "', '" + int.Parse(txtLUONG.Text.Replace(",", "")) + "', '0', '"
+                                + txtMACN.Text + "', '" + cmbChiNhanhMoi.SelectedValue.ToString() + "'";
+                        }
+                        Program.myReader = null;
+                        Program.myReader = Program.ExecSqlDataReader(statement);
+                        if (Program.myReader == null)
+                            return;
+                        Program.myReader.Read();
+                        if (Program.myReader.GetInt32(0) == 1)
+                        {
+                            MessageBox.Show("Chuyển nhân viên thành công!", "", MessageBoxButtons.OK);
+                            Program.myReader.Close();
+                            try
+                            {
+                                this.nhanVienTableAdapter.Fill(this.DS1.NhanVien);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Lỗi Reload:" + ex.Message, "", MessageBoxButtons.OK);
+                                return;
+                            }
+                            bdsNV.Position = vitri;
+                            if (bdsNV.Count == 0) btnChuyenChiNhanh.Enabled = false;
+                            return;
+                        }
+                        Program.myReader.Close();
+
+                        //DROP LOGIN
+                        //string statement = "EXEC sp_DropLogin '" + txtMANV.Text "'"
+                        //Program.myReader = null;
+                        //Program.myReader = Program.ExecSqlDataReader(statement1);
+                        //if (Program.myReader == null)
+                        //    return;
+                        //Program.myReader.Read();
+                        //checkcmnd = Program.myReader.GetInt32(0);
+                        //if (checkcmnd == 1)
+                        //{
+                        //    MessageBox.Show("Số CMND đã tồn tại, vui lòng nhập số CMND khác", "", MessageBoxButtons.OK);
+                        //    txtCMND.Focus();
+                        //    Program.myReader.Close();
+                        //    return;
+                        //}
+                        /*Program.myReader.Close();*/
+                    }
+                    return;
+                }
+            }
+
             try
             {
                 bdsNV.EndEdit();
@@ -293,10 +403,14 @@ namespace QLVT_PT
             if (btnThem.Enabled == false) bdsNV.Position = vitri;
             panelControl2.Enabled = false;
             gcNhanVien.Enabled = true;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = true;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = btnInDsNV.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
+            cmbChiNhanhMoi.Enabled = false;
+            cmbChiNhanhMoi.Visible = false;
+            lbChiNhanhMoi.Visible = false;
             them = false;
             sua = false;
+            chuyencn = false;
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -356,78 +470,16 @@ namespace QLVT_PT
 
         private void btnChuyenChiNhanh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (trangThaiXoaCheckBox.Checked == true)
-            {
-                MessageBox.Show("Nhân viên này không còn làm ở chi nhánh hiện tại!", "", MessageBoxButtons.OK);
-                return;
-            }
-            else
-            {
-                //vitri = bdsNV.Position;
-                //panelControl2.Enabled = false;
-                //btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = false;
-                //btnGhi.Enabled = btnUndo.Enabled = true;
-                //gcNhanVien.Enabled = false;
-                if (MessageBox.Show("Bạn có muốn chuyển nhân viên này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    string statement;
-                    if(bdsDH.Count > 0 || bdsPN.Count > 0 || bdsPX.Count > 0)
-                    {
-                        vitri=bdsNV.Position;
-                        statement = "EXEC sp_ChuyenChiNhanh '" + txtMANV.Text + "', N'"
-                            + txtHO.Text + "', N'" + txtTEN.Text + "', '" + txtCMND.Text + "', N'" 
-                            + txtDIACHI.Text +"', '" + dtNGAYSINH.Text + "', '" + int.Parse(txtLUONG.Text.Replace(",", "")) + "', '1'";
-                    }
-                    else
-                    {
-                        vitri = 0;
-                        statement = "EXEC sp_ChuyenChiNhanh '" + txtMANV.Text + "', N'"
-                            + txtHO.Text + "', N'" + txtTEN.Text + "', '" + txtCMND.Text + "', N'"
-                            + txtDIACHI.Text + "', '" + dtNGAYSINH.Text + "', '" + int.Parse(txtLUONG.Text.Replace(",", "")) + "', '0'";
-                    }
-                    Program.myReader = null;
-                    Program.myReader = Program.ExecSqlDataReader(statement);
-                    if (Program.myReader == null)
-                        return;
-                    Program.myReader.Read();
-                    if (Program.myReader.GetInt32(0) == 1)
-                    {
-                        MessageBox.Show("Chuyển nhân viên thành công!", "", MessageBoxButtons.OK);
-                        Program.myReader.Close();
-                        try
-                        {
-                            this.nhanVienTableAdapter.Fill(this.DS1.NhanVien);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Lỗi Reload:" + ex.Message, "", MessageBoxButtons.OK);
-                            return;
-                        }
-                        bdsNV.Position = vitri;
-                        if (bdsNV.Count == 0) btnChuyenChiNhanh.Enabled = false;
-                        return;
-                    }
-                    Program.myReader.Close();
-
-                    //DROP LOGIN
-                    //string statement = "EXEC sp_DropLogin '" + txtMANV.Text "'"
-                    //Program.myReader = null;
-                    //Program.myReader = Program.ExecSqlDataReader(statement1);
-                    //if (Program.myReader == null)
-                    //    return;
-                    //Program.myReader.Read();
-                    //checkcmnd = Program.myReader.GetInt32(0);
-                    //if (checkcmnd == 1)
-                    //{
-                    //    MessageBox.Show("Số CMND đã tồn tại, vui lòng nhập số CMND khác", "", MessageBoxButtons.OK);
-                    //    txtCMND.Focus();
-                    //    Program.myReader.Close();
-                    //    return;
-                    //}
-                    Program.myReader.Close();
-                }
-                return;
-            }
+            vitri = bdsNV.Position;
+            chuyencn = true;
+            cmbChiNhanh.Enabled = false;
+            cmbChiNhanhMoi.Enabled = true;
+            cmbChiNhanhMoi.Visible = true;
+            lbChiNhanhMoi.Visible = true;
+            panelControl2.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = btnInDsNV.Enabled = false;
+            btnGhi.Enabled = btnUndo.Enabled = btnReload.Enabled = true;
+            return;
         }
 
         private void btnInDsNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
