@@ -59,6 +59,7 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lbChiNhanhMoi = new System.Windows.Forms.Label();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DS1 = new QLVT_PT.DS1();
@@ -94,6 +95,7 @@
             this.bdsPX = new System.Windows.Forms.BindingSource(this.components);
             this.bdsCN = new System.Windows.Forms.BindingSource(this.components);
             this.chiNhanhTableAdapter = new QLVT_PT.DS1TableAdapters.ChiNhanhTableAdapter();
+            this.cmbChiNhanhMoi = new System.Windows.Forms.ComboBox();
             mANVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             sOCMNDLabel = new System.Windows.Forms.Label();
@@ -418,6 +420,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.cmbChiNhanhMoi);
+            this.panelControl1.Controls.Add(this.lbChiNhanhMoi);
             this.panelControl1.Controls.Add(this.cmbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -426,6 +430,16 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1924, 98);
             this.panelControl1.TabIndex = 4;
+            // 
+            // lbChiNhanhMoi
+            // 
+            this.lbChiNhanhMoi.AutoSize = true;
+            this.lbChiNhanhMoi.Location = new System.Drawing.Point(930, 41);
+            this.lbChiNhanhMoi.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lbChiNhanhMoi.Name = "lbChiNhanhMoi";
+            this.lbChiNhanhMoi.Size = new System.Drawing.Size(89, 16);
+            this.lbChiNhanhMoi.TabIndex = 2;
+            this.lbChiNhanhMoi.Text = "Chi nhánh mới";
             // 
             // cmbChiNhanh
             // 
@@ -762,6 +776,14 @@
             // 
             this.chiNhanhTableAdapter.ClearBeforeFill = true;
             // 
+            // cmbChiNhanhMoi
+            // 
+            this.cmbChiNhanhMoi.FormattingEnabled = true;
+            this.cmbChiNhanhMoi.Location = new System.Drawing.Point(1070, 36);
+            this.cmbChiNhanhMoi.Name = "cmbChiNhanhMoi";
+            this.cmbChiNhanhMoi.Size = new System.Drawing.Size(301, 24);
+            this.cmbChiNhanhMoi.TabIndex = 3;
+            // 
             // formNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -868,5 +890,7 @@
         private System.Windows.Forms.BindingSource bdsCN;
         private DS1TableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
         private DevExpress.XtraBars.BarButtonItem btnInDsNV;
+        private System.Windows.Forms.Label lbChiNhanhMoi;
+        private System.Windows.Forms.ComboBox cmbChiNhanhMoi;
     }
 }

@@ -18,7 +18,7 @@ namespace QLVT_PT
          **********************************************/
         public static SqlConnection conn = new SqlConnection();//conn
         public static String connstr = "";//connstr
-        public static String connstrPublisher = "Data Source=DESKTOP-SJQK9K9;Initial Catalog=QLVT;Integrated Security=true";
+        public static String connstrPublisher = "Data Source=MSI\\BAOPC;Initial Catalog=QLVT;Integrated Security=true";
         public static SqlDataReader myReader;//myReader
 
 
