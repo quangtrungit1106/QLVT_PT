@@ -72,6 +72,7 @@
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnChonDonDat = new System.Windows.Forms.Button();
             this.lbMasoDDH1 = new System.Windows.Forms.Label();
             this.cmbTenKho = new System.Windows.Forms.ComboBox();
             this.bdsDSKHO = new System.Windows.Forms.BindingSource(this.components);
@@ -425,6 +426,7 @@
             this.tableAdapterManager.CTPNTableAdapter = this.cTPNTableAdapter;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
+            this.tableAdapterManager.DDHChuaNhapTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = this.phieuNhapTableAdapter;
@@ -518,6 +520,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btnChonDonDat);
             this.panelControl2.Controls.Add(this.lbMasoDDH1);
             this.panelControl2.Controls.Add(tENKHOLabel);
             this.panelControl2.Controls.Add(this.cmbTenKho);
@@ -535,8 +538,19 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl2.Location = new System.Drawing.Point(0, 371);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(801, 240);
+            this.panelControl2.Size = new System.Drawing.Size(793, 240);
             this.panelControl2.TabIndex = 12;
+            // 
+            // btnChonDonDat
+            // 
+            this.btnChonDonDat.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChonDonDat.Location = new System.Drawing.Point(588, 49);
+            this.btnChonDonDat.Name = "btnChonDonDat";
+            this.btnChonDonDat.Size = new System.Drawing.Size(144, 30);
+            this.btnChonDonDat.TabIndex = 18;
+            this.btnChonDonDat.Text = "Chọn đơn đặt";
+            this.btnChonDonDat.UseVisualStyleBackColor = true;
+            this.btnChonDonDat.Click += new System.EventHandler(this.btnChonDonDat_Click);
             // 
             // lbMasoDDH1
             // 
@@ -646,11 +660,11 @@
             this.dataGridViewTextBoxColumn4});
             this.dgvCTPN.DataSource = this.bdsCTPN;
             this.dgvCTPN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCTPN.Location = new System.Drawing.Point(801, 371);
+            this.dgvCTPN.Location = new System.Drawing.Point(793, 371);
             this.dgvCTPN.Name = "dgvCTPN";
             this.dgvCTPN.RowHeadersWidth = 51;
             this.dgvCTPN.RowTemplate.Height = 24;
-            this.dgvCTPN.Size = new System.Drawing.Size(631, 240);
+            this.dgvCTPN.Size = new System.Drawing.Size(639, 240);
             this.dgvCTPN.TabIndex = 12;
             // 
             // dataGridViewTextBoxColumn1
@@ -673,7 +687,7 @@
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn2.ValueMember = "MAVT";
-            this.dataGridViewTextBoxColumn2.Width = 125;
+            this.dataGridViewTextBoxColumn2.Width = 200;
             // 
             // dbsVattu
             // 
@@ -708,26 +722,26 @@
             this.btnXoaVT,
             this.btnGhiVT});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 76);
             // 
             // btnThemVT
             // 
             this.btnThemVT.Name = "btnThemVT";
-            this.btnThemVT.Size = new System.Drawing.Size(210, 24);
+            this.btnThemVT.Size = new System.Drawing.Size(157, 24);
             this.btnThemVT.Text = "Thêm vật tư";
             this.btnThemVT.Click += new System.EventHandler(this.btnThemVT_Click);
             // 
             // btnXoaVT
             // 
             this.btnXoaVT.Name = "btnXoaVT";
-            this.btnXoaVT.Size = new System.Drawing.Size(210, 24);
+            this.btnXoaVT.Size = new System.Drawing.Size(157, 24);
             this.btnXoaVT.Text = "Xóa vật tư";
             this.btnXoaVT.Click += new System.EventHandler(this.btnXoaVT_Click);
             // 
             // btnGhiVT
             // 
             this.btnGhiVT.Name = "btnGhiVT";
-            this.btnGhiVT.Size = new System.Drawing.Size(210, 24);
+            this.btnGhiVT.Size = new System.Drawing.Size(157, 24);
             this.btnGhiVT.Text = "Ghi vật tư";
             this.btnGhiVT.Click += new System.EventHandler(this.btnGhiVT_Click);
             // 
@@ -829,10 +843,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnThemVT;
         private System.Windows.Forms.ToolStripMenuItem btnXoaVT;
         private System.Windows.Forms.ToolStripMenuItem btnGhiVT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.TextBox txtMAPN;
         private DevExpress.XtraEditors.DateEdit dtNGAY;
         private System.Windows.Forms.TextBox txtMAKHO;
@@ -845,5 +855,10 @@
         private DS1TableAdapters.DSKHOTableAdapter dSKHOTableAdapter;
         private System.Windows.Forms.ComboBox cmbTenKho;
         private System.Windows.Forms.Label lbMasoDDH1;
+        private System.Windows.Forms.Button btnChonDonDat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
