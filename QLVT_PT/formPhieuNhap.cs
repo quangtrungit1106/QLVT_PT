@@ -104,6 +104,8 @@ namespace QLVT_PT
             txtMAPN.Enabled = true;
             txtMANV.Enabled = false;
             txtMAKHO.Enabled = false;
+            txtMasoDDH.Enabled = false;
+            btnChonDonDat.Enabled = true;
             dtNGAY.Enabled = false;
             dtNGAY.Text = DateTime.Now.ToString("dd/MM/yyyy");
             cmbNhanVienNhap.Enabled = false;
@@ -153,6 +155,7 @@ namespace QLVT_PT
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcPhieuNhap.Enabled = false;
+            txtMasoDDH.Enabled = btnChonDonDat.Enabled = false;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -379,6 +382,19 @@ namespace QLVT_PT
                 MessageBox.Show("Lỗi ghi vật tư vào phiếu nhập: " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
+        }
+
+        private void btnChonDonDat_Click(object sender, EventArgs e)
+        {
+            using (formDonDatHangChuaNhap form = new formDonDatHangChuaNhap())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    txtMasoDDH.Text = form.SelectedMADDH;
+                    return;
+                }               
+            }
+            return;
         }
     }
 }
