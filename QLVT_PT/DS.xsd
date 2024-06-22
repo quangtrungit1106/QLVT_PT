@@ -1084,26 +1084,26 @@ SELECT MasoDDH, NGAY, NhaCC, MANV, MAKHO FROM DatHang WHERE (MasoDDH = @MasoDDH)
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DDHChuaNhap" msprop:Generator_RowEvHandlerName="DDHChuaNhapRowChangeEventHandler" msprop:Generator_RowDeletedName="DDHChuaNhapRowDeleted" msprop:Generator_RowDeletingName="DDHChuaNhapRowDeleting" msprop:Generator_RowEvArgName="DDHChuaNhapRowChangeEvent" msprop:Generator_TablePropName="DDHChuaNhap" msprop:Generator_RowChangedName="DDHChuaNhapRowChanged" msprop:Generator_RowChangingName="DDHChuaNhapRowChanging" msprop:Generator_TableClassName="DDHChuaNhapDataTable" msprop:Generator_RowClassName="DDHChuaNhapRow" msprop:Generator_TableVarName="tableDDHChuaNhap" msprop:Generator_UserTableName="DDHChuaNhap">
+        <xs:element name="DDHChuaNhap" msprop:Generator_RowEvHandlerName="DDHChuaNhapRowChangeEventHandler" msprop:Generator_RowDeletedName="DDHChuaNhapRowDeleted" msprop:Generator_RowDeletingName="DDHChuaNhapRowDeleting" msprop:Generator_RowEvArgName="DDHChuaNhapRowChangeEvent" msprop:Generator_TablePropName="DDHChuaNhap" msprop:Generator_RowChangedName="DDHChuaNhapRowChanged" msprop:Generator_UserTableName="DDHChuaNhap" msprop:Generator_RowChangingName="DDHChuaNhapRowChanging" msprop:Generator_RowClassName="DDHChuaNhapRow" msprop:Generator_TableClassName="DDHChuaNhapDataTable" msprop:Generator_TableVarName="tableDDHChuaNhap">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="MasoDDH" msprop:Generator_ColumnPropNameInRow="MasoDDH" msprop:Generator_ColumnPropNameInTable="MasoDDHColumn" msprop:Generator_ColumnVarNameInTable="columnMasoDDH" msprop:Generator_UserColumnName="MasoDDH">
+              <xs:element name="MasoDDH" msprop:Generator_ColumnPropNameInTable="MasoDDHColumn" msprop:Generator_ColumnPropNameInRow="MasoDDH" msprop:Generator_UserColumnName="MasoDDH" msprop:Generator_ColumnVarNameInTable="columnMasoDDH">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NGAY" msprop:Generator_ColumnPropNameInRow="NGAY" msprop:Generator_ColumnPropNameInTable="NGAYColumn" msprop:Generator_ColumnVarNameInTable="columnNGAY" msprop:Generator_UserColumnName="NGAY" type="xs:dateTime" />
-              <xs:element name="NhaCC" msprop:Generator_ColumnPropNameInRow="NhaCC" msprop:Generator_ColumnPropNameInTable="NhaCCColumn" msprop:Generator_ColumnVarNameInTable="columnNhaCC" msprop:Generator_UserColumnName="NhaCC">
+              <xs:element name="NGAY" msprop:Generator_ColumnPropNameInTable="NGAYColumn" msprop:Generator_ColumnPropNameInRow="NGAY" msprop:Generator_UserColumnName="NGAY" msprop:Generator_ColumnVarNameInTable="columnNGAY" type="xs:dateTime" />
+              <xs:element name="NhaCC" msprop:Generator_ColumnPropNameInTable="NhaCCColumn" msprop:Generator_ColumnPropNameInRow="NhaCC" msprop:Generator_UserColumnName="NhaCC" msprop:Generator_ColumnVarNameInTable="columnNhaCC">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="MANV" msprop:Generator_ColumnPropNameInRow="MANV" msprop:Generator_ColumnPropNameInTable="MANVColumn" msprop:Generator_ColumnVarNameInTable="columnMANV" msprop:Generator_UserColumnName="MANV" type="xs:int" />
-              <xs:element name="MAKHO" msprop:Generator_ColumnPropNameInRow="MAKHO" msprop:Generator_ColumnPropNameInTable="MAKHOColumn" msprop:Generator_ColumnVarNameInTable="columnMAKHO" msprop:Generator_UserColumnName="MAKHO">
+              <xs:element name="MANV" msprop:Generator_ColumnPropNameInTable="MANVColumn" msprop:Generator_ColumnPropNameInRow="MANV" msprop:Generator_UserColumnName="MANV" msprop:Generator_ColumnVarNameInTable="columnMANV" type="xs:int" />
+              <xs:element name="MAKHO" msprop:Generator_ColumnPropNameInTable="MAKHOColumn" msprop:Generator_ColumnPropNameInRow="MAKHO" msprop:Generator_UserColumnName="MAKHO" msprop:Generator_ColumnVarNameInTable="columnMAKHO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="4" />
@@ -1233,7 +1233,7 @@ SELECT MasoDDH, NGAY, NhaCC, MANV, MAKHO FROM DatHang WHERE (MasoDDH = @MasoDDH)
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_CTDDH_DatHang1" msdata:parent="DDHChuaNhap" msdata:child="CTDDH" msdata:parentkey="MasoDDH" msdata:childkey="MasoDDH" msprop:Generator_UserParentTable="DDHChuaNhap" msprop:Generator_UserChildTable="CTDDH" msprop:Generator_RelationVarName="relationFK_CTDDH_DatHang1" msprop:Generator_UserRelationName="FK_CTDDH_DatHang1" msprop:Generator_ChildPropName="GetCTDDHRows" msprop:Generator_ParentPropName="DDHChuaNhapRow" />
+      <msdata:Relationship name="FK_CTDDH_DatHang1" msdata:parent="DDHChuaNhap" msdata:child="CTDDH" msdata:parentkey="MasoDDH" msdata:childkey="MasoDDH" msprop:Generator_UserParentTable="DDHChuaNhap" msprop:Generator_UserChildTable="CTDDH" msprop:Generator_RelationVarName="relationFK_CTDDH_DatHang1" msprop:Generator_ChildPropName="GetCTDDHRows" msprop:Generator_UserRelationName="FK_CTDDH_DatHang1" msprop:Generator_ParentPropName="DDHChuaNhapRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

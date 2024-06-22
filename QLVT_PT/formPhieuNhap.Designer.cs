@@ -86,7 +86,7 @@
             this.dgvCTPN = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dbsVattu = new System.Windows.Forms.BindingSource(this.components);
+            this.bdsVattu = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vattuTableAdapter = new QLVT_PT.DS1TableAdapters.VattuTableAdapter();
@@ -117,7 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbsVattu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -432,6 +432,7 @@
             this.tableAdapterManager.PhieuNhapTableAdapter = this.phieuNhapTableAdapter;
             this.tableAdapterManager.PhieuXuatTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QLVT_PT.DS1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.VattuDaDatTableAdapter = null;
             this.tableAdapterManager.VattuTableAdapter = null;
             // 
             // cTPNTableAdapter
@@ -455,6 +456,7 @@
             this.gcPhieuNhap.TabIndex = 11;
             this.gcPhieuNhap.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcPhieuNhap.Click += new System.EventHandler(this.gcPhieuNhap_Click);
             // 
             // gridView1
             // 
@@ -679,7 +681,7 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "MAVT";
-            this.dataGridViewTextBoxColumn2.DataSource = this.dbsVattu;
+            this.dataGridViewTextBoxColumn2.DataSource = this.bdsVattu;
             this.dataGridViewTextBoxColumn2.DisplayMember = "TENVT";
             this.dataGridViewTextBoxColumn2.HeaderText = "TENVATTU";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
@@ -689,10 +691,10 @@
             this.dataGridViewTextBoxColumn2.ValueMember = "MAVT";
             this.dataGridViewTextBoxColumn2.Width = 200;
             // 
-            // dbsVattu
+            // bdsVattu
             // 
-            this.dbsVattu.DataMember = "Vattu";
-            this.dbsVattu.DataSource = this.DS1;
+            this.bdsVattu.DataMember = "Vattu";
+            this.bdsVattu.DataSource = this.DS1;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -791,7 +793,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbsVattu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -837,7 +839,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMAKHO;
         private System.Windows.Forms.DataGridView dgvCTPN;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private System.Windows.Forms.BindingSource dbsVattu;
+        private System.Windows.Forms.BindingSource bdsVattu;
         private DS1TableAdapters.VattuTableAdapter vattuTableAdapter;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem btnThemVT;
