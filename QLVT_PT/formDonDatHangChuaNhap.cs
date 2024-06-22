@@ -14,6 +14,8 @@ namespace QLVT_PT
     {
         public string SelectedMADDH { get; private set; }
         public string SelectedMAKHO { get; private set; }
+
+        public DataRow[] dataRows { get; private set; }
         public formDonDatHangChuaNhap()
         {
             InitializeComponent();
@@ -44,6 +46,8 @@ namespace QLVT_PT
             if (this.bdsDDHChuaNhap.Current != null)
             {                
                 SelectedMADDH = txtMaDDH.Text;
+                SelectedMAKHO = txtMAKHO.Text;
+                dataRows = DS1.CTDDH.Select($"MasoDDH='{txtMaDDH.Text}'");
             }
 
             this.DialogResult = DialogResult.OK;
