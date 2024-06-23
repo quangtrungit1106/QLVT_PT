@@ -64,7 +64,7 @@ namespace QLVT_PT
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnChuyenChiNhanh.Enabled = false;
                 cmbChiNhanh.Enabled = true; //bật tắt theo phân quyền
                 panelControl2.Enabled = false;
-                contextMenuStrip1.Enabled = false;
+                contextMenuStrip1.Enabled = false;                
             }
             else
             {
@@ -74,14 +74,15 @@ namespace QLVT_PT
                 panelControl2.Enabled = false;
                 if (bdsPhieuNhap.Count == 0)
                 {
-                    btnXoa.Enabled = btnSua.Enabled = false;
-                    contextMenuStrip1.Enabled = false;
+                    btnXoa.Enabled = btnSua.Enabled = false;                    
                 }
                 if (bdsCTPN.Count == 0)
                 {
                     btnXoaVT.Enabled = btnGhiVT.Enabled = false;
                 }
-            }            
+            }
+            dgvCTPN.ReadOnly = true;
+            contextMenuStrip1.Enabled = false;
         }        
 
         private void hOTENComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,6 +185,8 @@ namespace QLVT_PT
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcPhieuNhap.Enabled = false;
             txtMasoDDH.Enabled = btnChonDonDat.Enabled = false;
+            dgvCTPN.ReadOnly = false;
+            contextMenuStrip1.Enabled = true;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -221,20 +224,24 @@ namespace QLVT_PT
             try
             {
                 bdsPhieuNhap.EndEdit();
-                bdsPhieuNhap.ResetCurrentItem();
+                bdsPhieuNhap.ResetCurrentItem();                
                 this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.phieuNhapTableAdapter.Update(this.DS1.PhieuNhap);
+                this.cTPNTableAdapter.Fill(this.DS1.CTPN);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi ghi phiếu nhập: " + ex.Message, "", MessageBoxButtons.OK);
                 return;
-            } 
-            if(MessageBox.Show("Bạn có muốn lấy các vật tư từ đơn đặt đã chọn cho phiếu nhập?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                ImportCTPNFromSelectedDDH(this.rows);                
             }
-            rows = null;
+            if(them == true)
+            {
+                if (MessageBox.Show("Bạn có muốn lấy các vật tư từ đơn đặt đã chọn cho phiếu nhập?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    ImportCTPNFromSelectedDDH(this.rows);
+                }
+                rows = null;
+            }            
 
             contextMenuStrip1.Enabled = true;
             gcPhieuNhap.Enabled = true;
@@ -251,7 +258,9 @@ namespace QLVT_PT
             {
                 btnThemVT.Enabled = true;
                 btnGhiVT.Enabled = btnXoaVT.Enabled = false;
-            }
+            }            
+            dgvCTPN.ReadOnly = true;
+            contextMenuStrip1.Enabled = false;
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -263,8 +272,7 @@ namespace QLVT_PT
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
             them = false;
-            rows = null;
-            contextMenuStrip1.Enabled = true;
+            rows = null;            
             if (bdsCTPN.Count > 0)
             {
                 btnThemVT.Enabled = btnGhiVT.Enabled = btnXoaVT.Enabled = true;
@@ -274,13 +282,25 @@ namespace QLVT_PT
                 btnThemVT.Enabled = true;
                 btnGhiVT.Enabled = btnXoaVT.Enabled = false;
             }
+            dgvCTPN.ReadOnly = true;
+            contextMenuStrip1.Enabled = false;
+            try
+            {                
+                this.cTPNTableAdapter.Fill(this.DS1.CTPN);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi Reload:" + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
-                this.phieuNhapTableAdapter.Fill(this.DS1.PhieuNhap);                
+                this.phieuNhapTableAdapter.Fill(this.DS1.PhieuNhap);
+                this.cTPNTableAdapter.Fill(this.DS1.CTPN);
             }
             catch (Exception ex)
             {
