@@ -432,7 +432,6 @@
             this.tableAdapterManager.PhieuNhapTableAdapter = this.phieuNhapTableAdapter;
             this.tableAdapterManager.PhieuXuatTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QLVT_PT.DS1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.VattuDaDatTableAdapter = null;
             this.tableAdapterManager.VattuTableAdapter = null;
             // 
             // cTPNTableAdapter
