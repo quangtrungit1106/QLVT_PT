@@ -3,7 +3,7 @@
     @USERNAME VARCHAR(50),  @ROLE VARCHAR(50)     
 AS
   DECLARE @RET INT
-  EXEC @RET= SP_ADDLOGIN @LGNAME, @PASS, 'QLVT_DATHANG'
+  EXEC @RET= SP_ADDLOGIN @LGNAME, @PASS, 'QLVT'
   IF (@RET =1)  -- LOGIN NAME BI TRUNG
   BEGIN
      RAISERROR (N'Login name bị trùng', 16,1)
@@ -17,9 +17,7 @@ AS
        RETURN
   END
   EXEC sp_addrolemember @ROLE, @USERNAME
-  IF @ROLE = 'ADMIN'
+  IF @ROLE = 'CONGTY' OR @ROLE  = 'CHINHANH'
   BEGIN
       EXEC sp_addsrvrolemember @LGNAME, 'SecurityAdmin'
-      EXEC sp_addsrvrolemember @LGNAME, 'DBCREATOR'
-	  EXEC sp_addsrvrolemember @LGNAME, 'ProcessAdmin'
   END

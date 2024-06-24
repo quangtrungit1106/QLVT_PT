@@ -149,6 +149,7 @@
     </Compile>
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
+    <Content Include="Stored Procedure\11.view_NhanVienChuaCoTaiKhoan.txt" />
     <Content Include="Stored Procedure\10.sp_InDanhSachNhanVien.txt" />
     <EmbeddedResource Include="formChinh.resx">
       <DependentUpon>formChinh.cs</DependentUpon>
