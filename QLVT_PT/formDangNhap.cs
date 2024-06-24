@@ -162,15 +162,10 @@ namespace QLVT_PT
 
         private void boxChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
+           
                 Program.serverName = boxChiNhanh.SelectedValue.ToString();
                 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi chọn chi nhánh: " + ex.Message, "", MessageBoxButtons.OK);
-            }
+           
         }
     }
 }
