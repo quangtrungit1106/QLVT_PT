@@ -343,6 +343,54 @@ namespace QLVT_PT
 
             try
             {
+                // Tạo kết nối và câu truy vấn
+                string cauTruyVan = "sp_KiemTraXoaVatTu";
+                SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+
+                // Đặt loại lệnh là Stored Procedure
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Thêm tham số cho stored procedure
+                sqlCommand.Parameters.AddWithValue("@MAVT", this.txtMaVT.Text.Trim());
+
+                // Mở kết nối nếu cần
+                if (Program.conn.State == System.Data.ConnectionState.Closed)
+                {
+                    Program.conn.Open();
+                }
+
+                // Thực thi câu lệnh và đọc kết quả
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                int totalOrderCount = 0;
+
+                if (reader.Read())
+                {
+                    totalOrderCount = reader.GetInt32(0); // Lấy giá trị từ cột đầu tiên
+                }
+
+                reader.Close();
+                Program.conn.Close();
+
+                // So sánh và xử lý kết quả
+                if (totalOrderCount > 0)
+                {
+                    MessageBox.Show("Vật tư này đã được lập hóa đơn ở Chi nhánh khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Không có đơn đặt hàng nào.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            try
+            {
                 String cauTruyVan = "DELETE FROM VATTU WHERE MaVT = '" + this.txtMaVT.Text.Trim() + "'; ";
                 SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
 
@@ -360,7 +408,7 @@ namespace QLVT_PT
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Chỉnh Sửa Vật Tư", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Xóa Vật Tư", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -378,7 +426,7 @@ namespace QLVT_PT
             this.txtTenVT.ReadOnly = false;
         }
 
-       
+  
     }
      
 }

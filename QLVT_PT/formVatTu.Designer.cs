@@ -243,7 +243,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 470);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 583);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(1909, 20);
             // 
@@ -253,7 +253,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 45);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 425);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 538);
             // 
             // barDockControlRight
             // 
@@ -261,7 +261,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1909, 45);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 425);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 538);
             // 
             // bthChinhSua
             // 
@@ -279,14 +279,14 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 45);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1909, 50);
+            this.panelControl1.Size = new System.Drawing.Size(1909, 79);
             this.panelControl1.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(438, 16);
+            this.label1.Location = new System.Drawing.Point(749, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 0;
@@ -326,11 +326,11 @@
             // 
             this.gcVatTu.DataSource = this.bdsVatTu;
             this.gcVatTu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gcVatTu.Location = new System.Drawing.Point(0, 95);
+            this.gcVatTu.Location = new System.Drawing.Point(0, 124);
             this.gcVatTu.MainView = this.gridView1;
             this.gcVatTu.MenuManager = this.barManager1;
             this.gcVatTu.Name = "gcVatTu";
-            this.gcVatTu.Size = new System.Drawing.Size(1909, 259);
+            this.gcVatTu.Size = new System.Drawing.Size(1909, 284);
             this.gcVatTu.TabIndex = 6;
             this.gcVatTu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -393,7 +393,6 @@
             // 
             this.bdsCTPX.DataMember = "FK_CTPX_VatTu";
             this.bdsCTPX.DataSource = this.bdsVatTu;
-           
             // 
             // cTPXTableAdapter
             // 
@@ -429,9 +428,9 @@
             this.panelThongTin.Controls.Add(this.label3);
             this.panelThongTin.Controls.Add(this.label2);
             this.panelThongTin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelThongTin.Location = new System.Drawing.Point(0, 354);
+            this.panelThongTin.Location = new System.Drawing.Point(0, 408);
             this.panelThongTin.Name = "panelThongTin";
-            this.panelThongTin.Size = new System.Drawing.Size(1909, 116);
+            this.panelThongTin.Size = new System.Drawing.Size(1909, 175);
             this.panelThongTin.TabIndex = 21;
             // 
             // txtSLT
@@ -523,7 +522,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1926, 489);
+            this.ClientSize = new System.Drawing.Size(1926, 556);
             this.ControlBox = false;
             this.Controls.Add(this.panelThongTin);
             this.Controls.Add(this.gcVatTu);
