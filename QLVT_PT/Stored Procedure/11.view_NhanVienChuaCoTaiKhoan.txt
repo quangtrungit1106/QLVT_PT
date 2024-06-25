@@ -1,0 +1,7 @@
+﻿CREATE VIEW view_NhanVienChuaCoTaiKhoan
+AS
+SELECT NV.MANV, NV.HO + ' ' + NV.TEN AS HOTEN 
+FROM NhanVien NV
+LEFT JOIN sys.database_principals DP ON CAST(NV.MaNV AS NVARCHAR(50)) = DP.name
+WHERE NV.TrangThaiXoa = 0
+  AND DP.name IS NULL;

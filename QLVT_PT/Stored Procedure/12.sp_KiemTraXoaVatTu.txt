@@ -1,0 +1,29 @@
+﻿CREATE PROCEDURE sp_KiemTraXoaVatTu
+    @MAVT NVARCHAR(4)
+AS
+BEGIN
+    DECLARE @CountCTPN INT;
+    DECLARE @CountCTPX INT;
+    DECLARE @CountCTDDH INT;
+	DECLARE @TotalCount INT;
+
+    SET @CountCTPN = 0;
+    SET @CountCTPX = 0;
+    SET @CountCTDDH = 0;
+	SET @TotalCount = 0;
+
+    SELECT @CountCTPN = COUNT(*)
+    FROM LINK1.QLVT.DBO.CTPN
+    WHERE MAVT = @MAVT;
+
+    SELECT @CountCTPX = COUNT(*)
+    FROM LINK1.QLVT.DBO.CTPX
+    WHERE MAVT = @MAVT;
+
+    SELECT @CountCTDDH = COUNT(*)
+    FROM LINK1.QLVT.DBO.CTDDH
+    WHERE MAVT = @MAVT;
+
+    SET @TotalCount = (@CountCTPN + @CountCTPX + @CountCTDDH);
+	SELECT @TotalCount AS TONGSLPHIEU;
+END;
