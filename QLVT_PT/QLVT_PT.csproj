@@ -141,6 +141,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubForm\formDatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\formDatHang.Designer.cs">
+      <DependentUpon>formDatHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="XtraReport_InDanhSachNhanVien.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -186,6 +192,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SubForm\formDatHang.resx">
+      <DependentUpon>formDatHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_InDanhSachNhanVien.resx">
       <DependentUpon>XtraReport_InDanhSachNhanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +242,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
