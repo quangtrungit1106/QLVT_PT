@@ -63,12 +63,19 @@ namespace QLVT_PT
             {
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnChuyenChiNhanh.Enabled = false;
                 cmbChiNhanh.Enabled = true; //bật tắt theo phân quyền
-                panelControl2.Enabled = false;
-                contextMenuStrip1.Enabled = false;                
+                panelControl2.Enabled = false;                                
             }
             else
             {
-                btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnSua.Enabled = true;
+                btnThem.Enabled = btnReload.Enabled = true;
+                if (txtMANV.Text.Equals(Program.userName))
+                {
+                    btnXoa.Enabled = btnSua.Enabled = true;
+                }
+                else
+                {
+                    btnXoa.Enabled = btnSua.Enabled = false;
+                }
                 btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = false;
                 panelControl2.Enabled = false;
@@ -79,7 +86,7 @@ namespace QLVT_PT
                 if (bdsCTPN.Count == 0)
                 {
                     btnXoaVT.Enabled = btnGhiVT.Enabled = false;
-                }
+                }                
             }
             dgvCTPN.ReadOnly = true;
             contextMenuStrip1.Enabled = false;
@@ -124,8 +131,7 @@ namespace QLVT_PT
             dtNGAY.Enabled = false;
             dtNGAY.Text = DateTime.Now.ToString("dd/MM/yyyy");
             cmbNhanVienNhap.Enabled = false;
-            txtMANV.Text = Program.userName;
-            contextMenuStrip1.Enabled = false;
+            txtMANV.Text = Program.userName;            
 
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
@@ -158,20 +164,10 @@ namespace QLVT_PT
                     bdsPhieuNhap.Position = bdsPhieuNhap.Find("MAPN", mapn);
                     return;
                 }                               
-            }
-            if (bdsCTPN.Count > 0)
-            {
-                btnThemVT.Enabled = btnGhiVT.Enabled = btnXoaVT.Enabled = true;
-            }
-            else
-            {
-                btnThemVT.Enabled = true;
-                btnGhiVT.Enabled = btnXoaVT.Enabled = false;
-            }
+            }            
             if (bdsPhieuNhap.Count == 0)
             {
-                btnXoa.Enabled = btnSua.Enabled = false;
-                contextMenuStrip1.Enabled = false;
+                btnXoa.Enabled = btnSua.Enabled = false;                
                 return;
             }
         }
@@ -185,8 +181,23 @@ namespace QLVT_PT
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcPhieuNhap.Enabled = false;
             txtMasoDDH.Enabled = btnChonDonDat.Enabled = false;
+            txtMANV.Enabled = cmbNhanVienNhap.Enabled = false;
+            dtNGAY.Enabled = false;
+            txtMAKHO.Enabled = false;
             dgvCTPN.ReadOnly = false;
             contextMenuStrip1.Enabled = true;
+            if (bdsCTPN.Count > 0)
+            {
+                btnThemVT.Enabled = btnXoaVT.Enabled = btnGhiVT.Enabled = true;
+            }
+            else
+            {
+                btnThemVT.Enabled = true;
+                btnXoaVT.Enabled = btnGhiVT.Enabled = false;
+            }
+            DS1.EnforceConstraints = false;
+            this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.vattuTableAdapter.FillBy(this.DS1.Vattu, txtMasoDDH.Text);
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -228,6 +239,9 @@ namespace QLVT_PT
                 this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.phieuNhapTableAdapter.Update(this.DS1.PhieuNhap);
                 this.cTPNTableAdapter.Fill(this.DS1.CTPN);
+                DS1.EnforceConstraints = false;
+                this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.vattuTableAdapter.Fill(this.DS1.Vattu);
             }
             catch (Exception ex)
             {
@@ -260,7 +274,7 @@ namespace QLVT_PT
                 btnGhiVT.Enabled = btnXoaVT.Enabled = false;
             }            
             dgvCTPN.ReadOnly = true;
-            contextMenuStrip1.Enabled = false;
+            contextMenuStrip1.Enabled = false;            
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -272,21 +286,15 @@ namespace QLVT_PT
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
             them = false;
-            rows = null;            
-            if (bdsCTPN.Count > 0)
-            {
-                btnThemVT.Enabled = btnGhiVT.Enabled = btnXoaVT.Enabled = true;
-            }
-            else
-            {
-                btnThemVT.Enabled = true;
-                btnGhiVT.Enabled = btnXoaVT.Enabled = false;
-            }
+            rows = null;                        
             dgvCTPN.ReadOnly = true;
             contextMenuStrip1.Enabled = false;
             try
             {                
                 this.cTPNTableAdapter.Fill(this.DS1.CTPN);
+                DS1.EnforceConstraints = false;
+                this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.vattuTableAdapter.Fill(this.DS1.Vattu);
             }
             catch (Exception ex)
             {
@@ -306,16 +314,7 @@ namespace QLVT_PT
             {
                 MessageBox.Show("Lỗi Reload:" + ex.Message, "", MessageBoxButtons.OK);
                 return;
-            }
-            if (bdsCTPN.Count > 0)
-            {
-                btnThemVT.Enabled = btnXoaVT.Enabled = btnGhiVT.Enabled = true;
-            }
-            else
-            {
-                btnThemVT.Enabled = true;
-                btnXoaVT.Enabled = btnGhiVT.Enabled = false;
-            }
+            }            
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -411,6 +410,7 @@ namespace QLVT_PT
 
             if (bdsCTPN.Count == 0)
             {
+                btnThemVT.Enabled = true;
                 btnXoaVT.Enabled = btnGhiVT.Enabled = false;
                 return;
             }
@@ -530,7 +530,7 @@ namespace QLVT_PT
                 MessageBox.Show("Lỗi ghi vật tư vào chi tiết phiếu nhập: " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
-            btnXoaVT.Enabled = btnGhiVT.Enabled = true;
+            btnThemVT.Enabled = btnXoaVT.Enabled = btnGhiVT.Enabled = true;
         }
 
 
@@ -629,15 +629,14 @@ namespace QLVT_PT
 
         private void gcPhieuNhap_Click(object sender, EventArgs e)
         {
-            if (bdsCTPN.Count > 0)
+            if(txtMANV.Text.Equals(Program.userName))
             {
-                btnThemVT.Enabled = btnXoaVT.Enabled = btnGhiVT.Enabled = true;
+                btnXoa.Enabled = btnSua.Enabled = true;
             }
             else
             {
-                btnThemVT.Enabled = true;
-                btnXoaVT.Enabled = btnGhiVT.Enabled = false;
-            }
-        }
+                btnXoa.Enabled = btnSua.Enabled = false;
+            }            
+        }        
     }
 }

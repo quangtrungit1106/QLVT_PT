@@ -45,7 +45,7 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bdsCTDDHChuaNhap = new System.Windows.Forms.BindingSource(this.components);
-            this.dDHChuaNhapGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gcDDHChuaNhap = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMasoDDH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNGAY = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DS1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDHDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTDDHChuaNhap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dDHChuaNhapGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcDDHChuaNhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +91,7 @@
             // 
             this.panelControl1.Controls.Add(this.panelControl2);
             this.panelControl1.Controls.Add(this.cTDDHDataGridView);
-            this.panelControl1.Controls.Add(this.dDHChuaNhapGridControl);
+            this.panelControl1.Controls.Add(this.gcDDHChuaNhap);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
@@ -220,16 +220,16 @@
             this.bdsCTDDHChuaNhap.DataMember = "FK_CTDDH_DatHang1";
             this.bdsCTDDHChuaNhap.DataSource = this.bdsDDHChuaNhap;
             // 
-            // dDHChuaNhapGridControl
+            // gcDDHChuaNhap
             // 
-            this.dDHChuaNhapGridControl.DataSource = this.bdsDDHChuaNhap;
-            this.dDHChuaNhapGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dDHChuaNhapGridControl.Location = new System.Drawing.Point(2, 2);
-            this.dDHChuaNhapGridControl.MainView = this.gridView1;
-            this.dDHChuaNhapGridControl.Name = "dDHChuaNhapGridControl";
-            this.dDHChuaNhapGridControl.Size = new System.Drawing.Size(839, 220);
-            this.dDHChuaNhapGridControl.TabIndex = 0;
-            this.dDHChuaNhapGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gcDDHChuaNhap.DataSource = this.bdsDDHChuaNhap;
+            this.gcDDHChuaNhap.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcDDHChuaNhap.Location = new System.Drawing.Point(2, 2);
+            this.gcDDHChuaNhap.MainView = this.gridView1;
+            this.gcDDHChuaNhap.Name = "gcDDHChuaNhap";
+            this.gcDDHChuaNhap.Size = new System.Drawing.Size(839, 220);
+            this.gcDDHChuaNhap.TabIndex = 0;
+            this.gcDDHChuaNhap.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
@@ -240,7 +240,7 @@
             this.colNhaCC,
             this.colMANV,
             this.colMAKHO});
-            this.gridView1.GridControl = this.dDHChuaNhapGridControl;
+            this.gridView1.GridControl = this.gcDDHChuaNhap;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
@@ -337,7 +337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DS1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDHDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTDDHChuaNhap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dDHChuaNhapGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcDDHChuaNhap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -349,7 +349,7 @@
         private System.Windows.Forms.BindingSource bdsDDHChuaNhap;
         private DS1TableAdapters.DDHChuaNhapTableAdapter dDHChuaNhapTableAdapter;
         private DS1TableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraGrid.GridControl dDHChuaNhapGridControl;
+        private DevExpress.XtraGrid.GridControl gcDDHChuaNhap;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMasoDDH;
         private DevExpress.XtraGrid.Columns.GridColumn colNGAY;
