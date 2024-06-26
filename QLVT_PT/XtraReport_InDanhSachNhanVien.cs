@@ -7,13 +7,12 @@ using System.Drawing;
 namespace QLVT_PT
 {
     public partial class XtraReport_InDanhSachNhanVien : DevExpress.XtraReports.UI.XtraReport
-    {
+    {        
         public XtraReport_InDanhSachNhanVien()
         {
             InitializeComponent();
             this.sqlDataSource1.Connection.ConnectionString = Program.connstr;
-            this.sqlDataSource1.Fill();
+            this.sqlDataSource1.Fill();            
         }
-
     }
 }
