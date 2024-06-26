@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraReports.UI;
+using QLVT_PT.SubForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -223,6 +224,22 @@ namespace QLVT_PT
                 form.MdiParent = this;
                 form.Show();
             }                                               
+        }
+
+        private void btnDonDatHang_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(formDatHang));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formDatHang form = new formDatHang();
+                form.MdiParent = this;
+                form.Show();
+            }
         }
     }
 }

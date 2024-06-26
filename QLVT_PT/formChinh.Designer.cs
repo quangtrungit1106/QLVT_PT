@@ -66,7 +66,7 @@
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(55, 57, 55, 57);
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(64, 70, 64, 70);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -86,15 +86,15 @@
             this.btnThoat,
             this.btnHDNV});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.ribbonControl1.MaxItemId = 16;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 601;
+            this.ribbonControl1.OptionsMenuMinWidth = 701;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.pageHeThong,
             this.pageNhapXuat,
             this.pageBaoCao});
-            this.ribbonControl1.Size = new System.Drawing.Size(1188, 193);       
+            this.ribbonControl1.Size = new System.Drawing.Size(1188, 193);
             // 
             // btnDangNhap
             // 
@@ -194,6 +194,7 @@
             this.btnDonDatHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDonDatHang.ImageOptions.Image")));
             this.btnDonDatHang.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDonDatHang.ImageOptions.LargeImage")));
             this.btnDonDatHang.Name = "btnDonDatHang";
+            this.btnDonDatHang.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDonDatHang_ItemClick);
             // 
             // btnPhieuNhap
             // 
@@ -287,28 +288,29 @@
             this.MANV,
             this.HOTEN,
             this.MAVAITRO});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 449);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 554);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1018, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1188, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // MANV
             // 
             this.MANV.Name = "MANV";
-            this.MANV.Size = new System.Drawing.Size(92, 17);
+            this.MANV.Size = new System.Drawing.Size(115, 20);
             this.MANV.Text = "MÃ NHÂN VIÊN";
             // 
             // HOTEN
             // 
             this.HOTEN.Name = "HOTEN";
-            this.HOTEN.Size = new System.Drawing.Size(49, 17);
+            this.HOTEN.Size = new System.Drawing.Size(62, 20);
             this.HOTEN.Text = "HỌ TÊN";
             // 
             // MAVAITRO
             // 
             this.MAVAITRO.Name = "MAVAITRO";
-            this.MAVAITRO.Size = new System.Drawing.Size(49, 17);
+            this.MAVAITRO.Size = new System.Drawing.Size(63, 20);
             this.MAVAITRO.Text = "VAI TRÒ";
             // 
             // barButtonItem1
@@ -369,13 +371,13 @@
             // 
             // formChinh
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1018, 471);
+            this.ClientSize = new System.Drawing.Size(1188, 580);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonControl1);
             this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("formChinh.IconOptions.LargeImage")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "formChinh";
             this.Ribbon = this.ribbonControl1;
             this.Text = "QUẢN LÝ VẬT TƯ";
