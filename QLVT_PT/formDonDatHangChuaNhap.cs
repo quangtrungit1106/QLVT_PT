@@ -31,10 +31,10 @@ namespace QLVT_PT
 
         private void formDonDatHangChuaNhap_Load(object sender, EventArgs e)
         {
-            this.DS1.EnforceConstraints = false;
+            this.DS1.EnforceConstraints = false;            
 
-            this.dDHChuaNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.dDHChuaNhapTableAdapter.Fill(this.DS1.DDHChuaNhap);
+            this.dDHChuaNhapTableAdapter.Connection.ConnectionString = Program.connstr;            
+            this.dDHChuaNhapTableAdapter.FillBy(this.DS1.DDHChuaNhap,Convert.ToInt32(Program.userName));            
 
             this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
             this.cTDDHTableAdapter.Fill(this.DS1.CTDDH);    
@@ -57,6 +57,6 @@ namespace QLVT_PT
         private void btnCancel_Click(object sender, EventArgs e)
         {            
             this.Close();
-        }
+        }        
     }
 }
