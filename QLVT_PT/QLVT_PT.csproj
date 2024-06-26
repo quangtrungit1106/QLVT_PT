@@ -154,7 +154,7 @@
     </Compile>
     <Compile Include="SubForm\formDatHang.Designer.cs">
       <DependentUpon>formDatHang.cs</DependentUpon>
-
+	</Compile>
     <Compile Include="XtraReport_HoatDongNhanVien.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -213,7 +213,7 @@
 
     <EmbeddedResource Include="SubForm\formDatHang.resx">
       <DependentUpon>formDatHang.cs</DependentUpon>
-
+	</EmbeddedResource>
     <EmbeddedResource Include="XtraReport_HoatDongNhanVien.resx">
       <DependentUpon>XtraReport_HoatDongNhanVien.cs</DependentUpon>
 
