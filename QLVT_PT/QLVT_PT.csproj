@@ -167,6 +167,8 @@
     </Compile>
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
+    <Content Include="Stored Procedure\14.sp_XoaDonDatHang.txt" />
+    <Content Include="Stored Procedure\13.sp_KiemTraMaDDH.txt" />
     <Content Include="Stored Procedure\12.sp_KiemTraXoaVatTu.txt" />
     <Content Include="Stored Procedure\11.view_NhanVienChuaCoTaiKhoan.txt" />
     <Content Include="Stored Procedure\10.sp_InDanhSachNhanVien.txt" />
