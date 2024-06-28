@@ -81,21 +81,23 @@ namespace QLVT_PT
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (txtMANV.Text.Trim() == "")
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (dtTuNgay.Text.Trim() == "" || dtDenNgay.Text.Trim()=="")
+            {
+                MessageBox.Show("Vui lòng chọn thời gian!", "", MessageBoxButtons.OK);
+                return;
+            }
             XtraReport_HoatDongNhanVien rpt = new XtraReport_HoatDongNhanVien(Convert.ToInt32(txtMANV.Text), dtTuNgay.Text, dtDenNgay.Text);
             rpt.lbTuNgay.Text = dtTuNgay.Text;
             rpt.lbDenNgay.Text = dtDenNgay.Text;
             rpt.lbHoTen.Text = cmbHoTen.Text.Substring(0,cmbHoTen.Text.IndexOf('-')).Trim();
-            rpt.lbNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");  
-            /*Console.WriteLine(rpt.lbTienChu.Text);*/
+            rpt.lbNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy");              
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.ShowPreviewDialog();
-        }
-
-        /// 
-        /// Chuyển phần nguyên của số thành chữ
-        /// 
-        /// Số double cần chuyển thành chữ
-        /// Chuỗi kết quả chuyển từ số
-        
+        }                
     }
 }
