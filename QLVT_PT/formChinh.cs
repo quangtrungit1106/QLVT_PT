@@ -246,7 +246,7 @@ namespace QLVT_PT
         {
 
             XtraReport_DonDatHangChuaNhap rpt = new XtraReport_DonDatHangChuaNhap();
-            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("dd/MM/yyyy");
+            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("HH:mm dd/MM/yyyy");
 
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.ShowPreviewDialog();
