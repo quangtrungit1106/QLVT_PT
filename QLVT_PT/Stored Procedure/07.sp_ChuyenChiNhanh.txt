@@ -1,0 +1,53 @@
+﻿CREATE proc [dbo].[sp_ChuyenChiNhanh](@manv int, @ho nvarchar(40), @ten nvarchar(10), 
+@cmnd nvarchar(20), @diachi nvarchar(100), @ngaysinh datetime, @luong float, @kiemtralapphieu bit, @macn_cu nvarchar(10), @macn_moi nvarchar(10))
+as 
+begin 
+	set xact_abort on
+	begin distributed transaction;
+	--Nếu nhân viên chưa lập các phiếu nào trong chi nhánh hiện tại
+	if @kiemtralapphieu=0
+		begin
+			--Nếu nhân viên chưa có dữ liệu ở chi nhánh mới
+			if not exists (select SOCMND from LINK0.QLVT.dbo.NhanVien WHERE SOCMND=@cmnd and MACN=@macn_moi)
+				--Chỉ cần đổi mã chi nhánh cũ thành mới
+				update LINK0.QLVT.dbo.NhanVien
+				set MACN=@macn_moi
+				where MANV=@manv
+			--Nếu nhân viên đã có dữ liệu ở chi nhánh mới			
+			else if exists (select SOCMND from LINK0.QLVT.dbo.NhanVien WHERE SOCMND=@cmnd and MACN=@macn_moi)
+				--Xóa nhân viên ở chi nhánh hiện tại
+				DELETE FROM LINK0.QLVT.dbo.NhanVien WHERE MANV = @manv
+				--Cập nhật lại thông tin lấy từ chi nhánh hiện tại 
+				update LINK0.QLVT.dbo.NhanVien
+				set HO = @ho, TEN = @ten, DIACHI = @diachi, NGAYSINH = @ngaysinh, LUONG = @luong, TrangThaiXoa = 0
+				where SOCMND = @cmnd AND MACN=@macn_moi AND TrangThaiXoa = 1
+		end
+	--Nếu nhân viên đã lập các phiếu trong chi nhánh hiện tại
+	if @kiemtralapphieu=1
+		begin
+			--Cập nhật trạng thái xóa của nhân viên ở chi nhánh hiện tại
+			update LINK0.QLVT.dbo.NhanVien
+			set TrangThaiXoa=1
+			where MANV=@manv
+			
+			--Nếu nhân viên đã chưa có dữ liệu ở chi nhánh mới
+			if not exists (select SOCMND from LINK0.QLVT.dbo.NhanVien WHERE SOCMND=@cmnd AND MACN=@macn_moi)
+				--Tạo mã nhân viên mới, thêm nhân viên ở chi nhánh mới
+				begin
+					DECLARE @manv_moi int
+					select @manv_moi=MAX(MANV)+1 from LINK0.QLVT.dbo.NhanVien
+					insert into LINK0.QLVT.dbo.NhanVien (MANV, HO, TEN, SOCMND, DIACHI, NGAYSINH, LUONG, MACN, TrangThaiXoa) 
+					values(@manv_moi, @ho, @ten, @cmnd, @diachi, @ngaysinh, @luong, @macn_moi, 0)
+				end
+			--Nếu nhân viên đã có dữ liệu ở chi nhánh mới
+			else if exists (select SOCMND from LINK0.QLVT.dbo.NhanVien WHERE SOCMND=@cmnd AND MACN=@macn_moi)
+				--Cập nhật thông tin nhân viên ở chi nhánh mới lấy từ chi nhánh hiện tại
+				begin						
+					update LINK0.QLVT.dbo.NhanVien
+					set HO = @ho, TEN = @ten, DIACHI = @diachi, NGAYSINH = @ngaysinh, LUONG = @luong, TrangThaiXoa = 0
+					where SOCMND = @cmnd AND MACN=@macn_moi AND TrangThaiXoa = 1
+				end
+		end
+	commit transaction;
+	select 'Result' = 1
+end

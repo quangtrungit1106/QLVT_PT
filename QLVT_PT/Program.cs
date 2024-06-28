@@ -18,7 +18,12 @@ namespace QLVT_PT
          **********************************************/
         public static SqlConnection conn = new SqlConnection();//conn
         public static String connstr = "";//connstr
-        public static String connstrPublisher = "Data Source=DESKTOP-SJQK9K9;Initial Catalog=QLVT;Integrated Security=true";
+        //Bảo
+        //public static String connstrPublisher = "Data Source=MSI\\BAOPC;Initial Catalog=QLVT;Integrated Security=true";
+
+        //Trung
+        public static String connstrPublisher = "Data Source=DESKTOP-QHP367E;Initial Catalog=QLVT;Integrated Security=true";
+
         public static SqlDataReader myReader;//myReader
 
 
@@ -60,8 +65,8 @@ namespace QLVT_PT
          ***********************************************/
         public static String database = "QLVT";
 
-        public static String remoteLogin = "HOTROKETNOI";//remotelogin
-        public static String remotePassword = "123";//remotepassword
+        public static String remoteLogin = "HTKN";//remotelogin
+        public static String remotePassword = "123456";//remotepassword
 
         public static String currentLogin = "";//mloginDN
         public static String currentPassword = "";//passwordDN

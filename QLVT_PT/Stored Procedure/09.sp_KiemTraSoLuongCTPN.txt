@@ -1,0 +1,11 @@
+CREATE PROC [dbo].[sp_KiemTraSoLuongCTPN](@maddh nvarchar(8),@mavt nvarchar(4), @soluong int)
+as 
+begin
+	if exists (SELECT * FROM CTDDH WHERE MAVT=@mavt AND MasoDDH=@maddh)
+		if (@soluong <= (SELECT SOLUONG FROM CTDDH WHERE MAVT=@mavt AND MasoDDH=@maddh))
+			SELECT 'Result'=1
+		else 
+			SELECT 'Result'=0
+	else 
+		SELECT 'Result'=1
+end

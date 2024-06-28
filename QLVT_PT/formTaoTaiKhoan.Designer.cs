@@ -37,18 +37,16 @@
             this.textXacNhanMK = new DevExpress.XtraEditors.TextEdit();
             this.showPass = new DevExpress.XtraEditors.CheckEdit();
             this.showConfirmPass = new DevExpress.XtraEditors.CheckEdit();
-            this.textMaNV = new DevExpress.XtraEditors.TextEdit();
-            this.btnChonNhanVien = new System.Windows.Forms.Button();
             this.cmbVaiTro = new System.Windows.Forms.ComboBox();
             this.btnTaoTaiKhoan = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textTaiKhoan = new DevExpress.XtraEditors.TextEdit();
+            this.boxMaNV = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.textMatKhau.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textXacNhanMK.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.showPass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.showConfirmPass.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTaiKhoan.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,22 +134,6 @@
             this.showConfirmPass.TabIndex = 8;
             this.showConfirmPass.CheckedChanged += new System.EventHandler(this.showConfirmPass_CheckedChanged);
             // 
-            // textMaNV
-            // 
-            this.textMaNV.Location = new System.Drawing.Point(228, 63);
-            this.textMaNV.Name = "textMaNV";
-            this.textMaNV.Size = new System.Drawing.Size(134, 20);
-            this.textMaNV.TabIndex = 9;
-            // 
-            // btnChonNhanVien
-            // 
-            this.btnChonNhanVien.Location = new System.Drawing.Point(383, 60);
-            this.btnChonNhanVien.Name = "btnChonNhanVien";
-            this.btnChonNhanVien.Size = new System.Drawing.Size(97, 23);
-            this.btnChonNhanVien.TabIndex = 10;
-            this.btnChonNhanVien.Text = "Chọn Nhân Viên";
-            this.btnChonNhanVien.UseVisualStyleBackColor = true;
-            // 
             // cmbVaiTro
             // 
             this.cmbVaiTro.FormattingEnabled = true;
@@ -170,7 +152,7 @@
             this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
             this.btnTaoTaiKhoan.Size = new System.Drawing.Size(124, 39);
             this.btnTaoTaiKhoan.TabIndex = 12;
-            this.btnTaoTaiKhoan.Text = "TẠO TÀI KHOẢN";
+            this.btnTaoTaiKhoan.Text = "TẠO";
             this.btnTaoTaiKhoan.UseVisualStyleBackColor = false;
             this.btnTaoTaiKhoan.Click += new System.EventHandler(this.btnTaoTaiKhoan_Click);
             // 
@@ -204,18 +186,26 @@
             this.textTaiKhoan.Size = new System.Drawing.Size(134, 20);
             this.textTaiKhoan.TabIndex = 15;
             // 
+            // boxMaNV
+            // 
+            this.boxMaNV.FormattingEnabled = true;
+            this.boxMaNV.Location = new System.Drawing.Point(228, 63);
+            this.boxMaNV.Name = "boxMaNV";
+            this.boxMaNV.Size = new System.Drawing.Size(134, 21);
+            this.boxMaNV.TabIndex = 16;
+            this.boxMaNV.SelectedIndexChanged += new System.EventHandler(this.boxMaNV_SelectedIndexChanged);
+            // 
             // formTaoTaiKhoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(548, 349);
+            this.Controls.Add(this.boxMaNV);
             this.Controls.Add(this.textTaiKhoan);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnTaoTaiKhoan);
             this.Controls.Add(this.cmbVaiTro);
-            this.Controls.Add(this.btnChonNhanVien);
-            this.Controls.Add(this.textMaNV);
             this.Controls.Add(this.showConfirmPass);
             this.Controls.Add(this.showPass);
             this.Controls.Add(this.textXacNhanMK);
@@ -235,7 +225,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.textXacNhanMK.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.showPass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.showConfirmPass.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTaiKhoan.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,12 +242,11 @@
         private DevExpress.XtraEditors.TextEdit textXacNhanMK;
         private DevExpress.XtraEditors.CheckEdit showPass;
         private DevExpress.XtraEditors.CheckEdit showConfirmPass;
-        private DevExpress.XtraEditors.TextEdit textMaNV;
-        private System.Windows.Forms.Button btnChonNhanVien;
         private System.Windows.Forms.ComboBox cmbVaiTro;
         private System.Windows.Forms.Button btnTaoTaiKhoan;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Label label6;
         private DevExpress.XtraEditors.TextEdit textTaiKhoan;
+        private System.Windows.Forms.ComboBox boxMaNV;
     }
 }

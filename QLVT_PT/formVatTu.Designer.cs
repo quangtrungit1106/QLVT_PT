@@ -52,7 +52,7 @@
             this.bdsVatTu = new System.Windows.Forms.BindingSource(this.components);
             this.vattuTableAdapter = new QLVT_PT.DS1TableAdapters.VattuTableAdapter();
             this.tableAdapterManager = new QLVT_PT.DS1TableAdapters.TableAdapterManager();
-            this.vattuGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gcVatTu = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMAVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENVT = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -79,7 +79,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DS1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVatTu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vattuGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPN)).BeginInit();
@@ -162,6 +162,7 @@
             this.btnChinhSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnChinhSua.ImageOptions.LargeImage")));
             this.btnChinhSua.Name = "btnChinhSua";
             this.btnChinhSua.Size = new System.Drawing.Size(100, 0);
+            this.btnChinhSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChinhSua_ItemClick);
             // 
             // btnGhi
             // 
@@ -236,15 +237,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(954, 45);
+            this.barDockControlTop.Size = new System.Drawing.Size(1909, 45);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 472);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 583);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(954, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1909, 20);
             // 
             // barDockControlLeft
             // 
@@ -252,15 +253,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 45);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 427);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 538);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(954, 45);
+            this.barDockControlRight.Location = new System.Drawing.Point(1909, 45);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 427);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 538);
             // 
             // bthChinhSua
             // 
@@ -278,14 +279,14 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 45);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(954, 50);
+            this.panelControl1.Size = new System.Drawing.Size(1909, 79);
             this.panelControl1.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(438, 16);
+            this.label1.Location = new System.Drawing.Point(749, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 0;
@@ -313,6 +314,7 @@
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
+            this.tableAdapterManager.DDHChuaNhapTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
@@ -320,19 +322,19 @@
             this.tableAdapterManager.UpdateOrder = QLVT_PT.DS1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VattuTableAdapter = this.vattuTableAdapter;
             // 
-            // vattuGridControl
+            // gcVatTu
             // 
-            this.vattuGridControl.DataSource = this.bdsVatTu;
-            this.vattuGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vattuGridControl.Location = new System.Drawing.Point(0, 95);
-            this.vattuGridControl.MainView = this.gridView1;
-            this.vattuGridControl.MenuManager = this.barManager1;
-            this.vattuGridControl.Name = "vattuGridControl";
-            this.vattuGridControl.Size = new System.Drawing.Size(954, 281);
-            this.vattuGridControl.TabIndex = 16;
-            this.vattuGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gcVatTu.DataSource = this.bdsVatTu;
+            this.gcVatTu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcVatTu.Location = new System.Drawing.Point(0, 124);
+            this.gcVatTu.MainView = this.gridView1;
+            this.gcVatTu.MenuManager = this.barManager1;
+            this.gcVatTu.Name = "gcVatTu";
+            this.gcVatTu.Size = new System.Drawing.Size(1909, 284);
+            this.gcVatTu.TabIndex = 6;
+            this.gcVatTu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.vattuGridControl.Click += new System.EventHandler(this.vattuGridControl_Click);
+            this.gcVatTu.Click += new System.EventHandler(this.vattuGridControl_Click);
             // 
             // gridView1
             // 
@@ -341,7 +343,7 @@
             this.colTENVT,
             this.colDVT,
             this.colSOLUONGTON});
-            this.gridView1.GridControl = this.vattuGridControl;
+            this.gridView1.GridControl = this.gcVatTu;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Embedded;
             // 
@@ -426,9 +428,9 @@
             this.panelThongTin.Controls.Add(this.label3);
             this.panelThongTin.Controls.Add(this.label2);
             this.panelThongTin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelThongTin.Location = new System.Drawing.Point(0, 376);
+            this.panelThongTin.Location = new System.Drawing.Point(0, 408);
             this.panelThongTin.Name = "panelThongTin";
-            this.panelThongTin.Size = new System.Drawing.Size(954, 116);
+            this.panelThongTin.Size = new System.Drawing.Size(1909, 175);
             this.panelThongTin.TabIndex = 21;
             // 
             // txtSLT
@@ -437,10 +439,7 @@
             this.txtSLT.Location = new System.Drawing.Point(584, 77);
             this.txtSLT.MenuManager = this.barManager1;
             this.txtSLT.Name = "txtSLT";
-            this.txtSLT.Properties.DisplayFormat.FormatString = "n0";
             this.txtSLT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtSLT.Properties.EditFormat.FormatString = "n0";
-            this.txtSLT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtSLT.Size = new System.Drawing.Size(217, 20);
             this.txtSLT.TabIndex = 8;
             // 
@@ -522,20 +521,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 492);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1926, 556);
+            this.ControlBox = false;
             this.Controls.Add(this.panelThongTin);
-            this.Controls.Add(this.vattuGridControl);
+            this.Controls.Add(this.gcVatTu);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("formVatTu.IconOptions.LargeImage")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formVatTu";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vật Tư";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.formVatTu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -543,7 +543,7 @@
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DS1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVatTu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vattuGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVatTu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCTPN)).EndInit();
@@ -582,7 +582,7 @@
         private DS1 DS1;
         private DS1TableAdapters.VattuTableAdapter vattuTableAdapter;
         private DS1TableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraGrid.GridControl vattuGridControl;
+        private DevExpress.XtraGrid.GridControl gcVatTu;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMAVT;
         private DevExpress.XtraGrid.Columns.GridColumn colTENVT;
