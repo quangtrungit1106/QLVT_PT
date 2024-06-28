@@ -328,6 +328,7 @@
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(494, 24);
             this.cmbChiNhanh.TabIndex = 1;
+            this.cmbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanh_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -665,7 +666,6 @@
             this.dgvCTDDH.RowTemplate.Height = 24;
             this.dgvCTDDH.Size = new System.Drawing.Size(1112, 337);
             this.dgvCTDDH.TabIndex = 43;
-           
             // 
             // maDDH_CTDDH
             // 
