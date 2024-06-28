@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraPrinting.Native;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace QLVT_PT.SubForm
 {
     public partial class formDatHang : Form
     {
+        bool dangthem = false;
         int vitri = -1;
         BindingSource bds = null;
         public formDatHang()
@@ -25,9 +27,12 @@ namespace QLVT_PT.SubForm
             this.txtNCC.ReadOnly = true;
             this.boxKho.Enabled = false;
             this.txtMaNV.Enabled = false;
-            //this.gcCTDDH.Enabled = true;
-
+            this.dgvCTDDH.ReadOnly = true;
             this.gcDatHang.Enabled = true;
+            contextMenuStrip1.Enabled = false;
+          
+
+            dangthem = false;
             if (Program.role == "CONGTY")
             {
                 this.btnThem.Enabled = this.btnXoa.Enabled = this.btnChinhSua.Enabled = this.btnQuayLai.Enabled = this.btnGhi.Enabled = false;
@@ -82,11 +87,16 @@ namespace QLVT_PT.SubForm
             this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
             this.cTDDHTableAdapter.Fill(this.dS1.CTDDH);
 
+            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.phieuNhapTableAdapter.Fill(this.dS1.PhieuNhap);
+
             enableButtons();
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            dangthem = true;
+
             this.btnThem.Enabled = this.btnXoa.Enabled = this.btnChinhSua.Enabled = false;
             this.btnGhi.Enabled = this.btnQuayLai.Enabled = true;
             this.gcDatHang.Enabled = false;
@@ -98,7 +108,7 @@ namespace QLVT_PT.SubForm
 
             this.bdsDatHang.AddNew();
 
-         //  this.gcCTDDH.Enabled = false;
+           this.dgvCTDDH.Enabled = false;
 
             this.txtMaDDH.Text = "";
             this.dateDH.Text = DateTime.Now.ToString("MM/dd/yyyy");
@@ -109,19 +119,29 @@ namespace QLVT_PT.SubForm
 
         private void btnChinhSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.btnThem.Enabled = this.btnXoa.Enabled = this.btnChinhSua.Enabled = false;
-            this.btnGhi.Enabled = this.btnQuayLai.Enabled = true;
-            this.gcDatHang.Enabled = false;
-            this.txtMaDDH.ReadOnly = true;
-            this.dateDH.ReadOnly = true;
-            this.txtNCC.ReadOnly = false;
-            this.boxKho.Enabled = true;
-            this.txtMaNV.Enabled = false;
+            if(this.bdsPhieuNhap.Count > 0)
+            {
+                MessageBox.Show("Không thể chính sửa đơn đặt hàng đã nhập", "Thông báo", MessageBoxButtons.OK);
+            }
+            else
+            {
+                this.btnThem.Enabled = this.btnXoa.Enabled = this.btnChinhSua.Enabled = false;
+                this.btnGhi.Enabled = this.btnQuayLai.Enabled = true;
+                this.gcDatHang.Enabled = false;
+                this.txtMaDDH.ReadOnly = true;
+                this.dateDH.ReadOnly = true;
+                this.txtNCC.ReadOnly = false;
+                this.boxKho.Enabled = true;
+                this.txtMaNV.Enabled = false;
+                contextMenuStrip1.Enabled = true;
+                
+                this.dgvCTDDH.ReadOnly = false;
+                this.maDDH_CTDDH.ReadOnly = true;
+                this.dateDH.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                this.txtMaNV.Text = Program.userName;
+            }
 
-         //   this.gcCTDDH.Enabled = false;
-
-            this.dateDH.Text = DateTime.Now.ToString("MM/dd/yyyy");
-            this.txtMaNV.Text = Program.userName;
+            
         }
         private bool kiemTraThongTin()
         {
@@ -163,13 +183,30 @@ namespace QLVT_PT.SubForm
                 return;
             }
 
+            if(dangthem == true)
+            {
+                string statement = "EXEC sp_KiemTraMaDDH " + txtMaDDH.Text;
+                Program.myReader = null;
+                Program.myReader = Program.ExecSqlDataReader(statement);
+                if (Program.myReader == null)
+                    return;
+                Program.myReader.Read();
+                int checkmapn = Program.myReader.GetInt32(0);
+                if (checkmapn == 1)
+                {
+                    MessageBox.Show("Mã đơn đặt hàng đã tồn tại, vui lòng nhập mã khác", "", MessageBoxButtons.OK);
+                    txtMaDDH.Focus();
+                    Program.myReader.Close();
+                    return;
+                }
+                Program.myReader.Close();
+            }
             try
             {
                 bdsDatHang.EndEdit();
                 bdsDatHang.ResetCurrentItem();
                 this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.datHangTableAdapter.Update(this.dS1.DatHang);
-
                 bdsCTDDH.EndEdit();
                 bdsCTDDH.ResetCurrentItem();
                 this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -211,13 +248,46 @@ namespace QLVT_PT.SubForm
 
         }
 
-        private void themVatTu_Click(object sender, EventArgs e)
+      
+
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-           
-            this.cTDDHBindingSource.AddNew();
-         
+            if (bdsPhieuNhap.Count > 0)
+            {
+                MessageBox.Show("Bạn không thể xóa đơn đặt hàng đã được nhập hàng", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (MessageBox.Show("Bạn có thực sự muốn xóa đơn đặt hàng này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                String maddh = txtMaDDH.Text;
+                try
+                {
+                    string statement = "EXEC sp_XoaDonDatHang " + txtMaDDH.Text;
+                    Program.myReader = null;
+                    Program.myReader = Program.ExecSqlDataReader(statement);
+                    this.datHangTableAdapter.Fill(this.dS1.DatHang);
+                    this.cTDDHTableAdapter.Fill(this.dS1.CTDDH);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa phiếu nhập. Bạn hãy thử xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
+                    this.datHangTableAdapter.Fill(this.dS1.DatHang);
+                    this.cTDDHTableAdapter.Fill(this.dS1.CTDDH);
+                    bdsDatHang.Position = bdsDatHang.Find("MasoDDH", maddh);
+                    return;
+                }
+            }
         }
 
-     
+        private void themVatTu_Click(object sender, EventArgs e)
+        {
+
+            this.bdsCTDDH.AddNew();
+        }
+        private void xoaVatTu_Click(object sender, EventArgs e)
+        {
+            bdsCTDDH.RemoveCurrent();
+
+        }
     }
 }
