@@ -17,8 +17,8 @@ namespace QLVT_PT
     public partial class formPhieuNhap : Form
     {
         int vitri = 0;
-        bool them = false;
-        bool themVT = false;
+        int vitriCTPN = -1;
+        bool them = false;               
         int checkmapn = -1;
         DataRow[] rows;        
 
@@ -183,17 +183,17 @@ namespace QLVT_PT
             txtMasoDDH.Enabled = btnChonDonDat.Enabled = false;
             txtMANV.Enabled = cmbNhanVienNhap.Enabled = false;
             dtNGAY.Enabled = false;
-            txtMAKHO.Enabled = false;
-            dgvCTPN.ReadOnly = false;
+            txtMAKHO.Enabled = false;            
             contextMenuStrip1.Enabled = true;
             if (bdsCTPN.Count > 0)
             {
-                btnThemVT.Enabled = btnXoaVT.Enabled = btnGhiVT.Enabled = true;
+                btnThemVT.Enabled = btnXoaVT.Enabled = true;
+                btnGhiVT.Enabled = btnUndoVT.Enabled = false;
             }
             else
             {
                 btnThemVT.Enabled = true;
-                btnXoaVT.Enabled = btnGhiVT.Enabled = false;
+                btnXoaVT.Enabled = btnGhiVT.Enabled = btnUndo.Enabled = false;
             }
             DS1.EnforceConstraints = false;
             this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -263,17 +263,7 @@ namespace QLVT_PT
             btnGhi.Enabled = btnUndo.Enabled = false;
 
             panelControl2.Enabled = false;
-            them = false;
-            if (bdsCTPN.Count > 0)
-            {
-                btnThemVT.Enabled = btnGhiVT.Enabled = btnXoaVT.Enabled = true;
-            }
-            else
-            {
-                btnThemVT.Enabled = true;
-                btnGhiVT.Enabled = btnXoaVT.Enabled = false;
-            }            
-            dgvCTPN.ReadOnly = true;
+            them = false;                                    
             contextMenuStrip1.Enabled = false;            
         }
 
@@ -286,8 +276,7 @@ namespace QLVT_PT
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnChuyenChiNhanh.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
             them = false;
-            rows = null;                        
-            dgvCTPN.ReadOnly = true;
+            rows = null;                                    
             contextMenuStrip1.Enabled = false;
             try
             {                
@@ -366,12 +355,13 @@ namespace QLVT_PT
         }
 
         private void btnThemVT_Click(object sender, EventArgs e)
-        {
-            themVT = true;
-            bdsCTPN.AddNew();
-            ((DataRowView)bdsCTPN[bdsCTPN.Position])["MAPN"] = txtMAPN.Text;
+        {                                    
+            bdsCTPN.AddNew();            
+            ((DataRowView)bdsCTPN[bdsCTPN.Position])["MAPN"] = txtMAPN.Text;                                   
             btnXoaVT.Enabled = btnThemVT.Enabled = false;
-            btnGhiVT.Enabled = true;
+            btnGhiVT.Enabled = btnUndoVT.Enabled = true;
+            dgvCTPN.Enabled = false;
+            cmbVattuCTPN.Enabled = txtSOLUONG.Enabled = txtDONGIA.Enabled = true;
         }
 
         private void btnXoaVT_Click(object sender, EventArgs e)
@@ -417,27 +407,22 @@ namespace QLVT_PT
         }
 
         private void btnGhiVT_Click(object sender, EventArgs e)
-        {
-            string mavt_cu = "";
-            int soluong_cu = 0;
+        {            
             DataRowView currentView = (DataRowView)bdsCTPN[bdsCTPN.Position];
 
-            if (currentView["MAVT"] == DBNull.Value)
+            if (txtMAVT.Text.Trim()=="")
             {
                 MessageBox.Show("Tên vật tư không được thiếu", "", MessageBoxButtons.OK);
                 return;
             }
-            if (currentView["DONGIA"] == DBNull.Value)
+            if (txtDONGIA.Text.Trim()=="")
             {
                 MessageBox.Show("Đơn giá không được thiếu", "", MessageBoxButtons.OK);
                 return;
             }
             try
-            {
-                object soluongObj = currentView["SOLUONG"];
-                if (soluongObj != DBNull.Value)
-                {
-                    if (int.TryParse(soluongObj.ToString(), out int soluong))
+            {                
+                    if (int.TryParse(txtSOLUONG.Text, out int soluong))
                     {
                         string statement = "EXEC sp_KiemTraSoLuongCTPN '" + txtMasoDDH.Text + "', '" + currentView["MAVT"].ToString() + "', " + soluong;
                         Program.myReader = null;
@@ -457,80 +442,34 @@ namespace QLVT_PT
                     {
                         MessageBox.Show("Số lượng không hợp lệ", "", MessageBoxButtons.OK);
                         return;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Số lượng không được bỏ trống", "", MessageBoxButtons.OK);
-                    return;
-                }
+                    }                                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message, "", MessageBoxButtons.OK);
                 return;
-            }
-
-            // Print current values
-            Console.WriteLine("Current Values:");
-            Console.WriteLine($"MAVT: {currentView["MAVT"]}");
-            Console.WriteLine($"SOLUONG: {currentView["SOLUONG"]}");
-            Console.WriteLine($"DONGIA: {currentView["DONGIA"]}");
-
-            // Print original values if available
-            if (currentView.Row.RowState == DataRowState.Modified && currentView.Row.HasVersion(DataRowVersion.Original))
-            {
-                mavt_cu = currentView.Row["MAVT", DataRowVersion.Original].ToString();
-                soluong_cu = Convert.ToInt32(currentView.Row["SOLUONG", DataRowVersion.Original]);
-                Console.WriteLine("Original Values:");
-                Console.WriteLine($"MAVT: {mavt_cu}");
-                Console.WriteLine($"SOLUONG: {soluong_cu}");
-                Console.WriteLine($"DONGIA: {currentView.Row["DONGIA", DataRowVersion.Original]}");
-            }
-            else
-            {
-                Console.WriteLine("No original values available.");
-            }
+            }            
                         
             try
-            {   if(mavt_cu.Equals(currentView["MAVT"].ToString()) && soluong_cu == Convert.ToInt32(currentView["SOLUONG"]))
-                {                    
-                    return;
-                }             
-                if(mavt_cu != "" || soluong_cu!=0)
-                {                   
-                    if(UpdateSoLuongTonVattu(mavt_cu, soluong_cu, false) == true)
-                    {
-                        UpdateSoLuongTonVattu(currentView["MAVT"].ToString(), Convert.ToInt32(currentView["SOLUONG"]), true);
-                        this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
-                        this.vattuTableAdapter.Update(DS1.Vattu);
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                if(mavt_cu == "" && soluong_cu == 0 && themVT==true)
-                {
-                    UpdateSoLuongTonVattu(currentView["MAVT"].ToString(), Convert.ToInt32(currentView["SOLUONG"]), true);
-                    this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.vattuTableAdapter.Update(DS1.Vattu);
-                    themVT = false;
-                }
-                
-                
+            {                   
+                UpdateSoLuongTonVattu(currentView["MAVT"].ToString(), Convert.ToInt32(currentView["SOLUONG"]), true);
+                this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.vattuTableAdapter.Update(DS1.Vattu);
+
                 bdsCTPN.EndEdit();
                 bdsCTPN.ResetCurrentItem();
                 this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTPNTableAdapter.Update(this.DS1.CTPN);
-                             
+                this.cTPNTableAdapter.Update(this.DS1.CTPN);                             
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi ghi vật tư vào chi tiết phiếu nhập: " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
-            btnThemVT.Enabled = btnXoaVT.Enabled = btnGhiVT.Enabled = true;
+            btnThemVT.Enabled = btnXoaVT.Enabled = true;
+            btnGhiVT.Enabled = btnUndoVT.Enabled = false;
+            dgvCTPN.Enabled = true;
+            cmbVattuCTPN.Enabled = txtSOLUONG.Enabled = txtDONGIA.Enabled = false;
         }
 
 
@@ -638,5 +577,44 @@ namespace QLVT_PT
                 btnXoa.Enabled = btnSua.Enabled = false;
             }            
         }        
+
+        private void btnUndoVT_Click(object sender, EventArgs e)
+        {
+            if(bdsCTPN.Count > 0)
+            {
+                btnThemVT.Enabled = btnXoaVT.Enabled = true;
+                btnGhiVT.Enabled = btnUndoVT.Enabled = false;
+            }
+            else
+            {
+                btnThemVT.Enabled = true;
+                btnGhiVT.Enabled = btnUndoVT.Enabled = btnXoaVT.Enabled = false;
+            }
+            dgvCTPN.Enabled = true;
+            cmbVattuCTPN.Enabled = txtSOLUONG.Enabled = txtDONGIA.Enabled = true;
+            try
+            {
+                this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.cTPNTableAdapter.Fill(this.DS1.CTPN);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi reload CTPN khi undo!", "", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
+        private void cmbVattuCTPN_SelectedIndexChanged(object sender, EventArgs e)
+        {                        
+            try
+            {
+                if (cmbVattuCTPN.SelectedValue != null)
+                    txtMAVT.Text = cmbVattuCTPN.SelectedValue.ToString();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
 }

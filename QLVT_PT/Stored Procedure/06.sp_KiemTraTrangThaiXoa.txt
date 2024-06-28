@@ -1,7 +1,7 @@
 ﻿create proc sp_KiemTraTrangThaiXoa(@cmnd nvarchar(20))
 as 
 begin
-    if exists (select SOCMND from LINK1.QLVT.dbo.NhanVien where SOCMND=@cmnd and TrangThaiXoa=0) 
+    if exists (select SOCMND from LINK0.QLVT.dbo.NhanVien where SOCMND=@cmnd and TrangThaiXoa=0) 
         select 'Result'=1
     else
         select 'Result'=0
