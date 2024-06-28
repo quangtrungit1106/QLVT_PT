@@ -201,6 +201,7 @@
             this.btnQuayLai.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnQuayLai.ImageOptions.LargeImage")));
             this.btnQuayLai.Name = "btnQuayLai";
             this.btnQuayLai.Size = new System.Drawing.Size(100, 0);
+            this.btnQuayLai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnQuayLai_ItemClick);
             // 
             // btnLamMoi
             // 
@@ -610,7 +611,7 @@
             this.themVatTu,
             this.xoaVatTu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 52);
             // 
             // themVatTu
             // 
@@ -622,7 +623,7 @@
             // xoaVatTu
             // 
             this.xoaVatTu.Name = "xoaVatTu";
-            this.xoaVatTu.Size = new System.Drawing.Size(210, 24);
+            this.xoaVatTu.Size = new System.Drawing.Size(157, 24);
             this.xoaVatTu.Text = "Xóa vật tư";
             this.xoaVatTu.Click += new System.EventHandler(this.xoaVatTu_Click);
             // 
@@ -664,6 +665,7 @@
             this.dgvCTDDH.RowTemplate.Height = 24;
             this.dgvCTDDH.Size = new System.Drawing.Size(1112, 337);
             this.dgvCTDDH.TabIndex = 43;
+           
             // 
             // maDDH_CTDDH
             // 
