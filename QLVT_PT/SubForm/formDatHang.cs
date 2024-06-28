@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace QLVT_PT.SubForm
     {
         bool dangthem = false;
         int vitri = -1;
+        Dictionary<int, String> undoMap = new Dictionary<int, String>();
+
         BindingSource bds = null;
         public formDatHang()
         {
@@ -30,8 +33,6 @@ namespace QLVT_PT.SubForm
             this.dgvCTDDH.ReadOnly = true;
             this.gcDatHang.Enabled = true;
             contextMenuStrip1.Enabled = false;
-          
-
             dangthem = false;
             if (Program.role == "CONGTY")
             {
@@ -52,15 +53,12 @@ namespace QLVT_PT.SubForm
                 }
                 this.cmbChiNhanh.Enabled = false;
             }
-
-
         }
         private void datHangBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
             this.bdsDatHang.EndEdit();
             this.tableAdapterManager.UpdateAll(this.dS1);
-
         }
 
         private void formDatHang_Load(object sender, EventArgs e)
@@ -95,8 +93,9 @@ namespace QLVT_PT.SubForm
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            vitri++;
+            undoMap[vitri] = "them, " + this.txtMaDDH.Text;
             dangthem = true;
-
             this.btnThem.Enabled = this.btnXoa.Enabled = this.btnChinhSua.Enabled = false;
             this.btnGhi.Enabled = this.btnQuayLai.Enabled = true;
             this.gcDatHang.Enabled = false;
@@ -105,15 +104,10 @@ namespace QLVT_PT.SubForm
             this.txtNCC.ReadOnly = false;
             this.boxKho.Enabled = true;
             this.txtMaNV.ReadOnly = false;
-
             this.bdsDatHang.AddNew();
-
-           this.dgvCTDDH.Enabled = false;
-
             this.txtMaDDH.Text = "";
             this.dateDH.Text = DateTime.Now.ToString("MM/dd/yyyy");
             this.txtNCC.Text = "";
-
             this.txtMaNV.Text = Program.userName;
         }
 
@@ -125,6 +119,8 @@ namespace QLVT_PT.SubForm
             }
             else
             {
+                vitri++;
+                undoMap[vitri] = "chinhsua, " + this.txtMaDDH.Text;
                 this.btnThem.Enabled = this.btnXoa.Enabled = this.btnChinhSua.Enabled = false;
                 this.btnGhi.Enabled = this.btnQuayLai.Enabled = true;
                 this.gcDatHang.Enabled = false;
@@ -133,15 +129,12 @@ namespace QLVT_PT.SubForm
                 this.txtNCC.ReadOnly = false;
                 this.boxKho.Enabled = true;
                 this.txtMaNV.Enabled = false;
-                contextMenuStrip1.Enabled = true;
-                
+                contextMenuStrip1.Enabled = true; 
                 this.dgvCTDDH.ReadOnly = false;
                 this.maDDH_CTDDH.ReadOnly = true;
                 this.dateDH.Text = DateTime.Now.ToString("MM/dd/yyyy");
                 this.txtMaNV.Text = Program.userName;
-            }
-
-            
+            }          
         }
         private bool kiemTraThongTin()
         {
@@ -203,6 +196,7 @@ namespace QLVT_PT.SubForm
             }
             try
             {
+                bds = this.bdsCTDDH;
                 bdsDatHang.EndEdit();
                 bdsDatHang.ResetCurrentItem();
                 this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -211,7 +205,16 @@ namespace QLVT_PT.SubForm
                 bdsCTDDH.ResetCurrentItem();
                 this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.cTDDHTableAdapter.Update(this.dS1.CTDDH);
-               
+                
+                if(dangthem == true)
+                {
+                    undoMap[vitri] = "EXEC sp_XoaDonDatHang " + this.txtMaDDH.Text.Trim();
+                }
+                else
+                {
+                    undoMap[vitri] = "chinhsua,CTDDH";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -267,6 +270,10 @@ namespace QLVT_PT.SubForm
                     Program.myReader = Program.ExecSqlDataReader(statement);
                     this.datHangTableAdapter.Fill(this.dS1.DatHang);
                     this.cTDDHTableAdapter.Fill(this.dS1.CTDDH);
+                    Program.myReader.Close();
+                    vitri++;
+                    undoMap[vitri] = "";
+                        
                 }
                 catch (Exception ex)
                 {
@@ -289,5 +296,47 @@ namespace QLVT_PT.SubForm
             bdsCTDDH.RemoveCurrent();
 
         }
+
+        private void btnQuayLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            String[] checkUndo = undoMap[vitri].Split(',');
+            if (checkUndo[0] == "them" || checkUndo[0] == "chinhsua")
+            {
+                if(checkUndo[1] == "CTDDH")
+                {
+                    this.bdsCTDDH = bds;
+                    this.cTDDHTableAdapter.Update(this.dS1.CTDDH);
+                    vitri--;
+                    enableButtons();
+                    return;
+                }
+                this.datHangTableAdapter.Fill(this.dS1.DatHang);
+                this.cTDDHTableAdapter.Fill(this.dS1.CTDDH);
+                bdsDatHang.Position = bdsDatHang.Find("MasoDDH", checkUndo[1]);
+                vitri--;
+                enableButtons();
+                return;             
+            }
+            try
+            {
+                String cauTruyVan = undoMap[vitri];
+                SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+                Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                Program.myReader.Close();
+
+                this.datHangTableAdapter.Fill(this.dS1.DatHang);
+                this.cTDDHTableAdapter.Fill(this.dS1.CTDDH);
+                vitri--;
+                enableButtons();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Quay Lại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+        }
+
+      
     }
 }
