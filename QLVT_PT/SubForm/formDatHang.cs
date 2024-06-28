@@ -337,6 +337,49 @@ namespace QLVT_PT.SubForm
 
         }
 
-      
+        private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView") return;
+            Program.serverName = cmbChiNhanh.SelectedValue.ToString();
+
+            if (cmbChiNhanh.SelectedIndex != Program.brand)
+            {
+                Program.loginName = Program.remoteLogin;
+                Program.loginPassword = Program.remotePassword;
+            }
+            else
+            {
+                Program.loginName = Program.currentLogin;
+                Program.loginPassword = Program.currentPassword;
+            }
+
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                dS1.EnforceConstraints = false;
+
+                this.dSKHOTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.dSKHOTableAdapter.Fill(this.dS1.DSKHO);
+
+                this.dSNVTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.dSNVTableAdapter.Fill(this.dS1.DSNV);
+
+                this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.vattuTableAdapter.Fill(this.dS1.Vattu);
+
+                this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.datHangTableAdapter.Fill(this.dS1.DatHang);
+
+                this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.cTDDHTableAdapter.Fill(this.dS1.CTDDH);
+
+                this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.phieuNhapTableAdapter.Fill(this.dS1.PhieuNhap);
+            }
+        }
     }
 }
