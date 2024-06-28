@@ -176,7 +176,7 @@ namespace QLVT_PT
                         try
                         {
                             String cauTruyVan =
-                                "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON)" +
+                                "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON) " +
                                 "VALUES ('" + this.txtMaVT.Text.Trim() + "',N'" +
                                         this.txtTenVT.Text.Trim() + "',N'" +
                                         this.txtDVT.Text.Trim() + "'," +
