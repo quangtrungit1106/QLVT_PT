@@ -430,8 +430,7 @@ namespace QLVT_PT
         private void btnInDSVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             XtraReport_InDanhSachVatTu rpt = new XtraReport_InDanhSachVatTu();
-
-            
+            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("dd/MM/yyyy");
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.ShowPreviewDialog();
         }
