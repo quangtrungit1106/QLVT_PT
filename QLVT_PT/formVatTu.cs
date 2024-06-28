@@ -2,6 +2,7 @@
 using DevExpress.DataAccess.DataFederation;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -426,7 +427,14 @@ namespace QLVT_PT
             this.txtTenVT.ReadOnly = false;
         }
 
-  
+        private void btnInDSVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XtraReport_InDanhSachVatTu rpt = new XtraReport_InDanhSachVatTu();
+
+            
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
+        }
     }
      
 }

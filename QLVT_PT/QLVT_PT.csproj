@@ -165,8 +165,15 @@
     <Compile Include="XtraReport_InDanhSachNhanVien.Designer.cs">
       <DependentUpon>XtraReport_InDanhSachNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="XtraReport_InDanhSachVatTu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_InDanhSachVatTu.Designer.cs">
+      <DependentUpon>XtraReport_InDanhSachVatTu.cs</DependentUpon>
+    </Compile>
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
+    <Content Include="Stored Procedure\15.sp_InDanhSachVatTu.txt" />
     <Content Include="Stored Procedure\14.sp_XoaDonDatHang.txt" />
     <Content Include="Stored Procedure\13.sp_KiemTraMaDDH.txt" />
     <Content Include="Stored Procedure\12.sp_KiemTraXoaVatTu.txt" />
@@ -218,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_InDanhSachNhanVien.resx">
       <DependentUpon>XtraReport_InDanhSachNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_InDanhSachVatTu.resx">
+      <DependentUpon>XtraReport_InDanhSachVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">

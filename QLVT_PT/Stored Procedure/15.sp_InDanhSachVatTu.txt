@@ -1,0 +1,6 @@
+﻿CREATE PROC sp_InDanhSachVatTu
+as 
+begin
+	SELECT MAVT, TENVT, DVT, SOLUONGTON FROM VatTu
+	ORDER BY TENVT
+end
