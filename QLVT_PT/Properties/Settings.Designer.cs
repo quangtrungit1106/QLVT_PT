@@ -26,8 +26,10 @@ namespace QLVT_PT.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SEVER01;Initial Catalog=QLVT;User ID=sa;TrustServerCertificate=Tr" +
-            "ue")]
+       /* [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SEVER01;Initial Catalog=QLVT;User ID=sa;password=123456;TrustServ" +
+            "erCertificate=True")]*/
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-QHP367E\\SEVER01;Initial Catalog=QLVT;User ID=sa;password=123;TrustServ" +
+            "erCertificate=True")]
         public string QLVTConnectionString {
             get {
                 return ((string)(this["QLVTConnectionString"]));
