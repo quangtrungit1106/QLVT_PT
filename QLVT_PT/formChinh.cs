@@ -241,5 +241,15 @@ namespace QLVT_PT
                 form.Show();
             }
         }
+
+        private void btnDSDatHangChuaNhap_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+            XtraReport_DonDatHangChuaNhap rpt = new XtraReport_DonDatHangChuaNhap();
+            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("dd/MM/yyyy");
+
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
+        }
     }
 }

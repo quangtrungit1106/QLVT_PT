@@ -153,6 +153,12 @@
     <Compile Include="SubForm\formDatHang.Designer.cs">
       <DependentUpon>formDatHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="XtraReport_DonDatHangChuaNhap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_DonDatHangChuaNhap.Designer.cs">
+      <DependentUpon>XtraReport_DonDatHangChuaNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="XtraReport_HoatDongNhanVien.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -173,6 +179,7 @@
     </Compile>
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
+    <Content Include="Stored Procedure\16.sp_DonHangChuaNhap.txt" />
     <Content Include="Stored Procedure\15.sp_InDanhSachVatTu.txt" />
     <Content Include="Stored Procedure\14.sp_XoaDonDatHang.txt" />
     <Content Include="Stored Procedure\13.sp_KiemTraMaDDH.txt" />
@@ -219,6 +226,9 @@
     </Compile>
     <EmbeddedResource Include="SubForm\formDatHang.resx">
       <DependentUpon>formDatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_DonDatHangChuaNhap.resx">
+      <DependentUpon>XtraReport_DonDatHangChuaNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_HoatDongNhanVien.resx">
       <DependentUpon>XtraReport_HoatDongNhanVien.cs</DependentUpon>

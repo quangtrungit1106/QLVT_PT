@@ -1,0 +1,12 @@
+﻿
+CREATE PROCEDURE sp_DonHangChuaNhap
+AS
+BEGIN
+    SELECT DH.MasoDDH, DH.NGAY, DH.NhaCC, NV.HO + ' ' + NV.TEN AS HOTEN, VT.MAVT, CTDDH.SOLUONG, CTDDH.DONGIA
+    FROM DatHang DH
+    JOIN NhanVien NV ON NV.MANV = DH.MANV 
+    JOIN CTDDH ON CTDDH.MasoDDH = DH.MasoDDH
+	JOIN Vattu VT ON CTDDH.MAVT = VT.MAVT
+    LEFT JOIN PhieuNhap PN ON PN.MasoDDH = DH.MasoDDH
+    WHERE PN.MAPN IS NULL -- Điều kiện để lấy các đơn đặt hàng chưa có phiếu nhập
+END;
