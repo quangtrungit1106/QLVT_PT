@@ -185,7 +185,7 @@ namespace QLVT_PT
 
                             Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
                             Program.myReader.Close();
-                            vitri++;
+                            
                             // Cau lenh hoan tac
                             undoMap[vitri] = "DELETE FROM VATTU WHERE MaVT = '"+ this.txtMaVT.Text.Trim() +"';";
                             this.vattuTableAdapter.Fill(this.DS1.Vattu);
@@ -344,23 +344,15 @@ namespace QLVT_PT
 
             try
             {
-                // Tạo kết nối và câu truy vấn
+              
                 string cauTruyVan = "sp_KiemTraXoaVatTu";
                 SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
-
-                // Đặt loại lệnh là Stored Procedure
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-                // Thêm tham số cho stored procedure
                 sqlCommand.Parameters.AddWithValue("@MAVT", this.txtMaVT.Text.Trim());
-
-                // Mở kết nối nếu cần
                 if (Program.conn.State == System.Data.ConnectionState.Closed)
                 {
                     Program.conn.Open();
                 }
-
-                // Thực thi câu lệnh và đọc kết quả
                 SqlDataReader reader = sqlCommand.ExecuteReader();
 
                 int totalOrderCount = 0;
@@ -373,16 +365,11 @@ namespace QLVT_PT
                 reader.Close();
                 Program.conn.Close();
 
-                // So sánh và xử lý kết quả
                 if (totalOrderCount > 0)
                 {
                     MessageBox.Show("Vật tư này đã được lập hóa đơn ở Chi nhánh khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                }
-                else
-                {
-                    MessageBox.Show("Không có đơn đặt hàng nào.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                }  
             }
             catch (Exception ex)
             {
