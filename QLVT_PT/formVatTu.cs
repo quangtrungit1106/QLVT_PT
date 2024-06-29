@@ -50,9 +50,12 @@ namespace QLVT_PT
             {
                 this.btnThem.Enabled = false;
                 this.btnXoa.Enabled = false;
+                this.btnChinhSua.Enabled = false;
                 this.btnGhi.Enabled = false;
                 this.btnQuayLai.Enabled = false;
                 this.panelThongTin.Enabled = false;
+
+
             }
 
         }
