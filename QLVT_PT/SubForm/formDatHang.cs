@@ -108,7 +108,7 @@ namespace QLVT_PT.SubForm
             this.txtMaNV.ReadOnly = false;
             this.bdsDatHang.AddNew();
             this.txtMaDDH.Text = "";
-            this.dateDH.Text = DateTime.Now.ToString("MM/dd/yyyy");
+            this.dateDH.Text = DateTime.Now.ToString("dd/MM/yyyy");
             this.txtNCC.Text = "";
             this.txtMaNV.Text = Program.userName;
         }
