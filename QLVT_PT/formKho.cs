@@ -36,8 +36,7 @@ namespace QLVT_PT
 
         private void formKho_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'DS1.Kho' table. You can move, or remove it, as needed.
-            
+
             DS1.EnforceConstraints = false;
 
             this.chiNhanhTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -45,6 +44,28 @@ namespace QLVT_PT
 
             this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
             this.khoTableAdapter.Fill(this.DS1.Kho);
+
+            this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.datHangTableAdapter.Fill(this.DS1.DatHang);
+
+            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.phieuNhapTableAdapter.Fill(this.DS1.PhieuNhap);
+
+            this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.phieuXuatTableAdapter.Fill(this.DS1.PhieuXuat);
+
+            if (Program.role == "CONGTY")
+            {
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled =  false;
+                
+                panelControl2.Enabled = false;
+            }
+            else
+            {
+                btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = btnSua.Enabled = true;
+                btnGhi.Enabled = btnUndo.Enabled = false;
+                panelControl2.Enabled = false;
+            }
             maCN = ((DataRowView)bdsCN[0])["MACN"].ToString();
         }
 
@@ -56,6 +77,7 @@ namespace QLVT_PT
             txtMaKho.Enabled = true;
             txtTenKho.Enabled = true;
             txtDiaChi.Enabled = true;
+            txtMACN.Text = maCN.ToString();
 
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
@@ -83,10 +105,10 @@ namespace QLVT_PT
 
             if (MessageBox.Show("Bạn có thực sự muốn xóa kho này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                Int32 maKho = 0;
+                String maKho = "";
                 try
                 {
-                    maKho = int.Parse(((DataRowView)bdsKho[bdsKho.Position])["MAKHO"].ToString());  //giữ lại kiểm tra khi bị lỗi xóa
+                    maKho = ((DataRowView)bdsKho[bdsKho.Position])["MAKHO"].ToString();  //giữ lại kiểm tra khi bị lỗi xóa
                     bdsKho.RemoveCurrent();     //xóa trên màn hình
                     this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.khoTableAdapter.Update(this.DS1.Kho);
@@ -158,6 +180,7 @@ namespace QLVT_PT
 
             try
             {
+                
                 bdsKho.EndEdit();
                 bdsKho.ResetCurrentItem();
                 this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -214,6 +237,11 @@ namespace QLVT_PT
         }
 
         private void gcKho_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nhanVienBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
         }
