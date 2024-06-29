@@ -37,8 +37,8 @@
             System.Windows.Forms.Label tENKHOLabel;
             System.Windows.Forms.Label sOLUONGLabel;
             System.Windows.Forms.Label dONGIALabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPhieuNhap));
             System.Windows.Forms.Label mAVTLabel1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPhieuNhap));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -75,6 +75,10 @@
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbVattuCTPN = new System.Windows.Forms.ComboBox();
+            this.bdsVattu = new System.Windows.Forms.BindingSource(this.components);
+            this.txtMAVT = new System.Windows.Forms.TextBox();
             this.txtDONGIA = new DevExpress.XtraEditors.TextEdit();
             this.txtSOLUONG = new DevExpress.XtraEditors.TextEdit();
             this.btnChonDonDat = new System.Windows.Forms.Button();
@@ -88,7 +92,6 @@
             this.txtMANV = new System.Windows.Forms.TextBox();
             this.dtNGAY = new DevExpress.XtraEditors.DateEdit();
             this.txtMAPN = new System.Windows.Forms.TextBox();
-            this.bdsVattu = new System.Windows.Forms.BindingSource(this.components);
             this.dgvCTPN = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -102,9 +105,7 @@
             this.btnUndoVT = new System.Windows.Forms.ToolStripMenuItem();
             this.dSNVTableAdapter = new QLVT_PT.DS1TableAdapters.DSNVTableAdapter();
             this.dSKHOTableAdapter = new QLVT_PT.DS1TableAdapters.DSKHOTableAdapter();
-            this.txtMAVT = new System.Windows.Forms.TextBox();
-            this.cmbVattuCTPN = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnSuaVT = new System.Windows.Forms.ToolStripMenuItem();
             mAPNLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             mANVLabel = new System.Windows.Forms.Label();
@@ -124,13 +125,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDONGIA.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSOLUONG.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSNV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPN)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -206,6 +207,15 @@
             dONGIALabel.Size = new System.Drawing.Size(51, 16);
             dONGIALabel.TabIndex = 20;
             dONGIALabel.Text = "Đơn giá";
+            // 
+            // mAVTLabel1
+            // 
+            mAVTLabel1.AutoSize = true;
+            mAVTLabel1.Location = new System.Drawing.Point(512, 212);
+            mAVTLabel1.Name = "mAVTLabel1";
+            mAVTLabel1.Size = new System.Drawing.Size(61, 16);
+            mAVTLabel1.TabIndex = 21;
+            mAVTLabel1.Text = "Mã vật tư";
             // 
             // barManager1
             // 
@@ -587,6 +597,43 @@
             this.panelControl2.Size = new System.Drawing.Size(793, 301);
             this.panelControl2.TabIndex = 12;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(37, 211);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Tên vật tư";
+            // 
+            // cmbVattuCTPN
+            // 
+            this.cmbVattuCTPN.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bdsCTPN, "MAVT", true));
+            this.cmbVattuCTPN.DataSource = this.bdsVattu;
+            this.cmbVattuCTPN.DisplayMember = "TENVT";
+            this.cmbVattuCTPN.Enabled = false;
+            this.cmbVattuCTPN.FormattingEnabled = true;
+            this.cmbVattuCTPN.Location = new System.Drawing.Point(137, 208);
+            this.cmbVattuCTPN.Name = "cmbVattuCTPN";
+            this.cmbVattuCTPN.Size = new System.Drawing.Size(289, 24);
+            this.cmbVattuCTPN.TabIndex = 23;
+            this.cmbVattuCTPN.ValueMember = "MAVT";
+            this.cmbVattuCTPN.SelectedIndexChanged += new System.EventHandler(this.cmbVattuCTPN_SelectedIndexChanged);
+            // 
+            // bdsVattu
+            // 
+            this.bdsVattu.DataMember = "Vattu";
+            this.bdsVattu.DataSource = this.DS1;
+            // 
+            // txtMAVT
+            // 
+            this.txtMAVT.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsCTPN, "MAVT", true));
+            this.txtMAVT.Enabled = false;
+            this.txtMAVT.Location = new System.Drawing.Point(604, 208);
+            this.txtMAVT.Name = "txtMAVT";
+            this.txtMAVT.Size = new System.Drawing.Size(128, 23);
+            this.txtMAVT.TabIndex = 22;
+            // 
             // txtDONGIA
             // 
             this.txtDONGIA.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPN, "DONGIA", true));
@@ -713,11 +760,6 @@
             this.txtMAPN.Size = new System.Drawing.Size(125, 23);
             this.txtMAPN.TabIndex = 1;
             // 
-            // bdsVattu
-            // 
-            this.bdsVattu.DataMember = "Vattu";
-            this.bdsVattu.DataSource = this.DS1;
-            // 
             // dgvCTPN
             // 
             this.dgvCTPN.AllowUserToAddRows = false;
@@ -786,36 +828,37 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnThemVT,
             this.btnXoaVT,
+            this.btnSuaVT,
             this.btnGhiVT,
             this.btnUndoVT});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 100);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 152);
             // 
             // btnThemVT
             // 
             this.btnThemVT.Name = "btnThemVT";
-            this.btnThemVT.Size = new System.Drawing.Size(157, 24);
+            this.btnThemVT.Size = new System.Drawing.Size(210, 24);
             this.btnThemVT.Text = "Thêm vật tư";
             this.btnThemVT.Click += new System.EventHandler(this.btnThemVT_Click);
             // 
             // btnXoaVT
             // 
             this.btnXoaVT.Name = "btnXoaVT";
-            this.btnXoaVT.Size = new System.Drawing.Size(157, 24);
+            this.btnXoaVT.Size = new System.Drawing.Size(210, 24);
             this.btnXoaVT.Text = "Xóa vật tư";
             this.btnXoaVT.Click += new System.EventHandler(this.btnXoaVT_Click);
             // 
             // btnGhiVT
             // 
             this.btnGhiVT.Name = "btnGhiVT";
-            this.btnGhiVT.Size = new System.Drawing.Size(157, 24);
+            this.btnGhiVT.Size = new System.Drawing.Size(210, 24);
             this.btnGhiVT.Text = "Ghi vật tư";
             this.btnGhiVT.Click += new System.EventHandler(this.btnGhiVT_Click);
             // 
             // btnUndoVT
             // 
             this.btnUndoVT.Name = "btnUndoVT";
-            this.btnUndoVT.Size = new System.Drawing.Size(157, 24);
+            this.btnUndoVT.Size = new System.Drawing.Size(210, 24);
             this.btnUndoVT.Text = "Undo";
             this.btnUndoVT.Click += new System.EventHandler(this.btnUndoVT_Click);
             // 
@@ -827,46 +870,12 @@
             // 
             this.dSKHOTableAdapter.ClearBeforeFill = true;
             // 
-            // mAVTLabel1
+            // btnSuaVT
             // 
-            mAVTLabel1.AutoSize = true;
-            mAVTLabel1.Location = new System.Drawing.Point(512, 212);
-            mAVTLabel1.Name = "mAVTLabel1";
-            mAVTLabel1.Size = new System.Drawing.Size(61, 16);
-            mAVTLabel1.TabIndex = 21;
-            mAVTLabel1.Text = "Mã vật tư";
-            // 
-            // txtMAVT
-            // 
-            this.txtMAVT.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsCTPN, "MAVT", true));
-            this.txtMAVT.Enabled = false;
-            this.txtMAVT.Location = new System.Drawing.Point(604, 208);
-            this.txtMAVT.Name = "txtMAVT";
-            this.txtMAVT.Size = new System.Drawing.Size(128, 23);
-            this.txtMAVT.TabIndex = 22;
-            // 
-            // cmbVattuCTPN
-            // 
-            this.cmbVattuCTPN.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bdsCTPN, "MAVT", true));
-            this.cmbVattuCTPN.DataSource = this.bdsVattu;
-            this.cmbVattuCTPN.DisplayMember = "TENVT";
-            this.cmbVattuCTPN.Enabled = false;
-            this.cmbVattuCTPN.FormattingEnabled = true;
-            this.cmbVattuCTPN.Location = new System.Drawing.Point(137, 208);
-            this.cmbVattuCTPN.Name = "cmbVattuCTPN";
-            this.cmbVattuCTPN.Size = new System.Drawing.Size(289, 24);
-            this.cmbVattuCTPN.TabIndex = 23;
-            this.cmbVattuCTPN.ValueMember = "MAVT";
-            this.cmbVattuCTPN.SelectedIndexChanged += new System.EventHandler(this.cmbVattuCTPN_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 211);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 16);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "Tên vật tư";
+            this.btnSuaVT.Name = "btnSuaVT";
+            this.btnSuaVT.Size = new System.Drawing.Size(210, 24);
+            this.btnSuaVT.Text = "Sửa vật tư";
+            this.btnSuaVT.Click += new System.EventHandler(this.btnSuaVT_Click);
             // 
             // formPhieuNhap
             // 
@@ -902,13 +911,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDONGIA.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSOLUONG.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSNV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPN)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -984,5 +993,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbVattuCTPN;
         private System.Windows.Forms.TextBox txtMAVT;
+        private System.Windows.Forms.ToolStripMenuItem btnSuaVT;
     }
 }
