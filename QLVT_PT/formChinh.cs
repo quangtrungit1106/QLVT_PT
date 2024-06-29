@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraBars;
+using DevExpress.XtraReports.UI;
+using QLVT_PT.SubForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,7 +42,7 @@ namespace QLVT_PT
             btnDangXuat.Enabled = true;
 
             pageNhapXuat.Visible = true;
-            //pageBaoCao.Visible = true;
+            pageBaoCao.Visible = true;
             btnTaoTaiKhoan.Enabled = true;
             btnThongTinNV.Enabled = true;   
 
@@ -102,7 +104,7 @@ namespace QLVT_PT
             btnThongTinNV.Enabled = false;
 
             pageNhapXuat.Visible = false;
-            //pageBaoCao.Visible = false;
+            pageBaoCao.Visible = false;
             //pageTaiKhoan.Visible = false;
 
             Form f = this.CheckExists(typeof(formDangNhap));
@@ -222,6 +224,48 @@ namespace QLVT_PT
                 form.MdiParent = this;
                 form.Show();
             }
+        }
+
+        private void btnHDNV_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(FormRpt_HoatDongNhanVien));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormRpt_HoatDongNhanVien form = new FormRpt_HoatDongNhanVien();
+                form.MdiParent = this;
+                form.Show();
+            }                                               
+        }
+
+        private void btnDonDatHang_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(formDatHang));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formDatHang form = new formDatHang();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void btnDSDatHangChuaNhap_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+            XtraReport_DonDatHangChuaNhap rpt = new XtraReport_DonDatHangChuaNhap();
+            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("HH:mm dd/MM/yyyy");
+
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
         }
     }
 }

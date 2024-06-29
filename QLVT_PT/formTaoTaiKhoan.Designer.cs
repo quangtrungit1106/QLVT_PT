@@ -37,18 +37,18 @@
             this.textXacNhanMK = new DevExpress.XtraEditors.TextEdit();
             this.showPass = new DevExpress.XtraEditors.CheckEdit();
             this.showConfirmPass = new DevExpress.XtraEditors.CheckEdit();
-            this.textMaNV = new DevExpress.XtraEditors.TextEdit();
-            this.btnChonNhanVien = new System.Windows.Forms.Button();
             this.cmbVaiTro = new System.Windows.Forms.ComboBox();
             this.btnTaoTaiKhoan = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textTaiKhoan = new DevExpress.XtraEditors.TextEdit();
+            this.boxMaNV = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.textMatKhau.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textXacNhanMK.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.showPass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.showConfirmPass.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTaiKhoan.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(105, 79);
+            this.label2.Location = new System.Drawing.Point(105, 117);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 21);
@@ -78,7 +78,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(105, 166);
+            this.label3.Location = new System.Drawing.Point(105, 204);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 21);
@@ -89,7 +89,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(105, 208);
+            this.label4.Location = new System.Drawing.Point(105, 246);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(155, 21);
@@ -100,7 +100,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(105, 257);
+            this.label5.Location = new System.Drawing.Point(105, 295);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 21);
@@ -109,7 +109,7 @@
             // 
             // textMatKhau
             // 
-            this.textMatKhau.Location = new System.Drawing.Point(266, 165);
+            this.textMatKhau.Location = new System.Drawing.Point(266, 203);
             this.textMatKhau.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textMatKhau.Name = "textMatKhau";
             this.textMatKhau.Properties.PasswordChar = '*';
@@ -118,7 +118,7 @@
             // 
             // textXacNhanMK
             // 
-            this.textXacNhanMK.Location = new System.Drawing.Point(266, 207);
+            this.textXacNhanMK.Location = new System.Drawing.Point(266, 245);
             this.textXacNhanMK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textXacNhanMK.Name = "textXacNhanMK";
             this.textXacNhanMK.Properties.PasswordChar = '*';
@@ -127,7 +127,7 @@
             // 
             // showPass
             // 
-            this.showPass.Location = new System.Drawing.Point(447, 165);
+            this.showPass.Location = new System.Drawing.Point(447, 203);
             this.showPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.showPass.Name = "showPass";
             this.showPass.Properties.Caption = "";
@@ -137,7 +137,7 @@
             // 
             // showConfirmPass
             // 
-            this.showConfirmPass.Location = new System.Drawing.Point(447, 207);
+            this.showConfirmPass.Location = new System.Drawing.Point(447, 245);
             this.showConfirmPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.showConfirmPass.Name = "showConfirmPass";
             this.showConfirmPass.Properties.Caption = "";
@@ -145,28 +145,10 @@
             this.showConfirmPass.TabIndex = 8;
             this.showConfirmPass.CheckedChanged += new System.EventHandler(this.showConfirmPass_CheckedChanged);
             // 
-            // textMaNV
-            // 
-            this.textMaNV.Location = new System.Drawing.Point(266, 78);
-            this.textMaNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textMaNV.Name = "textMaNV";
-            this.textMaNV.Size = new System.Drawing.Size(156, 22);
-            this.textMaNV.TabIndex = 9;
-            // 
-            // btnChonNhanVien
-            // 
-            this.btnChonNhanVien.Location = new System.Drawing.Point(447, 74);
-            this.btnChonNhanVien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnChonNhanVien.Name = "btnChonNhanVien";
-            this.btnChonNhanVien.Size = new System.Drawing.Size(113, 28);
-            this.btnChonNhanVien.TabIndex = 10;
-            this.btnChonNhanVien.Text = "Chọn Nhân Viên";
-            this.btnChonNhanVien.UseVisualStyleBackColor = true;
-            // 
             // cmbVaiTro
             // 
             this.cmbVaiTro.FormattingEnabled = true;
-            this.cmbVaiTro.Location = new System.Drawing.Point(266, 251);
+            this.cmbVaiTro.Location = new System.Drawing.Point(266, 289);
             this.cmbVaiTro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbVaiTro.Name = "cmbVaiTro";
             this.cmbVaiTro.Size = new System.Drawing.Size(156, 24);
@@ -178,7 +160,7 @@
             this.btnTaoTaiKhoan.BackColor = System.Drawing.Color.Blue;
             this.btnTaoTaiKhoan.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaoTaiKhoan.ForeColor = System.Drawing.Color.White;
-            this.btnTaoTaiKhoan.Location = new System.Drawing.Point(154, 314);
+            this.btnTaoTaiKhoan.Location = new System.Drawing.Point(154, 352);
             this.btnTaoTaiKhoan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
             this.btnTaoTaiKhoan.Size = new System.Drawing.Size(145, 48);
@@ -192,7 +174,7 @@
             this.btnThoat.BackColor = System.Drawing.Color.Red;
             this.btnThoat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.Color.White;
-            this.btnThoat.Location = new System.Drawing.Point(382, 314);
+            this.btnThoat.Location = new System.Drawing.Point(382, 352);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(145, 48);
@@ -205,7 +187,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(105, 122);
+            this.label6.Location = new System.Drawing.Point(105, 160);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 21);
@@ -214,24 +196,56 @@
             // 
             // textTaiKhoan
             // 
-            this.textTaiKhoan.Location = new System.Drawing.Point(266, 121);
+            this.textTaiKhoan.Location = new System.Drawing.Point(266, 159);
             this.textTaiKhoan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textTaiKhoan.Name = "textTaiKhoan";
             this.textTaiKhoan.Size = new System.Drawing.Size(156, 22);
             this.textTaiKhoan.TabIndex = 15;
+            // 
+            // boxMaNV
+            // 
+            this.boxMaNV.FormattingEnabled = true;
+            this.boxMaNV.Location = new System.Drawing.Point(266, 116);
+            this.boxMaNV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.boxMaNV.Name = "boxMaNV";
+            this.boxMaNV.Size = new System.Drawing.Size(156, 24);
+            this.boxMaNV.TabIndex = 16;
+            this.boxMaNV.SelectedIndexChanged += new System.EventHandler(this.boxMaNV_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(105, 72);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 21);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Chi nhánh:";
+            // 
+            // cmbChiNhanh
+            // 
+            this.cmbChiNhanh.FormattingEnabled = true;
+            this.cmbChiNhanh.Location = new System.Drawing.Point(266, 69);
+            this.cmbChiNhanh.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbChiNhanh.Name = "cmbChiNhanh";
+            this.cmbChiNhanh.Size = new System.Drawing.Size(156, 24);
+            this.cmbChiNhanh.TabIndex = 18;
+            this.cmbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanh_SelectedIndexChanged);
             // 
             // formTaoTaiKhoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 430);
+            this.Controls.Add(this.cmbChiNhanh);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.boxMaNV);
             this.Controls.Add(this.textTaiKhoan);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnTaoTaiKhoan);
             this.Controls.Add(this.cmbVaiTro);
-            this.Controls.Add(this.btnChonNhanVien);
-            this.Controls.Add(this.textMaNV);
             this.Controls.Add(this.showConfirmPass);
             this.Controls.Add(this.showPass);
             this.Controls.Add(this.textXacNhanMK);
@@ -252,7 +266,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.textXacNhanMK.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.showPass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.showConfirmPass.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textMaNV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textTaiKhoan.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -270,12 +283,13 @@
         private DevExpress.XtraEditors.TextEdit textXacNhanMK;
         private DevExpress.XtraEditors.CheckEdit showPass;
         private DevExpress.XtraEditors.CheckEdit showConfirmPass;
-        private DevExpress.XtraEditors.TextEdit textMaNV;
-        private System.Windows.Forms.Button btnChonNhanVien;
         private System.Windows.Forms.ComboBox cmbVaiTro;
         private System.Windows.Forms.Button btnTaoTaiKhoan;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Label label6;
         private DevExpress.XtraEditors.TextEdit textTaiKhoan;
+        private System.Windows.Forms.ComboBox boxMaNV;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbChiNhanh;
     }
 }

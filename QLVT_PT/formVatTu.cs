@@ -2,6 +2,7 @@
 using DevExpress.DataAccess.DataFederation;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace QLVT_PT
 {
-    public partial class formVatTu : DevExpress.XtraEditors.XtraForm
+    public partial class formVatTu : Form
     {
         bool dangThemVT = false;
         Dictionary<int, String> undoMap = new Dictionary<int, String>();
@@ -33,7 +35,7 @@ namespace QLVT_PT
             this.btnQuayLai.Enabled = false;
             this.btnChinhSua.Enabled = true;
             this.panelThongTin.Enabled = true;
-            this.vattuGridControl.Enabled = true;
+            this.gcVatTu.Enabled = true;
             dangThemVT = false;
             this.txtMaVT.ReadOnly = true;
             this.txtDVT.ReadOnly = true;
@@ -48,9 +50,12 @@ namespace QLVT_PT
             {
                 this.btnThem.Enabled = false;
                 this.btnXoa.Enabled = false;
+                this.btnChinhSua.Enabled = false;
                 this.btnGhi.Enabled = false;
                 this.btnQuayLai.Enabled = false;
                 this.panelThongTin.Enabled = false;
+
+
             }
 
         }
@@ -93,13 +98,19 @@ namespace QLVT_PT
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            vitri++;
+            undoMap[vitri] = "them,"+this.txtMaVT.Text+","+this.txtTenVT.Text+","+this.txtDVT.Text+","+this.txtSLT.Text;
+            this.btnQuayLai.Enabled = true;
             this.txtMaVT.ReadOnly = false;
+            this.txtDVT.ReadOnly = false;
+            this.txtSLT.ReadOnly = false;
+            this.txtTenVT.ReadOnly = false;
             this.btnThem.Enabled = false;
             this.btnXoa.Enabled = false;
             this.btnGhi.Enabled = true;
             this.btnChinhSua.Enabled = false;
             dangThemVT = true;
-            this.vattuGridControl.Enabled = false;
+            this.gcVatTu.Enabled = false;
             this.txtMaVT.Text = "";
             this.txtTenVT.Text = "";
             this.txtDVT.Text = "";
@@ -168,7 +179,7 @@ namespace QLVT_PT
                         try
                         {
                             String cauTruyVan =
-                                "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON)" +
+                                "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON) " +
                                 "VALUES ('" + this.txtMaVT.Text.Trim() + "',N'" +
                                         this.txtTenVT.Text.Trim() + "',N'" +
                                         this.txtDVT.Text.Trim() + "'," +
@@ -177,7 +188,7 @@ namespace QLVT_PT
 
                             Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
                             Program.myReader.Close();
-                            vitri++;
+                            
                             // Cau lenh hoan tac
                             undoMap[vitri] = "DELETE FROM VATTU WHERE MaVT = '"+ this.txtMaVT.Text.Trim() +"';";
                             this.vattuTableAdapter.Fill(this.DS1.Vattu);
@@ -246,6 +257,7 @@ namespace QLVT_PT
         {
             try
             {
+                vitri = -1;
                 enableButtons();
                 this.vattuTableAdapter.Fill(this.DS1.Vattu);   
             }
@@ -258,24 +270,53 @@ namespace QLVT_PT
 
         private void btnQuayLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            try
+            String [] checkUndo = undoMap[vitri].Split(',');
+            if (checkUndo[0] == "them" || checkUndo[0] == "chinhsua")
             {
-                String cauTruyVan = undoMap[vitri];
-                SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
-                Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
-                Program.myReader.Close();
-                this.vattuTableAdapter.Fill(this.DS1.Vattu);
-                enableButtons();
+                this.txtMaVT.ReadOnly = true;
+                this.txtDVT.ReadOnly = true;
+                this.txtSLT.ReadOnly = true;
+                this.txtTenVT.ReadOnly = true;
+                this.btnThem.Enabled = true;
+                this.btnXoa.Enabled = true;
+                this.btnGhi.Enabled = false;
+                this.btnChinhSua.Enabled = true;
+                dangThemVT = false;
+                this.gcVatTu.Enabled = true;
+                if (checkUndo[0] == "them")
+                {
+                    this.txtMaVT.Text = checkUndo[1];
+                    this.txtTenVT.Text = checkUndo[2];
+                    this.txtDVT.Text = checkUndo[3];
+                    this.txtSLT.Text = checkUndo[4];
+                }
                 vitri--;
                 if(vitri == -1)
                 {
                     this.btnQuayLai.Enabled = false;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Quay Lại", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                try
+                {
+                    String cauTruyVan = undoMap[vitri];
+                    SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+                    Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                    Program.myReader.Close();
+                    this.vattuTableAdapter.Fill(this.DS1.Vattu);
+                    enableButtons();
+                    vitri--;
+                    if (vitri == -1)
+                    {
+                        this.btnQuayLai.Enabled = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Quay Lại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
         }
 
@@ -306,6 +347,41 @@ namespace QLVT_PT
 
             try
             {
+              
+                string cauTruyVan = "sp_KiemTraXoaVatTu";
+                SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@MAVT", this.txtMaVT.Text.Trim());
+                if (Program.conn.State == System.Data.ConnectionState.Closed)
+                {
+                    Program.conn.Open();
+                }
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                int totalOrderCount = 0;
+
+                if (reader.Read())
+                {
+                    totalOrderCount = reader.GetInt32(0); // Lấy giá trị từ cột đầu tiên
+                }
+
+                reader.Close();
+                Program.conn.Close();
+
+                if (totalOrderCount > 0)
+                {
+                    MessageBox.Show("Vật tư này đã được lập hóa đơn ở Chi nhánh khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }  
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            try
+            {
                 String cauTruyVan = "DELETE FROM VATTU WHERE MaVT = '" + this.txtMaVT.Text.Trim() + "'; ";
                 SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
 
@@ -323,17 +399,30 @@ namespace QLVT_PT
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Chỉnh Sửa Vật Tư", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi Xóa Vật Tư", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
 
         private void btnChinhSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            btnGhi.Enabled = true;
+            vitri++;
+            undoMap[vitri] = "chinhsua";
+            this.btnQuayLai.Enabled = true;
+            this.btnGhi.Enabled = true;
+            this.btnThem.Enabled = false;
+            this.btnXoa.Enabled = false;
             this.txtDVT.ReadOnly = false;
             this.txtSLT.ReadOnly = false;
             this.txtTenVT.ReadOnly = false;
+        }
+
+        private void btnInDSVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XtraReport_InDanhSachVatTu rpt = new XtraReport_InDanhSachVatTu();
+            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("HH:mm dd/MM/yyyy");
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
         }
     }
      

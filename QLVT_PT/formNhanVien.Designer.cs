@@ -59,6 +59,8 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cmbChiNhanhMoi = new System.Windows.Forms.ComboBox();
+            this.lbChiNhanhMoi = new System.Windows.Forms.Label();
             this.cmbChiNhanh = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DS1 = new QLVT_PT.DS1();
@@ -418,6 +420,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.cmbChiNhanhMoi);
+            this.panelControl1.Controls.Add(this.lbChiNhanhMoi);
             this.panelControl1.Controls.Add(this.cmbChiNhanh);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -426,6 +430,24 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1924, 98);
             this.panelControl1.TabIndex = 4;
+            // 
+            // cmbChiNhanhMoi
+            // 
+            this.cmbChiNhanhMoi.FormattingEnabled = true;
+            this.cmbChiNhanhMoi.Location = new System.Drawing.Point(1070, 36);
+            this.cmbChiNhanhMoi.Name = "cmbChiNhanhMoi";
+            this.cmbChiNhanhMoi.Size = new System.Drawing.Size(301, 24);
+            this.cmbChiNhanhMoi.TabIndex = 3;
+            // 
+            // lbChiNhanhMoi
+            // 
+            this.lbChiNhanhMoi.AutoSize = true;
+            this.lbChiNhanhMoi.Location = new System.Drawing.Point(930, 41);
+            this.lbChiNhanhMoi.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lbChiNhanhMoi.Name = "lbChiNhanhMoi";
+            this.lbChiNhanhMoi.Size = new System.Drawing.Size(89, 16);
+            this.lbChiNhanhMoi.TabIndex = 2;
+            this.lbChiNhanhMoi.Text = "Chi nhánh mới";
             // 
             // cmbChiNhanh
             // 
@@ -470,6 +492,7 @@
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = this.datHangTableAdapter;
+            this.tableAdapterManager.DDHChuaNhapTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = this.nhanVienTableAdapter;
             this.tableAdapterManager.PhieuNhapTableAdapter = this.phieuNhapTableAdapter;
@@ -523,6 +546,7 @@
             // 
             // colMANV
             // 
+            this.colMANV.Caption = "Mã nhân viên";
             this.colMANV.FieldName = "MANV";
             this.colMANV.MinWidth = 39;
             this.colMANV.Name = "colMANV";
@@ -533,6 +557,7 @@
             // 
             // colHO
             // 
+            this.colHO.Caption = "Họ";
             this.colHO.FieldName = "HO";
             this.colHO.MinWidth = 39;
             this.colHO.Name = "colHO";
@@ -543,6 +568,7 @@
             // 
             // colTEN
             // 
+            this.colTEN.Caption = "Tên";
             this.colTEN.FieldName = "TEN";
             this.colTEN.MinWidth = 39;
             this.colTEN.Name = "colTEN";
@@ -553,6 +579,7 @@
             // 
             // colSOCMND
             // 
+            this.colSOCMND.Caption = "Số CMND";
             this.colSOCMND.FieldName = "SOCMND";
             this.colSOCMND.MinWidth = 39;
             this.colSOCMND.Name = "colSOCMND";
@@ -563,6 +590,7 @@
             // 
             // colDIACHI
             // 
+            this.colDIACHI.Caption = "Địa chỉ";
             this.colDIACHI.FieldName = "DIACHI";
             this.colDIACHI.MinWidth = 39;
             this.colDIACHI.Name = "colDIACHI";
@@ -573,6 +601,7 @@
             // 
             // colNGAYSINH
             // 
+            this.colNGAYSINH.Caption = "Ngày sinh";
             this.colNGAYSINH.FieldName = "NGAYSINH";
             this.colNGAYSINH.MinWidth = 39;
             this.colNGAYSINH.Name = "colNGAYSINH";
@@ -583,6 +612,7 @@
             // 
             // colLUONG
             // 
+            this.colLUONG.Caption = "Lương";
             this.colLUONG.DisplayFormat.FormatString = "n0";
             this.colLUONG.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colLUONG.FieldName = "LUONG";
@@ -595,6 +625,7 @@
             // 
             // colMACN
             // 
+            this.colMACN.Caption = "Mã chi nhánh";
             this.colMACN.FieldName = "MACN";
             this.colMACN.MinWidth = 39;
             this.colMACN.Name = "colMACN";
@@ -605,6 +636,7 @@
             // 
             // colTrangThaiXoa
             // 
+            this.colTrangThaiXoa.Caption = "Trạng thái xóa";
             this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
             this.colTrangThaiXoa.MinWidth = 39;
             this.colTrangThaiXoa.Name = "colTrangThaiXoa";
@@ -868,5 +900,7 @@
         private System.Windows.Forms.BindingSource bdsCN;
         private DS1TableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
         private DevExpress.XtraBars.BarButtonItem btnInDsNV;
+        private System.Windows.Forms.Label lbChiNhanhMoi;
+        private System.Windows.Forms.ComboBox cmbChiNhanhMoi;
     }
 }

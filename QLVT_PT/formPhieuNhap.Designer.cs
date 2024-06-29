@@ -35,6 +35,9 @@
             System.Windows.Forms.Label mAKHOLabel;
             System.Windows.Forms.Label hOTENLabel;
             System.Windows.Forms.Label tENKHOLabel;
+            System.Windows.Forms.Label sOLUONGLabel;
+            System.Windows.Forms.Label dONGIALabel;
+            System.Windows.Forms.Label mAVTLabel1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPhieuNhap));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -72,6 +75,13 @@
             this.colMANV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbVattuCTPN = new System.Windows.Forms.ComboBox();
+            this.bdsVattu = new System.Windows.Forms.BindingSource(this.components);
+            this.txtMAVT = new System.Windows.Forms.TextBox();
+            this.txtDONGIA = new DevExpress.XtraEditors.TextEdit();
+            this.txtSOLUONG = new DevExpress.XtraEditors.TextEdit();
+            this.btnChonDonDat = new System.Windows.Forms.Button();
             this.lbMasoDDH1 = new System.Windows.Forms.Label();
             this.cmbTenKho = new System.Windows.Forms.ComboBox();
             this.bdsDSKHO = new System.Windows.Forms.BindingSource(this.components);
@@ -85,7 +95,6 @@
             this.dgvCTPN = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dbsVattu = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vattuTableAdapter = new QLVT_PT.DS1TableAdapters.VattuTableAdapter();
@@ -93,14 +102,19 @@
             this.btnThemVT = new System.Windows.Forms.ToolStripMenuItem();
             this.btnXoaVT = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGhiVT = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUndoVT = new System.Windows.Forms.ToolStripMenuItem();
             this.dSNVTableAdapter = new QLVT_PT.DS1TableAdapters.DSNVTableAdapter();
             this.dSKHOTableAdapter = new QLVT_PT.DS1TableAdapters.DSKHOTableAdapter();
+            this.btnSuaVT = new System.Windows.Forms.ToolStripMenuItem();
             mAPNLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             mANVLabel = new System.Windows.Forms.Label();
             mAKHOLabel = new System.Windows.Forms.Label();
             hOTENLabel = new System.Windows.Forms.Label();
             tENKHOLabel = new System.Windows.Forms.Label();
+            sOLUONGLabel = new System.Windows.Forms.Label();
+            dONGIALabel = new System.Windows.Forms.Label();
+            mAVTLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -111,12 +125,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDONGIA.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSOLUONG.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSNV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbsVattu)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,6 +189,33 @@
             tENKHOLabel.Size = new System.Drawing.Size(53, 16);
             tENKHOLabel.TabIndex = 15;
             tENKHOLabel.Text = "Tên kho";
+            // 
+            // sOLUONGLabel
+            // 
+            sOLUONGLabel.AutoSize = true;
+            sOLUONGLabel.Location = new System.Drawing.Point(45, 250);
+            sOLUONGLabel.Name = "sOLUONGLabel";
+            sOLUONGLabel.Size = new System.Drawing.Size(58, 16);
+            sOLUONGLabel.TabIndex = 19;
+            sOLUONGLabel.Text = "Số lượng";
+            // 
+            // dONGIALabel
+            // 
+            dONGIALabel.AutoSize = true;
+            dONGIALabel.Location = new System.Drawing.Point(490, 250);
+            dONGIALabel.Name = "dONGIALabel";
+            dONGIALabel.Size = new System.Drawing.Size(51, 16);
+            dONGIALabel.TabIndex = 20;
+            dONGIALabel.Text = "Đơn giá";
+            // 
+            // mAVTLabel1
+            // 
+            mAVTLabel1.AutoSize = true;
+            mAVTLabel1.Location = new System.Drawing.Point(512, 212);
+            mAVTLabel1.Name = "mAVTLabel1";
+            mAVTLabel1.Size = new System.Drawing.Size(61, 16);
+            mAVTLabel1.TabIndex = 21;
+            mAVTLabel1.Text = "Mã vật tư";
             // 
             // barManager1
             // 
@@ -314,15 +357,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1432, 51);
+            this.barDockControlTop.Size = new System.Drawing.Size(1516, 51);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 611);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 672);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1432, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1516, 20);
             // 
             // barDockControlLeft
             // 
@@ -330,15 +373,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 560);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 621);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1432, 51);
+            this.barDockControlRight.Location = new System.Drawing.Point(1516, 51);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 560);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 621);
             // 
             // barButtonItem1
             // 
@@ -379,7 +422,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 51);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(6);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1432, 100);
+            this.panelControl1.Size = new System.Drawing.Size(1516, 100);
             this.panelControl1.TabIndex = 5;
             // 
             // cmbChiNhanh
@@ -425,6 +468,7 @@
             this.tableAdapterManager.CTPNTableAdapter = this.cTPNTableAdapter;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
+            this.tableAdapterManager.DDHChuaNhapTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = this.phieuNhapTableAdapter;
@@ -449,10 +493,11 @@
             this.gcPhieuNhap.MainView = this.gridView1;
             this.gcPhieuNhap.MenuManager = this.barManager1;
             this.gcPhieuNhap.Name = "gcPhieuNhap";
-            this.gcPhieuNhap.Size = new System.Drawing.Size(1432, 220);
+            this.gcPhieuNhap.Size = new System.Drawing.Size(1516, 220);
             this.gcPhieuNhap.TabIndex = 11;
             this.gcPhieuNhap.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcPhieuNhap.Click += new System.EventHandler(this.gcPhieuNhap_Click);
             // 
             // gridView1
             // 
@@ -468,6 +513,7 @@
             // 
             // colMAPN
             // 
+            this.colMAPN.Caption = "Mã phiếu nhập";
             this.colMAPN.FieldName = "MAPN";
             this.colMAPN.MinWidth = 25;
             this.colMAPN.Name = "colMAPN";
@@ -478,6 +524,7 @@
             // 
             // colNGAY
             // 
+            this.colNGAY.Caption = "Ngày nhập";
             this.colNGAY.FieldName = "NGAY";
             this.colNGAY.MinWidth = 25;
             this.colNGAY.Name = "colNGAY";
@@ -488,6 +535,7 @@
             // 
             // colMasoDDH
             // 
+            this.colMasoDDH.Caption = "Mã đơn đặt hàng";
             this.colMasoDDH.FieldName = "MasoDDH";
             this.colMasoDDH.MinWidth = 25;
             this.colMasoDDH.Name = "colMasoDDH";
@@ -498,6 +546,7 @@
             // 
             // colMANV
             // 
+            this.colMANV.Caption = "Mã nhân viên";
             this.colMANV.FieldName = "MANV";
             this.colMANV.MinWidth = 25;
             this.colMANV.Name = "colMANV";
@@ -508,6 +557,7 @@
             // 
             // colMAKHO
             // 
+            this.colMAKHO.Caption = "Mã kho";
             this.colMAKHO.FieldName = "MAKHO";
             this.colMAKHO.MinWidth = 25;
             this.colMAKHO.Name = "colMAKHO";
@@ -518,6 +568,15 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.label2);
+            this.panelControl2.Controls.Add(this.cmbVattuCTPN);
+            this.panelControl2.Controls.Add(mAVTLabel1);
+            this.panelControl2.Controls.Add(this.txtMAVT);
+            this.panelControl2.Controls.Add(dONGIALabel);
+            this.panelControl2.Controls.Add(this.txtDONGIA);
+            this.panelControl2.Controls.Add(sOLUONGLabel);
+            this.panelControl2.Controls.Add(this.txtSOLUONG);
+            this.panelControl2.Controls.Add(this.btnChonDonDat);
             this.panelControl2.Controls.Add(this.lbMasoDDH1);
             this.panelControl2.Controls.Add(tENKHOLabel);
             this.panelControl2.Controls.Add(this.cmbTenKho);
@@ -535,8 +594,76 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl2.Location = new System.Drawing.Point(0, 371);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(801, 240);
+            this.panelControl2.Size = new System.Drawing.Size(793, 301);
             this.panelControl2.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(37, 211);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Tên vật tư";
+            // 
+            // cmbVattuCTPN
+            // 
+            this.cmbVattuCTPN.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bdsCTPN, "MAVT", true));
+            this.cmbVattuCTPN.DataSource = this.bdsVattu;
+            this.cmbVattuCTPN.DisplayMember = "TENVT";
+            this.cmbVattuCTPN.Enabled = false;
+            this.cmbVattuCTPN.FormattingEnabled = true;
+            this.cmbVattuCTPN.Location = new System.Drawing.Point(137, 208);
+            this.cmbVattuCTPN.Name = "cmbVattuCTPN";
+            this.cmbVattuCTPN.Size = new System.Drawing.Size(289, 24);
+            this.cmbVattuCTPN.TabIndex = 23;
+            this.cmbVattuCTPN.ValueMember = "MAVT";
+            this.cmbVattuCTPN.SelectedIndexChanged += new System.EventHandler(this.cmbVattuCTPN_SelectedIndexChanged);
+            // 
+            // bdsVattu
+            // 
+            this.bdsVattu.DataMember = "Vattu";
+            this.bdsVattu.DataSource = this.DS1;
+            // 
+            // txtMAVT
+            // 
+            this.txtMAVT.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsCTPN, "MAVT", true));
+            this.txtMAVT.Enabled = false;
+            this.txtMAVT.Location = new System.Drawing.Point(604, 208);
+            this.txtMAVT.Name = "txtMAVT";
+            this.txtMAVT.Size = new System.Drawing.Size(128, 23);
+            this.txtMAVT.TabIndex = 22;
+            // 
+            // txtDONGIA
+            // 
+            this.txtDONGIA.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPN, "DONGIA", true));
+            this.txtDONGIA.Enabled = false;
+            this.txtDONGIA.Location = new System.Drawing.Point(563, 247);
+            this.txtDONGIA.MenuManager = this.barManager1;
+            this.txtDONGIA.Name = "txtDONGIA";
+            this.txtDONGIA.Size = new System.Drawing.Size(169, 22);
+            this.txtDONGIA.TabIndex = 21;
+            // 
+            // txtSOLUONG
+            // 
+            this.txtSOLUONG.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsCTPN, "SOLUONG", true));
+            this.txtSOLUONG.Enabled = false;
+            this.txtSOLUONG.Location = new System.Drawing.Point(137, 247);
+            this.txtSOLUONG.MenuManager = this.barManager1;
+            this.txtSOLUONG.Name = "txtSOLUONG";
+            this.txtSOLUONG.Size = new System.Drawing.Size(125, 22);
+            this.txtSOLUONG.TabIndex = 20;
+            // 
+            // btnChonDonDat
+            // 
+            this.btnChonDonDat.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChonDonDat.Location = new System.Drawing.Point(588, 49);
+            this.btnChonDonDat.Name = "btnChonDonDat";
+            this.btnChonDonDat.Size = new System.Drawing.Size(144, 30);
+            this.btnChonDonDat.TabIndex = 18;
+            this.btnChonDonDat.Text = "Chọn đơn đặt";
+            this.btnChonDonDat.UseVisualStyleBackColor = true;
+            this.btnChonDonDat.Click += new System.EventHandler(this.btnChonDonDat_Click);
             // 
             // lbMasoDDH1
             // 
@@ -646,17 +773,17 @@
             this.dataGridViewTextBoxColumn4});
             this.dgvCTPN.DataSource = this.bdsCTPN;
             this.dgvCTPN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCTPN.Location = new System.Drawing.Point(801, 371);
+            this.dgvCTPN.Location = new System.Drawing.Point(793, 371);
             this.dgvCTPN.Name = "dgvCTPN";
             this.dgvCTPN.RowHeadersWidth = 51;
             this.dgvCTPN.RowTemplate.Height = 24;
-            this.dgvCTPN.Size = new System.Drawing.Size(631, 240);
+            this.dgvCTPN.Size = new System.Drawing.Size(723, 301);
             this.dgvCTPN.TabIndex = 12;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "MAPN";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MAPN";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã phiếu nhập";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -665,25 +792,20 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "MAVT";
-            this.dataGridViewTextBoxColumn2.DataSource = this.dbsVattu;
+            this.dataGridViewTextBoxColumn2.DataSource = this.bdsVattu;
             this.dataGridViewTextBoxColumn2.DisplayMember = "TENVT";
-            this.dataGridViewTextBoxColumn2.HeaderText = "TENVATTU";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên vật tư";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn2.ValueMember = "MAVT";
-            this.dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dbsVattu
-            // 
-            this.dbsVattu.DataMember = "Vattu";
-            this.dbsVattu.DataSource = this.DS1;
+            this.dataGridViewTextBoxColumn2.Width = 200;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "SOLUONG";
-            this.dataGridViewTextBoxColumn3.HeaderText = "SOLUONG";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Số lượng";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 125;
@@ -691,7 +813,7 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "DONGIA";
-            this.dataGridViewTextBoxColumn4.HeaderText = "DONGIA";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Đơn giá";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Width = 125;
@@ -706,9 +828,11 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnThemVT,
             this.btnXoaVT,
-            this.btnGhiVT});
+            this.btnSuaVT,
+            this.btnGhiVT,
+            this.btnUndoVT});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 152);
             // 
             // btnThemVT
             // 
@@ -731,6 +855,13 @@
             this.btnGhiVT.Text = "Ghi vật tư";
             this.btnGhiVT.Click += new System.EventHandler(this.btnGhiVT_Click);
             // 
+            // btnUndoVT
+            // 
+            this.btnUndoVT.Name = "btnUndoVT";
+            this.btnUndoVT.Size = new System.Drawing.Size(210, 24);
+            this.btnUndoVT.Text = "Undo";
+            this.btnUndoVT.Click += new System.EventHandler(this.btnUndoVT_Click);
+            // 
             // dSNVTableAdapter
             // 
             this.dSNVTableAdapter.ClearBeforeFill = true;
@@ -739,11 +870,19 @@
             // 
             this.dSKHOTableAdapter.ClearBeforeFill = true;
             // 
+            // btnSuaVT
+            // 
+            this.btnSuaVT.Name = "btnSuaVT";
+            this.btnSuaVT.Size = new System.Drawing.Size(210, 24);
+            this.btnSuaVT.Text = "Sửa vật tư";
+            this.btnSuaVT.Click += new System.EventHandler(this.btnSuaVT_Click);
+            // 
             // formPhieuNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1432, 631);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1516, 692);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.ControlBox = false;
             this.Controls.Add(this.dgvCTPN);
@@ -772,12 +911,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsVattu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDONGIA.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSOLUONG.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDSNV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNGAY.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTPN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbsVattu)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -823,16 +964,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMAKHO;
         private System.Windows.Forms.DataGridView dgvCTPN;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private System.Windows.Forms.BindingSource dbsVattu;
+        private System.Windows.Forms.BindingSource bdsVattu;
         private DS1TableAdapters.VattuTableAdapter vattuTableAdapter;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem btnThemVT;
         private System.Windows.Forms.ToolStripMenuItem btnXoaVT;
         private System.Windows.Forms.ToolStripMenuItem btnGhiVT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.TextBox txtMAPN;
         private DevExpress.XtraEditors.DateEdit dtNGAY;
         private System.Windows.Forms.TextBox txtMAKHO;
@@ -845,5 +982,17 @@
         private DS1TableAdapters.DSKHOTableAdapter dSKHOTableAdapter;
         private System.Windows.Forms.ComboBox cmbTenKho;
         private System.Windows.Forms.Label lbMasoDDH1;
+        private System.Windows.Forms.Button btnChonDonDat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.ToolStripMenuItem btnUndoVT;
+        private DevExpress.XtraEditors.TextEdit txtSOLUONG;
+        private DevExpress.XtraEditors.TextEdit txtDONGIA;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbVattuCTPN;
+        private System.Windows.Forms.TextBox txtMAVT;
+        private System.Windows.Forms.ToolStripMenuItem btnSuaVT;
     }
 }
