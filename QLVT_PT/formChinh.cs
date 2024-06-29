@@ -173,6 +173,22 @@ namespace QLVT_PT
             }
         }
 
+        private void btnKho_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(formKho));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formKho form = new formKho();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
         private void btnNhanVien_ItemClick(object sender, ItemClickEventArgs e)
         {
             logout();
