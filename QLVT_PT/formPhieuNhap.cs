@@ -132,7 +132,7 @@ namespace QLVT_PT
             txtMasoDDH.Enabled = false;
             btnChonDonDat.Enabled = true;
             dtNGAY.Enabled = false;
-            dtNGAY.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            dtNGAY.Text = DateTime.Now.ToString("MM/dd/yyyy");
             cmbNhanVienNhap.Enabled = false;
             txtMANV.Text = Program.userName;            
 
