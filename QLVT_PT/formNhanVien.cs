@@ -395,6 +395,11 @@ namespace QLVT_PT
             panelControl2.Enabled = false;
             them = false;
             sua = false;
+            if (Program.role == "USER")
+            {
+                btnChuyenChiNhanh.Enabled = false;
+                btnInDsNV.Enabled = false;
+            }
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -411,6 +416,11 @@ namespace QLVT_PT
             them = false;
             sua = false;
             chuyencn = false;
+            if (Program.role == "USER")
+            {
+                btnChuyenChiNhanh.Enabled = false;
+                btnInDsNV.Enabled = false;
+            }
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
