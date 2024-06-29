@@ -210,6 +210,22 @@ namespace QLVT_PT
             }
         }
 
+        private void btnPhieuXuat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(formPhieuXuat));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formPhieuXuat form = new formPhieuXuat();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
+
         private void btnHDNV_ItemClick(object sender, ItemClickEventArgs e)
         {
             logout();

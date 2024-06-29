@@ -1,0 +1,13 @@
+CREATE PROCEDURE [dbo].[sp_KiemTraMAPX] (@X nvarchar(8))
+as
+
+begin 
+	DECLARE	@return_value int
+	set @return_value=0
+	if exists (SELECT MAPX FROM dbo.PhieuXuat WHERE MAPX=@X)
+		set @return_value=1
+	else if exists (SELECT MAPX FROM LINK0.QLVT.dbo.PhieuXuat WHERE MAPX=@X)
+		set @return_value=1
+
+	SELECT	'Return Value' = @return_value
+end
