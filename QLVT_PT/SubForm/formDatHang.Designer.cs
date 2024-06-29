@@ -87,12 +87,12 @@
             this.bdsCTDDH = new System.Windows.Forms.BindingSource(this.components);
             this.cTDDHTableAdapter = new QLVT_PT.DS1TableAdapters.CTDDHTableAdapter();
             this.dgvCTDDH = new System.Windows.Forms.DataGridView();
-            this.maDDH_CTDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bdsPhieuNhap = new System.Windows.Forms.BindingSource(this.components);
             this.phieuNhapTableAdapter = new QLVT_PT.DS1TableAdapters.PhieuNhapTableAdapter();
+            this.maDDH_CTDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vatTu_CTDDH = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.soLuong_CTDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.donGia_CTDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -201,6 +201,7 @@
             this.btnQuayLai.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnQuayLai.ImageOptions.LargeImage")));
             this.btnQuayLai.Name = "btnQuayLai";
             this.btnQuayLai.Size = new System.Drawing.Size(100, 0);
+            this.btnQuayLai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnQuayLai_ItemClick);
             // 
             // btnLamMoi
             // 
@@ -327,6 +328,7 @@
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(494, 24);
             this.cmbChiNhanh.TabIndex = 1;
+            this.cmbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanh_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -610,7 +612,7 @@
             this.themVatTu,
             this.xoaVatTu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 52);
             // 
             // themVatTu
             // 
@@ -622,7 +624,7 @@
             // xoaVatTu
             // 
             this.xoaVatTu.Name = "xoaVatTu";
-            this.xoaVatTu.Size = new System.Drawing.Size(210, 24);
+            this.xoaVatTu.Size = new System.Drawing.Size(157, 24);
             this.xoaVatTu.Text = "Xóa vật tư";
             this.xoaVatTu.Click += new System.EventHandler(this.xoaVatTu_Click);
             // 
@@ -653,9 +655,9 @@
             this.dgvCTDDH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCTDDH.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.maDDH_CTDDH,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
+            this.vatTu_CTDDH,
+            this.soLuong_CTDDH,
+            this.donGia_CTDDH});
             this.dgvCTDDH.DataSource = this.bdsCTDDH;
             this.dgvCTDDH.Location = new System.Drawing.Point(477, 500);
             this.dgvCTDDH.Name = "dgvCTDDH";
@@ -664,6 +666,15 @@
             this.dgvCTDDH.RowTemplate.Height = 24;
             this.dgvCTDDH.Size = new System.Drawing.Size(1112, 337);
             this.dgvCTDDH.TabIndex = 43;
+            // 
+            // bdsPhieuNhap
+            // 
+            this.bdsPhieuNhap.DataMember = "FK_PhieuNhap_DatHang";
+            this.bdsPhieuNhap.DataSource = this.bdsDatHang;
+            // 
+            // phieuNhapTableAdapter
+            // 
+            this.phieuNhapTableAdapter.ClearBeforeFill = true;
             // 
             // maDDH_CTDDH
             // 
@@ -674,46 +685,37 @@
             this.maDDH_CTDDH.ReadOnly = true;
             this.maDDH_CTDDH.Width = 200;
             // 
-            // dataGridViewTextBoxColumn2
+            // vatTu_CTDDH
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "MAVT";
-            this.dataGridViewTextBoxColumn2.DataSource = this.bdsVatTu;
-            this.dataGridViewTextBoxColumn2.DisplayMember = "TENVT";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Vật tư";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn2.ValueMember = "MAVT";
-            this.dataGridViewTextBoxColumn2.Width = 125;
+            this.vatTu_CTDDH.DataPropertyName = "MAVT";
+            this.vatTu_CTDDH.DataSource = this.bdsVatTu;
+            this.vatTu_CTDDH.DisplayMember = "TENVT";
+            this.vatTu_CTDDH.HeaderText = "Vật tư";
+            this.vatTu_CTDDH.MinimumWidth = 6;
+            this.vatTu_CTDDH.Name = "vatTu_CTDDH";
+            this.vatTu_CTDDH.ReadOnly = true;
+            this.vatTu_CTDDH.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.vatTu_CTDDH.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.vatTu_CTDDH.ValueMember = "MAVT";
+            this.vatTu_CTDDH.Width = 125;
             // 
-            // dataGridViewTextBoxColumn3
+            // soLuong_CTDDH
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "SOLUONG";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Số lượng";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 125;
+            this.soLuong_CTDDH.DataPropertyName = "SOLUONG";
+            this.soLuong_CTDDH.HeaderText = "Số lượng";
+            this.soLuong_CTDDH.MinimumWidth = 6;
+            this.soLuong_CTDDH.Name = "soLuong_CTDDH";
+            this.soLuong_CTDDH.ReadOnly = true;
+            this.soLuong_CTDDH.Width = 125;
             // 
-            // dataGridViewTextBoxColumn4
+            // donGia_CTDDH
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "DONGIA";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Đơn giá";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // bdsPhieuNhap
-            // 
-            this.bdsPhieuNhap.DataMember = "FK_PhieuNhap_DatHang";
-            this.bdsPhieuNhap.DataSource = this.bdsDatHang;
-            // 
-            // phieuNhapTableAdapter
-            // 
-            this.phieuNhapTableAdapter.ClearBeforeFill = true;
+            this.donGia_CTDDH.DataPropertyName = "DONGIA";
+            this.donGia_CTDDH.HeaderText = "Đơn giá";
+            this.donGia_CTDDH.MinimumWidth = 6;
+            this.donGia_CTDDH.Name = "donGia_CTDDH";
+            this.donGia_CTDDH.ReadOnly = true;
+            this.donGia_CTDDH.Width = 125;
             // 
             // formDatHang
             // 
@@ -823,8 +825,8 @@
         private System.Windows.Forms.BindingSource bdsPhieuNhap;
         private DS1TableAdapters.PhieuNhapTableAdapter phieuNhapTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn maDDH_CTDDH;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewComboBoxColumn vatTu_CTDDH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuong_CTDDH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn donGia_CTDDH;
     }
 }

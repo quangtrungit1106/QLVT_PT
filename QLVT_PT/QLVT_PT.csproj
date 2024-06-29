@@ -86,7 +86,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChuyenSoThanhChu.cs" />
     <Compile Include="DS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,6 +153,12 @@
     <Compile Include="SubForm\formDatHang.Designer.cs">
       <DependentUpon>formDatHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="XtraReport_DonDatHangChuaNhap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_DonDatHangChuaNhap.Designer.cs">
+      <DependentUpon>XtraReport_DonDatHangChuaNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="XtraReport_HoatDongNhanVien.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -166,13 +171,22 @@
     <Compile Include="XtraReport_InDanhSachNhanVien.Designer.cs">
       <DependentUpon>XtraReport_InDanhSachNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="XtraReport_InDanhSachVatTu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_InDanhSachVatTu.Designer.cs">
+      <DependentUpon>XtraReport_InDanhSachVatTu.cs</DependentUpon>
+    </Compile>
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
+    <Content Include="Stored Procedure\16.sp_DonHangChuaNhap.txt" />
+    <Content Include="Stored Procedure\15.sp_InDanhSachVatTu.txt" />
     <Content Include="Stored Procedure\14.sp_XoaDonDatHang.txt" />
     <Content Include="Stored Procedure\13.sp_KiemTraMaDDH.txt" />
     <Content Include="Stored Procedure\12.sp_KiemTraXoaVatTu.txt" />
     <Content Include="Stored Procedure\11.view_NhanVienChuaCoTaiKhoan.txt" />
     <Content Include="Stored Procedure\10.sp_InDanhSachNhanVien.txt" />
+    <Content Include="Stored Procedure\13.sp_HoatDongNhanVien.txt" />
     <EmbeddedResource Include="formChinh.resx">
       <DependentUpon>formChinh.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,11 +227,17 @@
     <EmbeddedResource Include="SubForm\formDatHang.resx">
       <DependentUpon>formDatHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_DonDatHangChuaNhap.resx">
+      <DependentUpon>XtraReport_DonDatHangChuaNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_HoatDongNhanVien.resx">
       <DependentUpon>XtraReport_HoatDongNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_InDanhSachNhanVien.resx">
       <DependentUpon>XtraReport_InDanhSachNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_InDanhSachVatTu.resx">
+      <DependentUpon>XtraReport_InDanhSachVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">

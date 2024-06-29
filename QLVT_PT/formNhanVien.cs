@@ -290,7 +290,7 @@ namespace QLVT_PT
                 Program.myReader.Read();
                 if(Program.myReader.GetInt32(0) == 1)
                 {
-                    MessageBox.Show("Nhân viên này hiện đang làm việc tại chi nhánh còn lại! \nKhông thể sửa trạng thái xóa!", "", MessageBoxButtons.OK);
+                    MessageBox.Show("Nhân viên này hiện đang làm việc tại chi nhánh khác! \nKhông thể sửa trạng thái xóa!", "", MessageBoxButtons.OK);
                     Program.myReader.Close();
                     return;
                 }

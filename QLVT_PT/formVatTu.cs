@@ -2,6 +2,7 @@
 using DevExpress.DataAccess.DataFederation;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,9 +50,12 @@ namespace QLVT_PT
             {
                 this.btnThem.Enabled = false;
                 this.btnXoa.Enabled = false;
+                this.btnChinhSua.Enabled = false;
                 this.btnGhi.Enabled = false;
                 this.btnQuayLai.Enabled = false;
                 this.panelThongTin.Enabled = false;
+
+
             }
 
         }
@@ -175,7 +179,7 @@ namespace QLVT_PT
                         try
                         {
                             String cauTruyVan =
-                                "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON)" +
+                                "INSERT INTO VATTU (MAVT, TENVT, DVT, SOLUONGTON) " +
                                 "VALUES ('" + this.txtMaVT.Text.Trim() + "',N'" +
                                         this.txtTenVT.Text.Trim() + "',N'" +
                                         this.txtDVT.Text.Trim() + "'," +
@@ -184,7 +188,7 @@ namespace QLVT_PT
 
                             Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
                             Program.myReader.Close();
-                            vitri++;
+                            
                             // Cau lenh hoan tac
                             undoMap[vitri] = "DELETE FROM VATTU WHERE MaVT = '"+ this.txtMaVT.Text.Trim() +"';";
                             this.vattuTableAdapter.Fill(this.DS1.Vattu);
@@ -343,23 +347,15 @@ namespace QLVT_PT
 
             try
             {
-                // Tạo kết nối và câu truy vấn
+              
                 string cauTruyVan = "sp_KiemTraXoaVatTu";
                 SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
-
-                // Đặt loại lệnh là Stored Procedure
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-                // Thêm tham số cho stored procedure
                 sqlCommand.Parameters.AddWithValue("@MAVT", this.txtMaVT.Text.Trim());
-
-                // Mở kết nối nếu cần
                 if (Program.conn.State == System.Data.ConnectionState.Closed)
                 {
                     Program.conn.Open();
                 }
-
-                // Thực thi câu lệnh và đọc kết quả
                 SqlDataReader reader = sqlCommand.ExecuteReader();
 
                 int totalOrderCount = 0;
@@ -372,16 +368,11 @@ namespace QLVT_PT
                 reader.Close();
                 Program.conn.Close();
 
-                // So sánh và xử lý kết quả
                 if (totalOrderCount > 0)
                 {
                     MessageBox.Show("Vật tư này đã được lập hóa đơn ở Chi nhánh khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                }
-                else
-                {
-                    MessageBox.Show("Không có đơn đặt hàng nào.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                }  
             }
             catch (Exception ex)
             {
@@ -426,7 +417,13 @@ namespace QLVT_PT
             this.txtTenVT.ReadOnly = false;
         }
 
-  
+        private void btnInDSVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XtraReport_InDanhSachVatTu rpt = new XtraReport_InDanhSachVatTu();
+            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("HH:mm dd/MM/yyyy");
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
+        }
     }
      
 }
