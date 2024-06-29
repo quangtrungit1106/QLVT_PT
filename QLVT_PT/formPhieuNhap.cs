@@ -597,13 +597,16 @@ namespace QLVT_PT
 
         private void gcPhieuNhap_Click(object sender, EventArgs e)
         {
-            if(txtMANV.Text.Equals(Program.userName))
+            if (!Program.role.Equals("CONGTY"))
             {
-                btnXoa.Enabled = btnSua.Enabled = true;
-            }
-            else
-            {
-                btnXoa.Enabled = btnSua.Enabled = false;
+                if (txtMANV.Text.Equals(Program.userName))
+                {
+                    btnXoa.Enabled = btnSua.Enabled = true;
+                }
+                else
+                {
+                    btnXoa.Enabled = btnSua.Enabled = false;
+                }
             }            
         }        
 
