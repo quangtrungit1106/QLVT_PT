@@ -171,7 +171,6 @@
             this.btnKhoHang.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnKhoHang.ImageOptions.LargeImage")));
             this.btnKhoHang.LargeWidth = 100;
             this.btnKhoHang.Name = "btnKhoHang";
-            this.btnKhoHang.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnKho_ItemClick);
             // 
             // barButtonItem7
             // 
