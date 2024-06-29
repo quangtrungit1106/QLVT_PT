@@ -34,7 +34,7 @@ namespace QLVT_PT
             this.DS1.EnforceConstraints = false;            
 
             this.dDHChuaNhapTableAdapter.Connection.ConnectionString = Program.connstr;            
-            this.dDHChuaNhapTableAdapter.FillBy(this.DS1.DDHChuaNhap,Convert.ToInt32(Program.userName));            
+            this.dDHChuaNhapTableAdapter.Fill(this.DS1.DDHChuaNhap);            
 
             this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
             this.cTDDHTableAdapter.Fill(this.DS1.CTDDH);    

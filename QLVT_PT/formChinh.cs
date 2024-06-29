@@ -251,5 +251,21 @@ namespace QLVT_PT
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.ShowPreviewDialog();
         }
+
+        private void btnKhoHang_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(formKho));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                formKho form = new formKho();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }

@@ -497,7 +497,7 @@
             this.gcPhieuNhap.TabIndex = 11;
             this.gcPhieuNhap.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gcPhieuNhap.Click += new System.EventHandler(this.gcPhieuNhap_Click);
+            //this.gcPhieuNhap.Click += new System.EventHandler(this.gcPhieuNhap_Click);
             // 
             // gridView1
             // 
