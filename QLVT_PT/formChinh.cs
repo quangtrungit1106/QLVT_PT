@@ -267,5 +267,21 @@ namespace QLVT_PT
                 form.Show();
             }
         }
+
+        private void barButtonItem10_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(FormRpt_TongHopNhapXuat));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormRpt_TongHopNhapXuat form = new FormRpt_TongHopNhapXuat();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }
