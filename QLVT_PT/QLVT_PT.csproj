@@ -185,6 +185,7 @@
     </Compile>
     <None Include="Resources\btnPhieuXuat.ImageOptions.Image.png" />
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
+    <Content Include="Stored Procedure\18.sp_KiemTraSoLuongCTPX.txt" />
     <Content Include="Stored Procedure\17.sp_KiemTraMAPX.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
     <Content Include="Stored Procedure\16.sp_DonHangChuaNhap.txt" />
