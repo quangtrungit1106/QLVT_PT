@@ -1,0 +1,8 @@
+CREATE PROC [dbo].[sp_KiemTraSoLuongCTPX](@mavt nvarchar(4), @soluong int)
+as 
+begin
+	if (@soluong <= (SELECT SOLUONGTON FROM Vattu WHERE MAVT=@mavt))
+			SELECT 'Result'=1
+	else 
+			SELECT 'Result'=0
+end

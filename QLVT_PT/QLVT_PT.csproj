@@ -121,6 +121,12 @@
     <Compile Include="formNhanVien.Designer.cs">
       <DependentUpon>formNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="formPhieuXuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPhieuXuat.Designer.cs">
+      <DependentUpon>formPhieuXuat.cs</DependentUpon>
+    </Compile>
     <Compile Include="formPhieuNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,8 @@
       <DependentUpon>XtraReport_TongHopNhapXuatVatTu.cs</DependentUpon>
     </Compile>
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
+    <Content Include="Stored Procedure\18.sp_KiemTraSoLuongCTPX.txt" />
+    <Content Include="Stored Procedure\17.sp_KiemTraMAPX.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
     <Content Include="Stored Procedure\17.sp_TongHopNhapXuat.txt" />
     <Content Include="Stored Procedure\16.sp_DonHangChuaNhap.txt" />
@@ -208,6 +216,7 @@
     <Content Include="Stored Procedure\13.sp_HoatDongNhanVien.txt" />
     <EmbeddedResource Include="formChinh.resx">
       <DependentUpon>formChinh.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="formDangNhap.resx">
       <DependentUpon>formDangNhap.cs</DependentUpon>
@@ -220,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formNhanVien.resx">
       <DependentUpon>formNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPhieuXuat.resx">
+      <DependentUpon>formPhieuXuat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPhieuNhap.resx">
       <DependentUpon>formPhieuNhap.cs</DependentUpon>
