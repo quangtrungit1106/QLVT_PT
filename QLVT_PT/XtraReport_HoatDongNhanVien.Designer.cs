@@ -587,6 +587,7 @@ namespace QLVT_PT
             this.tableCell14.StylePriority.UseBorderWidth = false;
             this.tableCell14.StylePriority.UseTextAlignment = false;
             this.tableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell14.TextFormatString = "{0:#,###}";
             this.tableCell14.Weight = 0.15981050931490384D;
             // 
             // tableCell15
@@ -603,7 +604,7 @@ namespace QLVT_PT
             this.tableCell15.StylePriority.UseBorderWidth = false;
             this.tableCell15.StylePriority.UseTextAlignment = false;
             this.tableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell15.TextFormatString = "{0:#,#}";
+            this.tableCell15.TextFormatString = "{0:#,##0}";
             this.tableCell15.Weight = 0.13296678983248197D;
             // 
             // tableCell16
@@ -620,7 +621,7 @@ namespace QLVT_PT
             this.tableCell16.StylePriority.UseBorderWidth = false;
             this.tableCell16.StylePriority.UseTextAlignment = false;
             this.tableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell16.TextFormatString = "{0:#,#}";
+            this.tableCell16.TextFormatString = "{0:#,##0}";
             this.tableCell16.Weight = 0.25126793651693669D;
             // 
             // GroupFooter2
@@ -662,7 +663,7 @@ namespace QLVT_PT
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.label4.Summary = xrSummary1;
             this.label4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.label4.TextFormatString = "{0:#,#}";
+            this.label4.TextFormatString = "{0:#,###}";
             this.label4.WordWrap = false;
             // 
             // label6
@@ -678,7 +679,7 @@ namespace QLVT_PT
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.label6.Summary = xrSummary2;
             this.label6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.label6.TextFormatString = "{0:#,#}";
+            this.label6.TextFormatString = "{0:#,##0}";
             this.label6.WordWrap = false;
             // 
             // label7
@@ -759,7 +760,7 @@ namespace QLVT_PT
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.lbTongCong.Summary = xrSummary3;
             this.lbTongCong.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbTongCong.TextFormatString = "{0:#,# đồng}";
+            this.lbTongCong.TextFormatString = "{0:#,##0 đồng}";
             this.lbTongCong.WordWrap = false;
             // 
             // sqlDataSource1

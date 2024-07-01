@@ -71,14 +71,15 @@ namespace QLVT_PT
             else
             {
                 btnThem.Enabled = btnReload.Enabled = true;
-                if (txtMANV.Text.Equals(Program.userName))
+                btnXoa.Enabled = btnSua.Enabled = true;
+                /*if (txtMANV.Text.Equals(Program.userName))
                 {
                     btnXoa.Enabled = btnSua.Enabled = true;
                 }
                 else
                 {
                     btnXoa.Enabled = btnSua.Enabled = false;
-                }
+                }*/
                 btnGhi.Enabled = btnUndo.Enabled = false;
                 cmbChiNhanh.Enabled = false;
                 panelControl2.Enabled = false;
@@ -595,17 +596,20 @@ namespace QLVT_PT
             }
         }
 
-        private void gcPhieuNhap_Click(object sender, EventArgs e)
+        /*private void gcPhieuNhap_Click(object sender, EventArgs e)
         {
-            if(txtMANV.Text.Equals(Program.userName))
+            if (!Program.role.Equals("CONGTY"))
             {
-                btnXoa.Enabled = btnSua.Enabled = true;
-            }
-            else
-            {
-                btnXoa.Enabled = btnSua.Enabled = false;
+                if (txtMANV.Text.Equals(Program.userName))
+                {
+                    btnXoa.Enabled = btnSua.Enabled = true;
+                }
+                else
+                {
+                    btnXoa.Enabled = btnSua.Enabled = false;
+                }
             }            
-        }        
+        }        */
 
         private void btnUndoVT_Click(object sender, EventArgs e)
         {

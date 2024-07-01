@@ -109,6 +109,12 @@
     <Compile Include="formDonDatHangChuaNhap.Designer.cs">
       <DependentUpon>formDonDatHangChuaNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="formKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formKho.Designer.cs">
+      <DependentUpon>formKho.cs</DependentUpon>
+    </Compile>
     <Compile Include="formNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,12 @@
     </Compile>
     <Compile Include="formPhieuNhap.Designer.cs">
       <DependentUpon>formPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRpt_TongHopNhapXuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRpt_TongHopNhapXuat.Designer.cs">
+      <DependentUpon>FormRpt_TongHopNhapXuat.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRpt_HoatDongNhanVien.cs">
       <SubType>Form</SubType>
@@ -183,11 +195,17 @@
     <Compile Include="XtraReport_InDanhSachVatTu.Designer.cs">
       <DependentUpon>XtraReport_InDanhSachVatTu.cs</DependentUpon>
     </Compile>
-    <None Include="Resources\btnPhieuXuat.ImageOptions.Image.png" />
+    <Compile Include="XtraReport_TongHopNhapXuatVatTu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_TongHopNhapXuatVatTu.Designer.cs">
+      <DependentUpon>XtraReport_TongHopNhapXuatVatTu.cs</DependentUpon>
+    </Compile>
     <Content Include="Stored Procedure\06.sp_KiemTraTrangThaiXoa.txt" />
     <Content Include="Stored Procedure\18.sp_KiemTraSoLuongCTPX.txt" />
     <Content Include="Stored Procedure\17.sp_KiemTraMAPX.txt" />
     <Content Include="Stored Procedure\08.sp_KiemTraMAPN.txt" />
+    <Content Include="Stored Procedure\17.sp_TongHopNhapXuat.txt" />
     <Content Include="Stored Procedure\16.sp_DonHangChuaNhap.txt" />
     <Content Include="Stored Procedure\15.sp_InDanhSachVatTu.txt" />
     <Content Include="Stored Procedure\14.sp_XoaDonDatHang.txt" />
@@ -206,6 +224,9 @@
     <EmbeddedResource Include="formDonDatHangChuaNhap.resx">
       <DependentUpon>formDonDatHangChuaNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formKho.resx">
+      <DependentUpon>formKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formNhanVien.resx">
       <DependentUpon>formNhanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPhieuNhap.resx">
       <DependentUpon>formPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRpt_TongHopNhapXuat.resx">
+      <DependentUpon>FormRpt_TongHopNhapXuat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRpt_HoatDongNhanVien.resx">
       <DependentUpon>FormRpt_HoatDongNhanVien.cs</DependentUpon>
@@ -251,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_InDanhSachVatTu.resx">
       <DependentUpon>XtraReport_InDanhSachVatTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_TongHopNhapXuatVatTu.resx">
+      <DependentUpon>XtraReport_TongHopNhapXuatVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">

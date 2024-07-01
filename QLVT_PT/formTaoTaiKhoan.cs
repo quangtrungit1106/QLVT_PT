@@ -20,7 +20,7 @@ namespace QLVT_PT
         
         private string maNV = "";
         private string vaiTro = "";
-        
+        BindingSource bindingSource1 = new BindingSource();
 
         private SqlConnection connPublisher = new SqlConnection();
         private void layDanhSachNhanVienChuaCoTK(String cmd, SqlConnection connStr)
@@ -36,10 +36,10 @@ namespace QLVT_PT
             da.Fill(dt);
 
             connPublisher.Close();
-         
-            Program.bindingSource.DataSource = dt;
+            
+            bindingSource1.DataSource = dt;
 
-            boxMaNV.DataSource = Program.bindingSource;
+            boxMaNV.DataSource = bindingSource1;
             boxMaNV.DisplayMember = "HOTEN";
             boxMaNV.ValueMember = "MANV";
         }
@@ -180,12 +180,18 @@ namespace QLVT_PT
                 boxMaNV.SelectedIndex = 0;
                 maNV = boxMaNV.SelectedValue.ToString();
                 cmbVaiTro.Items.Clear();
+                cmbChiNhanh.DataSource = Program.bindingSource; //sao chép bds đã load ở đăng nhập
+                cmbChiNhanh.DisplayMember = "TENCN";
+                cmbChiNhanh.ValueMember = "TENSERVER";
+                cmbChiNhanh.SelectedIndex = Program.brand;
                 if (Program.role == "CONGTY")
                 {
+                    cmbChiNhanh.Enabled = true;
                     cmbVaiTro.Items.Add("CONGTY");
                 }
                 else
                 {
+                    cmbChiNhanh.Enabled = false;
                     cmbVaiTro.Items.Add("CHINHANH");
                     cmbVaiTro.Items.Add("USER");
                 }
@@ -234,6 +240,35 @@ namespace QLVT_PT
         private void boxMaNV_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.maNV = boxMaNV.SelectedValue.ToString();
+        }
+
+        private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbChiNhanh.SelectedValue.ToString() == "System.Data.DataRowView") return;
+            Program.serverName = cmbChiNhanh.SelectedValue.ToString();
+
+            if (cmbChiNhanh.SelectedIndex != Program.brand)
+            {
+                Program.loginName = Program.remoteLogin;
+                Program.loginPassword = Program.remotePassword;
+            }
+            else
+            {
+                Program.loginName = Program.currentLogin;
+                Program.loginPassword = Program.currentPassword;
+            }
+
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                layDanhSachNhanVienChuaCoTK("SELECT * FROM view_NhanVienChuaCoTaiKhoan;", Program.conn);
+                boxMaNV.SelectedIndex = 0;
+                maNV = boxMaNV.SelectedValue.ToString();
+            }
         }
     }
 }
