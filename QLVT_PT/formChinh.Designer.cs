@@ -63,6 +63,7 @@
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTongHopNhapXuat = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -88,10 +89,11 @@
             this.btnPhieuXuat,
             this.btnThoat,
             this.btnHDNV,
-            this.btnDSDatHangChuaNhap});
+            this.btnDSDatHangChuaNhap,
+            this.btnTongHopNhapXuat});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
-            this.ribbonControl1.MaxItemId = 17;
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(9);
+            this.ribbonControl1.MaxItemId = 18;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 876;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -293,6 +295,7 @@
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnHDNV);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnDSDatHangChuaNhap);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnTongHopNhapXuat);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "BÁO CÁO";
             // 
@@ -400,6 +403,14 @@
             this.barButtonItem9.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem9.ImageOptions.LargeImage")));
             this.barButtonItem9.Name = "barButtonItem9";
             // 
+            // btnTongHopNhapXuat
+            // 
+            this.btnTongHopNhapXuat.Caption = "Tổng hợp nhập xuất";
+            this.btnTongHopNhapXuat.Id = 17;
+            this.btnTongHopNhapXuat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnTongHopNhapXuat.ImageOptions.SvgImage")));
+            this.btnTongHopNhapXuat.Name = "btnTongHopNhapXuat";
+            this.btnTongHopNhapXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem10_ItemClick);
+            // 
             // formChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -458,6 +469,7 @@
         private DevExpress.XtraBars.BarButtonItem btnDSDatHangChuaNhap;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.BarButtonItem btnTongHopNhapXuat;
     }
 }
 
