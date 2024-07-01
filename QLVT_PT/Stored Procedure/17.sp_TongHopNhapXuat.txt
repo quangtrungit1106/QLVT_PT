@@ -3,10 +3,9 @@
 @ToDate DATETIME
 AS
 BEGIN
+    SET NOCOUNT ON
     IF(1=0)
-    BEGIN
-        SET FMTONLY OFF
-    END
+    SET FMTONLY OFF
     --------------------phieu nhap--------------------------
     SELECT PN.NGAY,
             NHAP = SUM (CT.DONGIA * CT.SOLUONG),

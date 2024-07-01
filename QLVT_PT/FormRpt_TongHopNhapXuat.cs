@@ -39,21 +39,11 @@ namespace QLVT_PT
             {
                 MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
                 return;
-            }
-            else
-            {                
-                this.dSNVTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.dSNVTableAdapter.Fill(this.DS1.DSNV);
-            }
+            }           
         }        
 
         private void FormRpt_TongHopNhapXuat_Load(object sender, EventArgs e)
-        {
-            DS1.EnforceConstraints = false;
-
-            this.dSNVTableAdapter.Connection.ConnectionString=Program.connstr;
-            this.dSNVTableAdapter.Fill(DS1.DSNV);
-
+        {            
             cmbChiNhanh.DataSource = Program.bindingSource;
             cmbChiNhanh.DisplayMember = "TENCN";
             cmbChiNhanh.ValueMember = "TENSERVER";
