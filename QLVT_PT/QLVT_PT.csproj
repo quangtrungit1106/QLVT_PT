@@ -319,6 +319,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Content Include="Stored Procedure\09.sp_KiemTraSoLuongCTPN.txt" />
+    <Content Include="Stored Procedure\19.sp_ChiTietSoLuongTriGiaHangHoaNhapXuat.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Stored Procedure\02.sp_LayThongTinNV.txt" />
