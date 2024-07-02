@@ -11,6 +11,8 @@ namespace QLVT_PT
         public XtraReport_DonDatHangChuaNhap()
         {
             InitializeComponent();
+            this.sqlDataSource1.Connection.ConnectionString = Program.connstr;
+            this.sqlDataSource1.Fill();
         }
 
     }

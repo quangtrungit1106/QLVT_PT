@@ -21,8 +21,13 @@ namespace QLVT_PT
         private string maNV = "";
         private string vaiTro = "";
         BindingSource bindingSource1 = new BindingSource();
-
         private SqlConnection connPublisher = new SqlConnection();
+
+        public formTaoTaiKhoan()
+        {
+            InitializeComponent();
+        }
+
         private void layDanhSachNhanVienChuaCoTK(String cmd, SqlConnection connStr)
         {
             if (connStr.State == ConnectionState.Closed)
@@ -34,22 +39,12 @@ namespace QLVT_PT
             SqlDataAdapter da = new SqlDataAdapter(cmd, connStr);
             // dùng adapter thì mới đổ vào data table được
             da.Fill(dt);
-
-            connPublisher.Close();
-            
+            connPublisher.Close();            
             bindingSource1.DataSource = dt;
-
             boxMaNV.DataSource = bindingSource1;
             boxMaNV.DisplayMember = "HOTEN";
             boxMaNV.ValueMember = "MANV";
         }
-
-        public formTaoTaiKhoan()
-        {
-            InitializeComponent();
-        }
-
-       
 
         private bool kiemTraDuLieuDauVao()
         {
@@ -66,17 +61,7 @@ namespace QLVT_PT
                 MessageBox.Show("Mã nhân viên không được chứa khoảng trắng", "Thông báo", MessageBoxButtons.OK);
                 this.textTaiKhoan.Focus();
                 return false;
-            }
-            String statement = "EXEC sp_LayThongTinNV '" + this.maNV + "'";// exec sp_LayThongTinNV
-            Program.myReader = null;
-            Program.myReader = Program.ExecSqlDataReader(statement);
-            if (!Program.myReader.HasRows)
-            {
-                Program.myReader.Close();
-                MessageBox.Show("Mã nhân viên không đúng", "Thông báo", MessageBoxButtons.OK);
-                return false;
-            }
-            Program.myReader.Close();
+            }         
             /*kiem tra textHoNV*/
             this.textTaiKhoan.Text = this.textTaiKhoan.Text.Trim();
             if (this.textTaiKhoan.Text == "")
@@ -91,8 +76,6 @@ namespace QLVT_PT
                 this.textTaiKhoan.Focus();
                 return false;
             }
-
-
             /*kiem tra textMatKhau*/
             this.textMatKhau.Text = this.textMatKhau.Text.Trim();
             if (this.textMatKhau.Text == "")
@@ -133,7 +116,6 @@ namespace QLVT_PT
         private void showPass_CheckedChanged(object sender, EventArgs e)
         {
             CheckEdit checkEdit = sender as CheckEdit;
-
             // Kiểm tra xem CheckEdit đã được kiểm tra hay không
             if (checkEdit.Checked)
             {
@@ -150,7 +132,6 @@ namespace QLVT_PT
         private void showConfirmPass_CheckedChanged(object sender, EventArgs e)
         {
             CheckEdit checkEdit = sender as CheckEdit;
-
             // Kiểm tra xem CheckEdit đã được kiểm tra hay không
             if (checkEdit.Checked)
             {
@@ -201,9 +182,7 @@ namespace QLVT_PT
             {
                 MessageBox.Show("Hiện tại không thể tạo tài khoản!", "Thông báo", MessageBoxButtons.OK);
                
-            }
-            
-            
+            }         
         }
 
         private void btnTaoTaiKhoan_Click(object sender, EventArgs e)
@@ -223,15 +202,13 @@ namespace QLVT_PT
                     {
                         return;
                     }
-
                     MessageBox.Show("Đăng kí tài khoản thành công\n\n", "Thông Báo", MessageBoxButtons.OK);
                     this.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Thực thi database thất bại!\n\n" + ex.Message, "Thông báo",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Console.WriteLine(ex.Message);
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);                  
                     return;
                 }
             }

@@ -36,6 +36,7 @@
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnChinhSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDSDatHangChuaNhap = new DevExpress.XtraBars.BarButtonItem();
             this.btnQuayLai = new DevExpress.XtraBars.BarButtonItem();
             this.btnLamMoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
@@ -87,12 +88,12 @@
             this.bdsCTDDH = new System.Windows.Forms.BindingSource(this.components);
             this.cTDDHTableAdapter = new QLVT_PT.DS1TableAdapters.CTDDHTableAdapter();
             this.dgvCTDDH = new System.Windows.Forms.DataGridView();
-            this.bdsPhieuNhap = new System.Windows.Forms.BindingSource(this.components);
-            this.phieuNhapTableAdapter = new QLVT_PT.DS1TableAdapters.PhieuNhapTableAdapter();
             this.maDDH_CTDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vatTu_CTDDH = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.soLuong_CTDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.donGia_CTDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bdsPhieuNhap = new System.Windows.Forms.BindingSource(this.components);
+            this.phieuNhapTableAdapter = new QLVT_PT.DS1TableAdapters.PhieuNhapTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -129,8 +130,9 @@
             this.btnGhi,
             this.btnQuayLai,
             this.btnLamMoi,
-            this.btnThoat});
-            this.barManager1.MaxItemId = 7;
+            this.btnThoat,
+            this.btnDSDatHangChuaNhap});
+            this.barManager1.MaxItemId = 8;
             // 
             // bar1
             // 
@@ -143,6 +145,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnChinhSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDSDatHangChuaNhap, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnQuayLai, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnLamMoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
@@ -191,6 +194,16 @@
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(100, 0);
             this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
+            // 
+            // btnDSDatHangChuaNhap
+            // 
+            this.btnDSDatHangChuaNhap.Border = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+            this.btnDSDatHangChuaNhap.Caption = "Danh sách đơn đặt hàng chưa nhập";
+            this.btnDSDatHangChuaNhap.Id = 7;
+            this.btnDSDatHangChuaNhap.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDSDatHangChuaNhap.ImageOptions.Image")));
+            this.btnDSDatHangChuaNhap.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDSDatHangChuaNhap.ImageOptions.LargeImage")));
+            this.btnDSDatHangChuaNhap.Name = "btnDSDatHangChuaNhap";
+            this.btnDSDatHangChuaNhap.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDSDatHangChuaNhap_ItemClick);
             // 
             // btnQuayLai
             // 
@@ -667,15 +680,6 @@
             this.dgvCTDDH.Size = new System.Drawing.Size(1112, 337);
             this.dgvCTDDH.TabIndex = 43;
             // 
-            // bdsPhieuNhap
-            // 
-            this.bdsPhieuNhap.DataMember = "FK_PhieuNhap_DatHang";
-            this.bdsPhieuNhap.DataSource = this.bdsDatHang;
-            // 
-            // phieuNhapTableAdapter
-            // 
-            this.phieuNhapTableAdapter.ClearBeforeFill = true;
-            // 
             // maDDH_CTDDH
             // 
             this.maDDH_CTDDH.DataPropertyName = "MasoDDH";
@@ -716,6 +720,15 @@
             this.donGia_CTDDH.Name = "donGia_CTDDH";
             this.donGia_CTDDH.ReadOnly = true;
             this.donGia_CTDDH.Width = 125;
+            // 
+            // bdsPhieuNhap
+            // 
+            this.bdsPhieuNhap.DataMember = "FK_PhieuNhap_DatHang";
+            this.bdsPhieuNhap.DataSource = this.bdsDatHang;
+            // 
+            // phieuNhapTableAdapter
+            // 
+            this.phieuNhapTableAdapter.ClearBeforeFill = true;
             // 
             // formDatHang
             // 
@@ -828,5 +841,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn vatTu_CTDDH;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuong_CTDDH;
         private System.Windows.Forms.DataGridViewTextBoxColumn donGia_CTDDH;
+        private DevExpress.XtraBars.BarButtonItem btnDSDatHangChuaNhap;
     }
 }

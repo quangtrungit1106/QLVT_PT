@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraPrinting.Native;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -441,6 +442,15 @@ namespace QLVT_PT.SubForm
                 this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.phieuNhapTableAdapter.Fill(this.dS1.PhieuNhap);
             }
+        }
+
+        private void btnDSDatHangChuaNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XtraReport_DonDatHangChuaNhap rpt = new XtraReport_DonDatHangChuaNhap();
+            rpt.lbNgayIn.Text = "Ngày in: " + DateTime.Now.ToString("HH:mm dd/MM/yyyy");
+
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
         }
     }
 }
