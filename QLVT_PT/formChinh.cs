@@ -291,5 +291,21 @@ namespace QLVT_PT
                 form.Show();
             }
         }
+
+        private void barButtonItem10_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            logout();
+            Form f = this.CheckExists(typeof(ChiTietSoLuongTriGiaHangHoa));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                ChiTietSoLuongTriGiaHangHoa form = new ChiTietSoLuongTriGiaHangHoa();
+                form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }
